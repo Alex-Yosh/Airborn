@@ -12,7 +12,7 @@ struct AirbornApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
         }
     }
 }

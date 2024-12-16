@@ -11,6 +11,7 @@
 		FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462F2D0D243900E2EB4D /* ContentView.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
+		FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46462D10F40100E2EB4D /* LaunchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FACF462F2D0D243900E2EB4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FACF46462D10F40100E2EB4D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +53,9 @@
 		FACF462C2D0D243900E2EB4D /* Airborn */ = {
 			isa = PBXGroup;
 			children = (
-				FACF462D2D0D243900E2EB4D /* AirbornApp.swift */,
-				FACF462F2D0D243900E2EB4D /* ContentView.swift */,
-				FACF46312D0D243B00E2EB4D /* Assets.xcassets */,
+				FACF46452D10F37C00E2EB4D /* Classes */,
 				FACF46332D0D243B00E2EB4D /* Preview Content */,
+				FACF46432D10F0E400E2EB4D /* Utils */,
 			);
 			path = Airborn;
 			sourceTree = "<group>";
@@ -65,6 +66,80 @@
 				FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FACF46402D10F0C900E2EB4D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FACF46412D10F0D400E2EB4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FACF46422D10F0DD00E2EB4D /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				FACF462F2D0D243900E2EB4D /* ContentView.swift */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
+		FACF46432D10F0E400E2EB4D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FACF46312D0D243B00E2EB4D /* Assets.xcassets */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FACF46442D10F19200E2EB4D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FACF46462D10F40100E2EB4D /* LaunchView.swift */,
+				FACF46482D10F46100E2EB4D /* HomeScreen */,
+				FACF46492D10F48100E2EB4D /* DataScreen */,
+				FACF464A2D10F4C500E2EB4D /* MapScreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FACF46452D10F37C00E2EB4D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FACF462D2D0D243900E2EB4D /* AirbornApp.swift */,
+				FACF46442D10F19200E2EB4D /* Screens */,
+				FACF46412D10F0D400E2EB4D /* Models */,
+				FACF46402D10F0C900E2EB4D /* Managers */,
+				FACF46422D10F0DD00E2EB4D /* CommonUI */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FACF46482D10F46100E2EB4D /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		FACF46492D10F48100E2EB4D /* DataScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataScreen;
+			sourceTree = "<group>";
+		};
+		FACF464A2D10F4C500E2EB4D /* MapScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MapScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */,
+				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
