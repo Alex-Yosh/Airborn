@@ -13,6 +13,7 @@ struct AirbornApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .environmentObject(DatabaseManager.shared)
         }
     }
 }

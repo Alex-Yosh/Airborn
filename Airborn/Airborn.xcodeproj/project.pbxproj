@@ -12,6 +12,7 @@
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
 		FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46462D10F40100E2EB4D /* LaunchView.swift */; };
+		FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FACF46462D10F40100E2EB4D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		FACF46402D10F0C900E2EB4D /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
 				FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
