@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct LaunchView: View {
+    @EnvironmentObject var navigationManager: NavigationManager
+    
+    @State private var currentAppStatus: Constants.appNavigationControllers = .loading
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            switch currentAppStatus {
+            case .loading:
+                Loading()
+            case .restOfApp:
+                MainTab()
+            }
+        }.onReceive(navigationManager.appStatus) {
+            currentAppStatus = $0
+        }
     }
 }
 
 #Preview {
     LaunchView()
+        .environmentObject(NavigationManager.shared)
 }

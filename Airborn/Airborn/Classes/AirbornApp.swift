@@ -14,6 +14,7 @@ struct AirbornApp: App {
         WindowGroup {
             LaunchView()
                 .environmentObject(DatabaseManager.shared)
+                .environmentObject(NavigationManager.shared)
         }
     }
 }
