@@ -36,8 +36,10 @@ struct HomeScaleView: View {
                 .animation(.easeInOut, value: StartingProgress)
             
             VStack{
-                Text("\(progressPercent*100, specifier: "%.1f") %").font(Font.system(size: 44)).bold()
-                Text(captionText(progress: progressPercent)).bold().foregroundColor(captionColor(progress: progressPercent))
+                Text("\(progressPercent*100, specifier: "%.1f")%")
+                    .textStyle(HomeScaleTextStyle())
+                Text(captionText(progress: progressPercent)).foregroundColor(captionColor(progress: progressPercent))
+                    .textStyle(RegularTextStyle())
             }
         }.padding(.horizontal, 36)
             .onReceive(timer) { _ in

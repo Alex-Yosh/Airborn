@@ -23,6 +23,8 @@
 		FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */; };
 		FACF466E2D15BBC300E2EB4D /* HomeScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */; };
 		FACF46722D15BFB400E2EB4D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46712D15BFB400E2EB4D /* Color.swift */; };
+		FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */; };
+		FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46752D15DD7100E2EB4D /* FontStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopTextView.swift; sourceTree = "<group>"; };
 		FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScaleView.swift; sourceTree = "<group>"; };
 		FACF46712D15BFB400E2EB4D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
+		FACF46752D15DD7100E2EB4D /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 				FACF46312D0D243B00E2EB4D /* Assets.xcassets */,
 				FACF46522D14F21100E2EB4D /* Constants.swift */,
 				FACF46712D15BFB400E2EB4D /* Color.swift */,
+				FACF46752D15DD7100E2EB4D /* FontStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			children = (
 				FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */,
 				FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */,
+				FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -271,10 +277,12 @@
 			files = (
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
+				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,
 				FACF46652D1501AC00E2EB4D /* DataView.swift in Sources */,
 				FACF46672D1501B700E2EB4D /* MapView.swift in Sources */,
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
+				FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */,
 				FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
