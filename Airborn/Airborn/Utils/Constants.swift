@@ -21,12 +21,18 @@ struct Constants {
     }
     
     struct Colour {
-        static var PrimaryBlue = Color(red: 167/255, green: 211/255, blue: 224/255) //#A7D3E0
-        static var PrimaryGreen = Color(red: 168/255, green: 216/255, blue: 185/255) //#A8D8B9
-        static var SecondaryWhite = Color(red: 255/255, green: 255/255, blue: 255/255) //#FFFFFF
-        static var SecondaryLightGray = Color(red: 245/255, green: 245/255, blue: 245/255) //#F5F5F5
-        static var AccentYellow = Color(red: 255/255, green: 235/255, blue: 59/255) //#FFEB3B
-        static var AccentOrange = Color(red: 255/255, green: 152/255, blue: 0/255) //#FF9800
+        static var PrimaryBlue = Color(hex: "A7D3E0")
+        static var PrimaryGreen = Color(hex: "A8D8B9")
+        static var SecondaryWhite = Color(hex: "FFFFFF")
+        static var SecondaryLightGray = Color(hex: "F5F5F5")
+        static var AccentYellow = Color(hex: "FFEB3B")
+        static var AccentOrange = Color(hex: "FF9800")
+        
+        static var ScaleRed = Color(hex: "ED4D4D")
+        static var ScaleDarkOrange = Color(hex: "E59148")
+        static var ScaleLightOrange = Color(hex: "EFBF39")
+        static var ScaleYellow = Color(hex: "EEED56")
+        static var ScaleGreen = Color(hex: "32E1A0")
     }
     
 }
