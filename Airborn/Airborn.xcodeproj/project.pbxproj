@@ -25,6 +25,9 @@
 		FACF46722D15BFB400E2EB4D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46712D15BFB400E2EB4D /* Color.swift */; };
 		FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */; };
 		FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46752D15DD7100E2EB4D /* FontStyle.swift */; };
+		FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46772D173C6F00E2EB4D /* RecentReading.swift */; };
+		FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */; };
+		FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		FACF46712D15BFB400E2EB4D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		FACF46752D15DD7100E2EB4D /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
+		FACF46772D173C6F00E2EB4D /* RecentReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReading.swift; sourceTree = "<group>"; };
+		FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
+		FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,8 @@
 		FACF46412D10F0D400E2EB4D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FACF46772D173C6F00E2EB4D /* RecentReading.swift */,
+				FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				FACF46662D1501B700E2EB4D /* MapView.swift */,
+				FACF46792D1E299400E2EB4D /* SubViews */,
 			);
 			path = MapScreen;
 			sourceTree = "<group>";
@@ -201,6 +210,14 @@
 				FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */,
 				FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */,
 				FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		FACF46792D1E299400E2EB4D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -275,9 +292,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */,
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
 				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,
+				FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */,
 				FACF46652D1501AC00E2EB4D /* DataView.swift in Sources */,
 				FACF46672D1501B700E2EB4D /* MapView.swift in Sources */,
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
@@ -287,6 +306,7 @@
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
+				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,
@@ -431,7 +451,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,7 +484,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
