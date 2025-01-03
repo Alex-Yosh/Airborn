@@ -8,6 +8,7 @@
 import Foundation
 
 struct SensorData: Hashable{
+    var name: String
     var lastUpdated: Date
     
     //location

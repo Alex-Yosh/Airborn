@@ -23,11 +23,13 @@ struct MainTab: View {
         Group {
             TabView (selection: $navigationManager.selectedHomeTab) {
                 
-                MapView()
-                    .tabItem {
-                        Label("Map", systemImage: "map")
-                    }
-                    .tag(Constants.mainTabType.map)
+                NavigationStack {
+                    MapView()
+                }
+                .tabItem {
+                    Label("Map", systemImage: "map")
+                }
+                .tag(Constants.mainTabType.map)
                 
                 
                 HomeView()
@@ -50,4 +52,5 @@ struct MainTab: View {
 #Preview {
     MainTab()
         .environmentObject(NavigationManager.shared)
+        .environmentObject(MapManager.shared)
 }

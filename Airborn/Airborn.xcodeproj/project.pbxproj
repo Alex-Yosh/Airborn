@@ -28,6 +28,7 @@
 		FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46772D173C6F00E2EB4D /* RecentReading.swift */; };
 		FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */; };
 		FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */; };
+		FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167D62D286DBB007E4E7F /* MapManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		FACF46772D173C6F00E2EB4D /* RecentReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReading.swift; sourceTree = "<group>"; };
 		FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
+		FAE167D62D286DBB007E4E7F /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */,
 				FACF46542D14F34700E2EB4D /* NavigationManager.swift */,
+				FAE167D62D286DBB007E4E7F /* MapManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
+				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,
 				FACF466E2D15BBC300E2EB4D /* HomeScaleView.swift in Sources */,
