@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct SensorData: Hashable{
+struct SensorData: Hashable, Identifiable{
+    let id = UUID() // Always unique on map
+    
     var name: String
     var lastUpdated: Date
     

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MarkerView: View {
     
@@ -16,19 +17,22 @@ struct MarkerView: View {
     var body: some View {
         Button(action: {
             mapManager.ShowSensorSheet(sensor: sensor)
+            mapManager.region.center = CLLocationCoordinate2D(latitude: sensor.lat, longitude: sensor.long)
+            mapManager.region.span = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003)
+            
         }, label: {
             ZStack() {
                 Circle()
                     .foregroundColor(.red)
-                    .frame(width: 100, height: 100)
+                    .frame(width: 20, height: 20)
                 Triangle()
                     .foregroundColor(.red)
-                    .frame(width: 75, height: 100)
-                    .offset(y:30)
+                    .frame(width: 15, height: 10)
+                    .offset(y:7)
                 Image(systemName: "air.purifier")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 10, height: 10)
                     .foregroundColor(.white)
             }
             .compositingGroup()
