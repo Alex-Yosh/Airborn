@@ -15,6 +15,7 @@ struct AirbornApp: App {
             LaunchView()
                 .environmentObject(DatabaseManager.shared)
                 .environmentObject(NavigationManager.shared)
+                .environmentObject(MapManager.shared)
         }
     }
 }

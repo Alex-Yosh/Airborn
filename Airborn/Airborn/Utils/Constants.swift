@@ -28,6 +28,8 @@ struct Constants {
         static var AccentYellow = Color(hex: "FFEB3B")
         static var AccentOrange = Color(hex: "FF9800")
         
+        static var DarkGray = Color(hex: "9D9D9D")
+        
         static var ScaleRed = Color(hex: "ED4D4D")
         static var ScaleDarkOrange = Color(hex: "E59148")
         static var ScaleLightOrange = Color(hex: "EFBF39")
