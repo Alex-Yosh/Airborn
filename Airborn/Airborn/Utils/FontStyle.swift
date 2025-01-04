@@ -61,8 +61,28 @@ struct HomeScaleTextStyle: ViewModifier {
     }
 }
 
+
+//Map
+struct MapQuestionTextStyle: ViewModifier {
+    
+    static var fontSize = 12.0
+    static var color: Color = Constants.Colour.DarkGray
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter", size: MapQuestionTextStyle.fontSize))
+            .foregroundColor(MapQuestionTextStyle.color)
+    }
+}
+
+
+
+
+
+
 extension Text {
     func textStyle<Style:ViewModifier>(_ style: Style) -> some View {
         ModifiedContent(content: self, modifier: style)
     }
 }
+

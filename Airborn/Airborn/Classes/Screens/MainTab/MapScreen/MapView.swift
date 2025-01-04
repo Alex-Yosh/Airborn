@@ -43,8 +43,11 @@ struct MapView: View {
                 }
             }
         }
+        .mapStyle(.standard(pointsOfInterest: .excludingAll))
         .mapControls({
-            MapUserLocationButton()
+            if (mapManager.userLocation != nil){
+                MapUserLocationButton()
+            }
         })
         .onAppear {
             mapManager.checkAuthorization()
@@ -63,12 +66,13 @@ struct MapView: View {
                     position = .region(mapManager.region)
                 }
             }
-        }            .navigationBarHidden(true)
-            .sheet(isPresented: $mapManager.showSelectedSensor, onDismiss: {mapManager.HideSensorSheet()}) {
-                MapBottomSheetView()
-                //                    .presentationDetents([.height((300))])
-                //                    .presentationDragIndicator(.visible)
-            }
+        }
+        .navigationBarHidden(true)
+        .sheet(isPresented: $mapManager.showSelectedSensor, onDismiss: {mapManager.HideSensorSheet()}) {
+            MapBottomSheetView()
+                .presentationDetents([.medium]) // Only take half the screen
+                .presentationDragIndicator(.visible) // Add drag indicator
+        }
     }
     
 }

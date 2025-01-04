@@ -18,10 +18,10 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     
     @Published var showSelectedSensor: Bool = false
-    @Published var selectedSensor: SensorData? = nil
+    @Published var selectedSensor: SensorData? = SensorData(name: "name", lastUpdated: Date.now, lat: 43.474823, long: -80.536141, battery: 100.0, temp: 21.0, humidity: 23.0, PM25: 0.0, TVOC: 0.0, CO2: 0.0)
     
     @Published var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 36.7783, longitude: -119.4179), // California
+        center: CLLocationCoordinate2D(latitude: 36.7783, longitude: -119.4179),
         span: MKCoordinateSpan(latitudeDelta: 0.9, longitudeDelta: 0.9)
     )
     

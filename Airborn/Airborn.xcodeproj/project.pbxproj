@@ -30,6 +30,9 @@
 		FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */; };
 		FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167D62D286DBB007E4E7F /* MapManager.swift */; };
 		FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167DA2D28EF98007E4E7F /* MapBottomSheetView.swift */; };
+		FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167DC2D29BF71007E4E7F /* MapBottomSheetLabelView.swift */; };
+		FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167DE2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift */; };
+		FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167E02D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
 		FAE167D62D286DBB007E4E7F /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		FAE167DA2D28EF98007E4E7F /* MapBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetView.swift; sourceTree = "<group>"; };
+		FAE167DC2D29BF71007E4E7F /* MapBottomSheetLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetLabelView.swift; sourceTree = "<group>"; };
+		FAE167DE2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetMetiricsView.swift; sourceTree = "<group>"; };
+		FAE167E02D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetMetricLabelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +230,9 @@
 			children = (
 				FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */,
 				FAE167DA2D28EF98007E4E7F /* MapBottomSheetView.swift */,
+				FAE167DC2D29BF71007E4E7F /* MapBottomSheetLabelView.swift */,
+				FAE167DE2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift */,
+				FAE167E02D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -299,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */,
+				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
 				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,
@@ -313,8 +323,10 @@
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */,
+				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
+				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,
@@ -460,6 +472,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -494,6 +507,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
