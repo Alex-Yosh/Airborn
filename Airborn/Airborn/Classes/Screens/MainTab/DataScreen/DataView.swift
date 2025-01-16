@@ -12,6 +12,11 @@ struct DataView: View {
         ZStack{
             Constants.Colour.SecondaryLightGray.ignoresSafeArea()
             ScrollView(){
+                HStack{
+                    Text("My Exposure")
+                        .textStyle(HeadingTextStyle())
+                    Spacer()
+                }.padding()
                 Grid() {
                     GridRow
                     {
