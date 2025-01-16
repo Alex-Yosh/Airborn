@@ -7,11 +7,7 @@
 
 import Foundation
 
-<<<<<<< HEAD
-struct SensorData: Codable {
-=======
 struct SensorData: Codable, Identifiable {
->>>>>>> 37f54b8 (fixed a bit)
     let sensorId: UUID
     let temperature: Double
     let humidity: Double
