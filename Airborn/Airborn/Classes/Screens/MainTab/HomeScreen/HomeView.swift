@@ -18,6 +18,8 @@ struct HomeView: View {
                 Spacer()
                 //TODO: remove constant and add real valaues
                 HomeScaleView(progressPercent: 0.875)
+                
+                HomeTableView()
                 Spacer()
             }
             

@@ -9,7 +9,21 @@ import SwiftUI
 
 struct DataView: View {
     var body: some View {
-        Text("Data")
+        ZStack{
+            Constants.Colour.SecondaryLightGray.ignoresSafeArea()
+            ScrollView(){
+                Grid() {
+                    GridRow
+                    {
+                        DataTempView()
+                    }
+                    GridRow {
+                    }
+                }
+            }
+        }
+        
+        
     }
 }
 
