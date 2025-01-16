@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempView.swift */; };
 		FA7B50912D398991000001DC /* DataHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityView.swift */; };
+		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462F2D0D243900E2EB4D /* ContentView.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		FA7B508E2D3829F5000001DC /* DataTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempView.swift; sourceTree = "<group>"; };
 		FA7B50902D398991000001DC /* DataHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityView.swift; sourceTree = "<group>"; };
+		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF462F2D0D243900E2EB4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				FA7B508E2D3829F5000001DC /* DataTempView.swift */,
 				FA7B50902D398991000001DC /* DataHumidityView.swift */,
+				FA7B50922D39BA06000001DC /* DataChartView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
+				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,
