@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempView.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462F2D0D243900E2EB4D /* ContentView.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA7B508E2D3829F5000001DC /* DataTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempView.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF462F2D0D243900E2EB4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA7B508D2D3829BB000001DC /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA7B508E2D3829F5000001DC /* DataTempView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		FACF46212D0D243900E2EB4D = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				FACF46642D1501AC00E2EB4D /* DataView.swift */,
+				FA7B508D2D3829BB000001DC /* SubViews */,
 			);
 			path = DataScreen;
 			sourceTree = "<group>";
@@ -308,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */,
+				FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */,
 				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
