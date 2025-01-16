@@ -9,18 +9,10 @@ import SwiftUI
 
 struct DataTempView: View {
     var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 15)
-                .fill(.white)
-            VStack{
-                
-                Text("Temperature")
-                    .textStyle(DataHeadingTextStyle()).padding()
-                    
-                
-                DataScaleView(progressPercent: getPercent(temp: 22), temp: 22).frame(width: 150, height: 150)
-            }
-        }
+        
+        DataScaleView(progressPercent: getPercent(temp: 22), temp: 22).frame(width: 100, height: 100)
+        
+        
     }
     
     func getPercent(temp: Int) -> Float{
@@ -32,9 +24,6 @@ struct DataTempView: View {
         }
         
         return ((Float(temp)-16.0)/12.0)
-        
-        
-        
     }
 }
 
@@ -72,17 +61,18 @@ struct DataScaleView: View {
             
             VStack{
                 Text(String(temp) + "°C")
-                    .textStyle(SubHeadingTextStyle())
-            }.padding(.horizontal, 36)
-                .onReceive(timer) { _ in
-                    withAnimation {
-                        if StartingProgress < (9*progressPercent/10) {
-                            StartingProgress += (progressPercent/10)
-                        }else{
-                            StartingProgress = progressPercent
-                        }
+                    .textStyle(RegularTextStyle())
+                    .lineLimit(1)
+            }
+            .onReceive(timer) { _ in
+                withAnimation {
+                    if StartingProgress < (9*progressPercent/10) {
+                        StartingProgress += (progressPercent/10)
+                    }else{
+                        StartingProgress = progressPercent
                     }
                 }
+            }
         }
     }
 }
