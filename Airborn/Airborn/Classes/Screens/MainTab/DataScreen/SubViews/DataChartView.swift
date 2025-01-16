@@ -9,35 +9,37 @@ import SwiftUI
 import Charts
 
 struct DataChartView: View {
-    @State var data: [Double]
+    let sensorData: [SensorData] // Array of sensor data to plot
     
     var body: some View {
-        Text("filler")
-//        Chart {
-//            ForEach(departmentAProfit, id: \.date) { item in
-//                LineMark(
-//                    x: .value("Date", item.date),
-//                    y: .value("Profit A", item.profit),
-//                    series: .value("Company", "A")
-//                )
-//                .foregroundStyle(.blue)
-//            }
-//            ForEach(departmentBProfit, id: \.date) { item in
-//                LineMark(
-//                    x: .value("Date", item.date),
-//                    y: .value("Profit B", item.profit),
-//                    series: .value("Company", "B")
-//                )
-//                .foregroundStyle(.green)
-//            }
-//            RuleMark(
-//                y: .value("Threshold", 400)
-//            )
-//            .foregroundStyle(.red)
-//        })
+        Chart(sensorData) { data in
+            LineMark(
+                x: .value("Date", data.date ?? Date()),
+                y: .value("Temperature", data.temperature)
+            )
+            .foregroundStyle(.blue)
+            .interpolationMethod(.catmullRom) // Smooth the line
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading) // Y-axis on the left
+        }
+        .chartXAxis {
+            AxisMarks(values: .automatic) { value in
+                if let date = value.as(Date.self) {
+                    AxisValueLabel(format: .dateTime.month().day()) // Format X-axis labels
+                }
+            }
+        }
+        .padding()
+        .frame(height: 300)
+        .navigationTitle("Sensor Data")
     }
 }
 
 #Preview {
-    DataChartView(data: [])
+    DataChartView(sensorData: [
+        SensorData(sensorId: UUID(), temperature: 20.5, humidity: 50, pm25: 10, tvoc: 1, co2: 400, date: Date()),
+        SensorData(sensorId: UUID(), temperature: 21.0, humidity: 48, pm25: 15, tvoc: 1.2, co2: 420, date: Date().addingTimeInterval(-3600)),
+        SensorData(sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-7200))
+    ])
 }
