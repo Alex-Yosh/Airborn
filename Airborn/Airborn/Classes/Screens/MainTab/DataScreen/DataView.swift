@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct DataView: View {
+    
+    let exdata = [SensorData(id: UUID(), sensorId: UUID(), temperature: 20.5, humidity: 50, pm25: 10, tvoc: 1, co2: 400, date: Date()),
+                  SensorData(id: UUID(), sensorId: UUID(), temperature: 21.0, humidity: 48, pm25: 15, tvoc: 1.2, co2: 420, date: Date().addingTimeInterval(-3600)),
+                  SensorData(id: UUID(), sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-7200))]
+    
     var body: some View {
         ZStack{
             Constants.Colour.SecondaryLightGray.ignoresSafeArea()
@@ -17,20 +22,19 @@ struct DataView: View {
                         .textStyle(HeadingTextStyle())
                     Spacer()
                 }.padding()
-                Grid() {
-                    GridRow
-                    {
+                VStack(spacing: 16){
+                    HStack{
                         DataTempView()
                             .dataBoxStyle(title: "Temperature")
-                            .padding(.horizontal)
                         
                         DataHumidityView()
                             .dataBoxStyle(title: "Humidity")
-                            .padding(.horizontal)
                     }
                     
-                    GridRow {
-                    }
+                    
+                    DataChartView(sensorData: exdata)
+                        .dataBoxStyle(title: "PM2.5")
+                    
                 }
             }
         }
@@ -58,7 +62,7 @@ struct DataBoxStyle: ViewModifier {
                 content
                 Spacer()
             }
-        }
+        }.padding(.horizontal)
     }
 }
 
