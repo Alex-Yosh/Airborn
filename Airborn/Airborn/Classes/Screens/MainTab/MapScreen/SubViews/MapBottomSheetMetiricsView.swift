@@ -21,11 +21,13 @@ struct MapBottomSheetMetricsView: View {
             }
             Grid() {
                 GridRow {
-                    MapBottomSheetMetricLabelView(title: "PM2.5", value: String(round(sensorData.pm25 * 10) / 10.0) + " µg/m³", progressPercent: 1)
-                    MapBottomSheetMetricLabelView(title: "TVOC", value: String(round(sensorData.tvoc * 10) / 10.0) + " ppb", progressPercent: 0.7)
+                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.pm25.rawValue, value:
+                                                    "\(round(sensorData.pm25 * 10) / 10.0) \(Constants.dataTypes.pm25.metric)"
+                                                    , progressPercent: 1)
+                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.tvoc.rawValue, value: "\(round(sensorData.tvoc * 10) / 10.0) \(Constants.dataTypes.tvoc.metric)", progressPercent: 0.7)
                 }
                 GridRow {
-                    MapBottomSheetMetricLabelView(title: "CO2", value: String(round(sensorData.co2 * 10) / 10.0) + " ppm", progressPercent: 0.3)
+                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.co2.rawValue, value: "\(round(sensorData.co2 * 10) / 10.0) \(Constants.dataTypes.co2.metric)", progressPercent: 0.3)
                 }
             }
             

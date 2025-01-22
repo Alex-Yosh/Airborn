@@ -21,8 +21,8 @@ struct MapBottomSheetView: View {
                                 Text(sensor.name)
                                     .textStyle(HeadingTextStyle())
                                 HStack{
-                                    MapBottomSheetLabelView(image: "thermometer.high", text: String(round(exampleSensorData.temperature * 10) / 10.0) + "°C")
-                                    MapBottomSheetLabelView(image: "humidity", text: String(round(exampleSensorData.humidity * 10) / 10.0) + "RH")
+                                    MapBottomSheetLabelView(image: "thermometer.high", text: String(round(exampleSensorData.temperature * 10) / 10.0) + Constants.dataTypes.temperature.metric)
+                                    MapBottomSheetLabelView(image: "humidity", text: String(round(exampleSensorData.humidity * 10) / 10.0) + Constants.dataTypes.humidity.metric)
                                 }
                             }
                             Spacer()

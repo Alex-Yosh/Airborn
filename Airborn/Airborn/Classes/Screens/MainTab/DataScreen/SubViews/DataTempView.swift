@@ -60,7 +60,7 @@ struct DataScaleView: View {
                 .animation(.easeInOut, value: StartingProgress)
             
             VStack{
-                Text(String(temp) + "°C")
+                Text(String(temp) + Constants.dataTypes.temperature.metric)
                     .textStyle(RegularTextStyle())
                     .lineLimit(1)
             }
