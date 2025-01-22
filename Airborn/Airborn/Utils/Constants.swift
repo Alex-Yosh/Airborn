@@ -20,6 +20,31 @@ struct Constants {
         case map
     }
     
+    enum dataTypes: String {
+        case temperature = "Temperature"
+        case humidity = "Humidity"
+        case pm25 = "PM2.5"
+        case tvoc = "TVOC"
+        case co2 = "CO2"
+        
+        // Computed property to map data type to a metric
+        var metric: String {
+            switch self {
+            case .temperature:
+                return "°C"
+            case .humidity:
+                return "RH"
+            case .pm25:
+                return "µg/m³"
+            case .tvoc:
+                return "ppb"
+            case .co2:
+                return "ppm"
+            }
+        }
+        
+    }
+    
     struct Colour {
         static var PrimaryBlue = Color(hex: "A7D3E0")
         static var PrimaryGreen = Color(hex: "A8D8B9")
@@ -38,7 +63,7 @@ struct Constants {
         
         
         static var ScaleBlue = Color(hex: "007BFF")
-
+        
     }
     
 }

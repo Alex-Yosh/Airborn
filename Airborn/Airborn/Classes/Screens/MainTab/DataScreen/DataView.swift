@@ -32,8 +32,8 @@ struct DataView: View {
                     }
                     
                     
-                    DataChartView(sensorData: exdata)
-                        .dataBoxStyle(title: "PM2.5")
+                    DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.pm25)
+                        .dataBoxStyle(title: Constants.dataTypes.pm25.rawValue)
                     
                 }
             }

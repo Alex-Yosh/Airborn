@@ -10,23 +10,118 @@ import Charts
 
 struct DataChartView: View {
     let sensorData: [SensorData] // Array of sensor data to plot
+    let sensorType: Constants.dataTypes
+    
+    // Generate a fixed range for the last 7 days
+    private var last7DaysRange: [Date] {
+        var calendar = Calendar.current
+        let today = Date()
+        let midnight = calendar.startOfDay(for: today)
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
+        return (0..<8).map { Calendar.current.date(byAdding: .day, value: -$0, to: tomorrow)! }.reversed()
+    }
+    
+    // Filter sensor data for the last 7 days
+    private var last7DaysData: [SensorData] {
+        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+        return sensorData
+            .filter { ($0.date ?? Date()) >= sevenDaysAgo }
+            .sorted { ($0.date ?? Date() < ($1.date ?? Date()))}
+    }
     
     var body: some View {
-        Chart(sensorData) { data in
-            LineMark(
-                x: .value("Date", data.date ?? Date()),
-                y: .value("Temperature", data.temperature)
-            )
-            .foregroundStyle(.blue)
-            .interpolationMethod(.catmullRom) // Smooth the line
+        Chart {
+            // Add LineMark and PointMark only for available data
+            ForEach(last7DaysData, id: \.id) { data in
+                switch sensorType {
+                    
+                case .temperature:
+                    LineMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.temperature)
+                    )
+                    .foregroundStyle(.blue)
+                    .interpolationMethod(.catmullRom)
+                    
+                    PointMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.temperature)
+                    )
+                    .foregroundStyle(.blue)
+                    
+                case .humidity:
+                    LineMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.humidity)
+                    )
+                    .foregroundStyle(.blue)
+                    .interpolationMethod(.catmullRom)
+                    
+                    PointMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.humidity)
+                    )
+                    .foregroundStyle(.blue)
+                    
+                case .pm25:
+                    LineMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.pm25)
+                    )
+                    .foregroundStyle(.blue)
+                    .interpolationMethod(.catmullRom)
+                    
+                    PointMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.pm25)
+                    )
+                    .foregroundStyle(.blue)
+                    
+                case .tvoc:
+                    LineMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.tvoc)
+                    )
+                    .foregroundStyle(.purple)
+                    .interpolationMethod(.catmullRom)
+                    
+                    PointMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.tvoc)
+                    )
+                    .foregroundStyle(.purple)
+                    
+                case .co2:
+                    LineMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.co2)
+                    )
+                    .foregroundStyle(.green)
+                    .interpolationMethod(.catmullRom)
+                    
+                    PointMark(
+                        x: .value("Date", data.date ?? Date()),
+                        y: .value(sensorType.rawValue, data.co2)
+                    )
+                    .foregroundStyle(.green)
+                }
+            }
+            
+            
         }
         .chartYAxis {
-            AxisMarks(position: .leading) // Y-axis on the left
+            AxisMarks(position: .trailing)
         }
+        .chartYAxisLabel(position: .trailing, alignment: .center) {
+            Text("\(sensorType.rawValue) (\(sensorType.metric))")
+        }
+        .chartXScale(domain: last7DaysRange.first!...last7DaysRange.last!)
         .chartXAxis {
-            AxisMarks(values: .automatic) { value in
+            AxisMarks(values: last7DaysRange) { value in
                 if let date = value.as(Date.self) {
-                    AxisValueLabel(format: .dateTime.month().day()) // Format X-axis labels
+                    AxisValueLabel {
+                        Text(date, format: .dateTime.month().day())
+                    }
                 }
             }
         }
@@ -39,7 +134,7 @@ struct DataChartView: View {
 #Preview {
     DataChartView(sensorData: [
         SensorData(id: UUID(), sensorId: UUID(), temperature: 20.5, humidity: 50, pm25: 10, tvoc: 1, co2: 400, date: Date()),
-        SensorData(id: UUID(), sensorId: UUID(), temperature: 21.0, humidity: 48, pm25: 15, tvoc: 1.2, co2: 420, date: Date().addingTimeInterval(-3600)),
-        SensorData(id: UUID(), sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-7200))
-    ])
+        SensorData(id: UUID(), sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-480000)),
+        SensorData(id: UUID(), sensorId: UUID(), temperature: 21.0, humidity: 48, pm25: 15, tvoc: 1.2, co2: 420, date: Date().addingTimeInterval(-360000))
+    ], sensorType: Constants.dataTypes.pm25)
 }
