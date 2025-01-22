@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempView.swift */; };
+		FA7B50912D398991000001DC /* DataHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityView.swift */; };
+		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
+		FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247942D41766C0055738E /* ScaleBarView.swift */; };
+		FA8247972D417BB70055738E /* DataChartScaleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247962D417BB70055738E /* DataChartScaleCellView.swift */; };
 		FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA164C52D39BCB40028D7C6 /* Sensor.swift */; };
-		FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempView.swift */; };
-		FA7B50912D398991000001DC /* DataHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityView.swift */; };
-		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
-		FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempView.swift */; };
-		FA7B50912D398991000001DC /* DataHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityView.swift */; };
-		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
-		FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462F2D0D243900E2EB4D /* ContentView.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
 		FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46462D10F40100E2EB4D /* LaunchView.swift */; };
@@ -43,16 +41,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA7B508E2D3829F5000001DC /* DataTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempView.swift; sourceTree = "<group>"; };
+		FA7B50902D398991000001DC /* DataHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityView.swift; sourceTree = "<group>"; };
+		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
+		FA8247942D41766C0055738E /* ScaleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleBarView.swift; sourceTree = "<group>"; };
+		FA8247962D417BB70055738E /* DataChartScaleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartScaleCellView.swift; sourceTree = "<group>"; };
 		FAA164C52D39BCB40028D7C6 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
-		FA7B508E2D3829F5000001DC /* DataTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempView.swift; sourceTree = "<group>"; };
-		FA7B50902D398991000001DC /* DataHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityView.swift; sourceTree = "<group>"; };
-		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
-		FA7B508E2D3829F5000001DC /* DataTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempView.swift; sourceTree = "<group>"; };
-		FA7B50902D398991000001DC /* DataHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityView.swift; sourceTree = "<group>"; };
-		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
-		FACF462F2D0D243900E2EB4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FACF46462D10F40100E2EB4D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -96,6 +92,7 @@
 				FA7B508E2D3829F5000001DC /* DataTempView.swift */,
 				FA7B50902D398991000001DC /* DataHumidityView.swift */,
 				FA7B50922D39BA06000001DC /* DataChartView.swift */,
+				FA8247962D417BB70055738E /* DataChartScaleCellView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -157,7 +154,7 @@
 		FACF46422D10F0DD00E2EB4D /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				FACF462F2D0D243900E2EB4D /* ContentView.swift */,
+				FA8247942D41766C0055738E /* ScaleBarView.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
 				FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */,
-				FACF46302D0D243900E2EB4D /* ContentView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
@@ -358,8 +354,10 @@
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
 				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
+				FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,
+				FA8247972D417BB70055738E /* DataChartScaleCellView.swift in Sources */,
 				FACF466E2D15BBC300E2EB4D /* HomeScaleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

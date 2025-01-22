@@ -31,14 +31,13 @@ struct DataView: View {
                             .dataBoxStyle(title: "Humidity")
                     }
                     
-                    
-                    DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.pm25)
+                    DataChartScaleCellView(sensorData: exdata, sensorType: Constants.dataTypes.pm25)
                         .dataBoxStyle(title: Constants.dataTypes.pm25.rawValue)
                     
-                    DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.tvoc)
+                    DataChartScaleCellView(sensorData: exdata, sensorType: Constants.dataTypes.tvoc)
                         .dataBoxStyle(title: Constants.dataTypes.tvoc.rawValue)
                     
-                    DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.co2)
+                    DataChartScaleCellView(sensorData: exdata, sensorType: Constants.dataTypes.co2)
                         .dataBoxStyle(title: Constants.dataTypes.co2.rawValue)
                     
                 }
