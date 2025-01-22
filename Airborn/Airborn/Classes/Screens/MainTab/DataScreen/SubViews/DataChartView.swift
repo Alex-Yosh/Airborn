@@ -14,7 +14,7 @@ struct DataChartView: View {
     
     // Generate a fixed range for the last 7 days
     private var last7DaysRange: [Date] {
-        var calendar = Calendar.current
+        let calendar = Calendar.current
         let today = Date()
         let midnight = calendar.startOfDay(for: today)
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
@@ -41,7 +41,6 @@ struct DataChartView: View {
                         y: .value(sensorType.rawValue, data.temperature)
                     )
                     .foregroundStyle(.blue)
-                    .interpolationMethod(.catmullRom)
                     
                     PointMark(
                         x: .value("Date", data.date ?? Date()),
@@ -55,7 +54,6 @@ struct DataChartView: View {
                         y: .value(sensorType.rawValue, data.humidity)
                     )
                     .foregroundStyle(.blue)
-                    .interpolationMethod(.catmullRom)
                     
                     PointMark(
                         x: .value("Date", data.date ?? Date()),
@@ -69,7 +67,6 @@ struct DataChartView: View {
                         y: .value(sensorType.rawValue, data.pm25)
                     )
                     .foregroundStyle(.blue)
-                    .interpolationMethod(.catmullRom)
                     
                     PointMark(
                         x: .value("Date", data.date ?? Date()),
@@ -83,7 +80,6 @@ struct DataChartView: View {
                         y: .value(sensorType.rawValue, data.tvoc)
                     )
                     .foregroundStyle(.purple)
-                    .interpolationMethod(.catmullRom)
                     
                     PointMark(
                         x: .value("Date", data.date ?? Date()),
@@ -97,7 +93,6 @@ struct DataChartView: View {
                         y: .value(sensorType.rawValue, data.co2)
                     )
                     .foregroundStyle(.green)
-                    .interpolationMethod(.catmullRom)
                     
                     PointMark(
                         x: .value("Date", data.date ?? Date()),
