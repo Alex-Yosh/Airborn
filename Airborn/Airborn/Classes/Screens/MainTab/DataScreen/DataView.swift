@@ -16,12 +16,12 @@ struct DataView: View {
     var body: some View {
         ZStack{
             Constants.Colour.SecondaryLightGray.ignoresSafeArea()
-            ScrollView(){
+            ScrollView(showsIndicators: false){
                 HStack{
                     Text("My Exposure")
                         .textStyle(HeadingTextStyle())
                     Spacer()
-                }.padding()
+                }.padding([.horizontal, .bottom])
                 VStack(spacing: 16){
                     HStack{
                         DataTempView()
@@ -34,6 +34,12 @@ struct DataView: View {
                     
                     DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.pm25)
                         .dataBoxStyle(title: Constants.dataTypes.pm25.rawValue)
+                    
+                    DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.tvoc)
+                        .dataBoxStyle(title: Constants.dataTypes.tvoc.rawValue)
+                    
+                    DataChartView(sensorData: exdata, sensorType: Constants.dataTypes.co2)
+                        .dataBoxStyle(title: Constants.dataTypes.co2.rawValue)
                     
                 }
             }
