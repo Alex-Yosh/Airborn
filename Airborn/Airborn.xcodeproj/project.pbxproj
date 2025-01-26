@@ -18,6 +18,7 @@
 		FA8247A32D45C9CF0055738E /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A22D45C9B00055738E /* Inter-Bold.ttf */; };
 		FA8247A42D45C9D10055738E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A02D45C9B00055738E /* Inter-SemiBold.ttf */; };
 		FA8247A52D45C9D40055738E /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A12D45C9B00055738E /* Inter.ttf */; };
+		FA8247A72D45CDE30055738E /* DataBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247A62D45CDE30055738E /* DataBoxStyle.swift */; };
 		FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA164C52D39BCB40028D7C6 /* Sensor.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		FA8247A02D45C9B00055738E /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		FA8247A12D45C9B00055738E /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		FA8247A22D45C9B00055738E /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		FA8247A62D45CDE30055738E /* DataBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBoxStyle.swift; sourceTree = "<group>"; };
 		FAA164C52D39BCB40028D7C6 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				FACF46522D14F21100E2EB4D /* Constants.swift */,
 				FACF46712D15BFB400E2EB4D /* Color.swift */,
 				FACF46752D15DD7100E2EB4D /* FontStyle.swift */,
+				FA8247A62D45CDE30055738E /* DataBoxStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */,
+				FA8247A72D45CDE30055738E /* DataBoxStyle.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */,
 				FA82479D2D45C4270055738E /* DataScrollView.swift in Sources */,

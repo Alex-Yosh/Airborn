@@ -25,20 +25,20 @@ struct DataScrollView: View {
             VStack(spacing: 16){
                 HStack{
                     DataTempView()
-                        .dataBoxStyle(title: "Temperature")
+                        .dataBoxStyle(title: "Temperature", titleIn: true)
                     
                     DataHumidityView()
-                        .dataBoxStyle(title: "Humidity")
+                        .dataBoxStyle(title: "Humidity", titleIn: true)
                 }
                 
                 DataChartScaleCellView(sensorData: exdata, sensorType: Constants.dataTypes.pm25)
-                    .dataBoxStyle(title: Constants.dataTypes.pm25.rawValue)
+                    .dataBoxStyle(title: Constants.dataTypes.pm25.rawValue, titleIn: true)
                 
                 DataChartScaleCellView(sensorData: exdata, sensorType: Constants.dataTypes.tvoc)
-                    .dataBoxStyle(title: Constants.dataTypes.tvoc.rawValue)
+                    .dataBoxStyle(title: Constants.dataTypes.tvoc.rawValue, titleIn: true)
                 
                 DataChartScaleCellView(sensorData: exdata, sensorType: Constants.dataTypes.co2)
-                    .dataBoxStyle(title: Constants.dataTypes.co2.rawValue)
+                    .dataBoxStyle(title: Constants.dataTypes.co2.rawValue, titleIn: true)
                 
             }
         }
