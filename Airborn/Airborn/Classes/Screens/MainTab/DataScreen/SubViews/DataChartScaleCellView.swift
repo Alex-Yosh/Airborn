@@ -14,7 +14,11 @@ struct DataChartScaleCellView: View {
     var body: some View {
         VStack{
             DataChartView(sensorData: sensorData, sensorType: sensorType)
-            ScaleBarView()
+            HStack{
+                Text("average: 10 \(sensorType.metric)")
+                Spacer()
+                ScaleBarView()
+            }.padding()
         }
     }
 }
