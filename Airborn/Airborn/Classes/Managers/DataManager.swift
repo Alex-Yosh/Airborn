@@ -12,6 +12,6 @@ class DataManager: ObservableObject {
     static var shared = DataManager()
     
     @Published var selectedDataType: Constants.dataTypes?
-    
+    @Published var filterType: Constants.dataFilterType = .last7Days
     
 }

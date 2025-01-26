@@ -14,6 +14,10 @@
 		FA8247972D417BB70055738E /* DataChartScaleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247962D417BB70055738E /* DataChartScaleCellView.swift */; };
 		FA8247992D45BBDC0055738E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247982D45BBDC0055738E /* DataManager.swift */; };
 		FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82479A2D45C05B0055738E /* DataDetailView.swift */; };
+		FA82479D2D45C4270055738E /* DataScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82479C2D45C4270055738E /* DataScrollView.swift */; };
+		FA8247A32D45C9CF0055738E /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A22D45C9B00055738E /* Inter-Bold.ttf */; };
+		FA8247A42D45C9D10055738E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A02D45C9B00055738E /* Inter-SemiBold.ttf */; };
+		FA8247A52D45C9D40055738E /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A12D45C9B00055738E /* Inter.ttf */; };
 		FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA164C52D39BCB40028D7C6 /* Sensor.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
@@ -50,6 +54,11 @@
 		FA8247962D417BB70055738E /* DataChartScaleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartScaleCellView.swift; sourceTree = "<group>"; };
 		FA8247982D45BBDC0055738E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FA82479A2D45C05B0055738E /* DataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailView.swift; sourceTree = "<group>"; };
+		FA82479C2D45C4270055738E /* DataScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataScrollView.swift; sourceTree = "<group>"; };
+		FA82479E2D45C8DA0055738E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FA8247A02D45C9B00055738E /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		FA8247A12D45C9B00055738E /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
+		FA8247A22D45C9B00055738E /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FAA164C52D39BCB40028D7C6 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
@@ -97,15 +106,28 @@
 				FA7B50902D398991000001DC /* DataHumidityView.swift */,
 				FA7B50922D39BA06000001DC /* DataChartView.swift */,
 				FA8247962D417BB70055738E /* DataChartScaleCellView.swift */,
+				FA82479C2D45C4270055738E /* DataScrollView.swift */,
 				FA82479A2D45C05B0055738E /* DataDetailView.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		FA82479F2D45C9750055738E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FACF46312D0D243B00E2EB4D /* Assets.xcassets */,
+				FA8247A12D45C9B00055738E /* Inter.ttf */,
+				FA8247A02D45C9B00055738E /* Inter-SemiBold.ttf */,
+				FA8247A22D45C9B00055738E /* Inter-Bold.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		FACF46212D0D243900E2EB4D = {
 			isa = PBXGroup;
 			children = (
 				FACF462C2D0D243900E2EB4D /* Airborn */,
+				FA82479F2D45C9750055738E /* Resources */,
 				FACF462B2D0D243900E2EB4D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,6 +143,7 @@
 		FACF462C2D0D243900E2EB4D /* Airborn */ = {
 			isa = PBXGroup;
 			children = (
+				FA82479E2D45C8DA0055738E /* Info.plist */,
 				FACF46452D10F37C00E2EB4D /* Classes */,
 				FACF46332D0D243B00E2EB4D /* Preview Content */,
 				FACF46432D10F0E400E2EB4D /* Utils */,
@@ -168,7 +191,6 @@
 		FACF46432D10F0E400E2EB4D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FACF46312D0D243B00E2EB4D /* Assets.xcassets */,
 				FACF46522D14F21100E2EB4D /* Constants.swift */,
 				FACF46712D15BFB400E2EB4D /* Color.swift */,
 				FACF46752D15DD7100E2EB4D /* FontStyle.swift */,
@@ -324,6 +346,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA8247A42D45C9D10055738E /* Inter-SemiBold.ttf in Resources */,
+				FA8247A52D45C9D40055738E /* Inter.ttf in Resources */,
+				FA8247A32D45C9CF0055738E /* Inter-Bold.ttf in Resources */,
 				FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */,
 				FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */,
 			);
@@ -355,6 +380,7 @@
 				FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */,
+				FA82479D2D45C4270055738E /* DataScrollView.swift in Sources */,
 				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
@@ -503,6 +529,7 @@
 				DEVELOPMENT_TEAM = 7YXLUPDYC9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Airborn/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show your position on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -538,6 +565,7 @@
 				DEVELOPMENT_TEAM = 7YXLUPDYC9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Airborn/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show your position on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

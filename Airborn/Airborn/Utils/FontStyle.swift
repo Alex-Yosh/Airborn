@@ -88,6 +88,18 @@ struct DataHeadingTextStyle: ViewModifier {
     }
 }
 
+struct DataSubHeadingTextStyle: ViewModifier {
+    
+    static var fontSize = 16.0
+    static var color: Color = .black
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter", size: DataHeadingTextStyle.fontSize))
+            .foregroundColor(DataHeadingTextStyle.color)
+    }
+}
+
 
 
 

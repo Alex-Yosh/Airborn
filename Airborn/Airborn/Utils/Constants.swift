@@ -45,6 +45,10 @@ struct Constants {
         
     }
     
+    enum dataFilterType {
+        case last7Days
+    }
+    
     struct Colour {
         static var PrimaryBlue = Color(hex: "A7D3E0")
         static var PrimaryGreen = Color(hex: "A8D8B9")
