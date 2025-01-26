@@ -12,6 +12,8 @@
 		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
 		FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247942D41766C0055738E /* ScaleBarView.swift */; };
 		FA8247972D417BB70055738E /* DataChartScaleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247962D417BB70055738E /* DataChartScaleCellView.swift */; };
+		FA8247992D45BBDC0055738E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247982D45BBDC0055738E /* DataManager.swift */; };
+		FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA82479A2D45C05B0055738E /* DataDetailView.swift */; };
 		FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA164C52D39BCB40028D7C6 /* Sensor.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		FA8247942D41766C0055738E /* ScaleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleBarView.swift; sourceTree = "<group>"; };
 		FA8247962D417BB70055738E /* DataChartScaleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartScaleCellView.swift; sourceTree = "<group>"; };
+		FA8247982D45BBDC0055738E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FA82479A2D45C05B0055738E /* DataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailView.swift; sourceTree = "<group>"; };
 		FAA164C52D39BCB40028D7C6 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				FA7B50902D398991000001DC /* DataHumidityView.swift */,
 				FA7B50922D39BA06000001DC /* DataChartView.swift */,
 				FA8247962D417BB70055738E /* DataChartScaleCellView.swift */,
+				FA82479A2D45C05B0055738E /* DataDetailView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */,
 				FACF46542D14F34700E2EB4D /* NavigationManager.swift */,
 				FAE167D62D286DBB007E4E7F /* MapManager.swift */,
+				FA8247982D45BBDC0055738E /* DataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 				FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
+				FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */,
 				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
@@ -358,6 +365,7 @@
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,
 				FA8247972D417BB70055738E /* DataChartScaleCellView.swift in Sources */,
+				FA8247992D45BBDC0055738E /* DataManager.swift in Sources */,
 				FACF466E2D15BBC300E2EB4D /* HomeScaleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
