@@ -12,7 +12,7 @@ class DatabaseManager: ObservableObject {
     
     static var shared = DatabaseManager()
     
-    private let baseURL = "http://127.0.0.1:5000/api" // Replace with your actual base URL
+    private let baseURL = "https://airborne-897502924648.northamerica-northeast1.run.app/api" // Replace with your actual base URL
     
     private init() {}
     
