@@ -29,4 +29,5 @@ struct Loading: View {
 
 #Preview {
     Loading()
+        .environmentObject(NavigationManager.shared)
 }
