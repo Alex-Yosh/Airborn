@@ -18,7 +18,7 @@ struct MapView: View {
     var body: some View {
         Map(position: $position){
             ForEach(mapManager.sensors){ sensor in
-                Annotation("", coordinate: CLLocationCoordinate2D(latitude: sensor.lat, longitude: sensor.long)){
+                Annotation("", coordinate: CLLocationCoordinate2D(latitude: sensor.latitude, longitude: sensor.longitude)){
                     MarkerView(sensor: sensor)
                 }.annotationTitles(.hidden)
             }

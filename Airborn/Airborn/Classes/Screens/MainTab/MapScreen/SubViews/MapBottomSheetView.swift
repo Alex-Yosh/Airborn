@@ -11,6 +11,9 @@ struct MapBottomSheetView: View {
     
     @EnvironmentObject var mapManager: MapManager
     
+    //TODO: get data from database to replace this
+    let exampleSensorData = SensorData(id: UUID(), sensorId: UUID(), temperature: 20.5, humidity: 50, pm25: 10, tvoc: 1, co2: 400, date: Date())
+    
     var body: some View {
                 if let sensor = mapManager.selectedSensor{
                         HStack{
@@ -18,8 +21,8 @@ struct MapBottomSheetView: View {
                                 Text(sensor.name)
                                     .textStyle(HeadingTextStyle())
                                 HStack{
-                                    MapBottomSheetLabelView(image: "thermometer.high", text: String(round(sensor.temp * 10) / 10.0) + "°C")
-                                    MapBottomSheetLabelView(image: "humidity", text: String(round(sensor.humidity * 10) / 10.0) + "RH")
+                                    MapBottomSheetLabelView(image: "thermometer.high", text: String(round(exampleSensorData.temperature * 10) / 10.0) + Constants.dataTypes.temperature.metric)
+                                    MapBottomSheetLabelView(image: "humidity", text: String(round(exampleSensorData.humidity * 10) / 10.0) + Constants.dataTypes.humidity.metric)
                                 }
                             }
                             Spacer()
@@ -27,7 +30,7 @@ struct MapBottomSheetView: View {
                                 .font(.system(size: 60))
                         }.padding()
                         
-                        MapBottomSheetMetricsView(sensor: sensor)
+                    MapBottomSheetMetricsView(sensorData: exampleSensorData)
                     
                 }else{
                     Text("Cannot Find Sensor")

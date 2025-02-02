@@ -32,5 +32,5 @@ struct MapBottomSheetLabelView: View {
 }
 
 #Preview {
-    MapBottomSheetLabelView(image: "thermometer.high", text: "21°C")
+    MapBottomSheetLabelView(image: "thermometer.high", text: "21\(Constants.dataTypes.temperature.metric)")
 }

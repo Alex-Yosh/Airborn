@@ -12,12 +12,12 @@ struct MarkerView: View {
     
     @EnvironmentObject var mapManager: MapManager
     
-    var sensor: SensorData
+    var sensor: Sensor
     
     var body: some View {
         Button(action: {
             mapManager.ShowSensorSheet(sensor: sensor)
-            mapManager.region.center = CLLocationCoordinate2D(latitude: sensor.lat - 0.001, longitude: sensor.long)
+            mapManager.region.center = CLLocationCoordinate2D(latitude: sensor.latitude - 0.001, longitude: sensor.longitude)
             mapManager.region.span = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003)
             
         }, label: {
@@ -53,5 +53,5 @@ struct Triangle: Shape {
 
 
 #Preview {
-    MarkerView(sensor: SensorData(name: "name",lastUpdated: Date.now, lat: 43.873916, long: -79.243139, battery: 100.0, temp: 21.0, humidity: 23.0, PM25: 0.0, TVOC: 0.0, CO2: 0.0))
+    MarkerView(sensor:Sensor(id: UUID(), name: "test", latitude: 43.474823, longitude: -80.536141))
 }

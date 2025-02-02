@@ -18,7 +18,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     
     @Published var showSelectedSensor: Bool = false
-    @Published var selectedSensor: SensorData? = SensorData(name: "name", lastUpdated: Date.now, lat: 43.474823, long: -80.536141, battery: 100.0, temp: 21.0, humidity: 23.0, PM25: 0.0, TVOC: 0.0, CO2: 0.0)
+    @Published var selectedSensor: Sensor? = Sensor(id: UUID(), name: "test", latitude: 43.474823, longitude: -80.536141)
     
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 36.7783, longitude: -119.4179),
@@ -27,7 +27,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var userLocation: CLLocationCoordinate2D?
     
-    @Published var sensors = [SensorData(name: "name", lastUpdated: Date.now, lat: 43.474823, long: -80.536141, battery: 100.0, temp: 21.0, humidity: 23.0, PM25: 0.0, TVOC: 0.0, CO2: 0.0)]
+    @Published var sensors = [Sensor(id: UUID(), name: "test", latitude: 43.474823, longitude: -80.536141)]
     
     override init() {
         super.init()
@@ -35,7 +35,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func ShowSensorSheet(sensor: SensorData) {
+    func ShowSensorSheet(sensor: Sensor) {
         selectedSensor = sensor
         showSelectedSensor = true
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sensor: Codable {
+struct Sensor: Codable, Identifiable, Equatable {
     let id: UUID
     let name: String
     let latitude: Double

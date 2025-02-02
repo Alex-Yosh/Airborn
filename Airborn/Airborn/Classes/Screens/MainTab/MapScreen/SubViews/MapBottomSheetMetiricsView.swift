@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MapBottomSheetMetricsView: View {
     
-    var sensor: SensorData
+    var sensorData: SensorData
     
     var body: some View {
         VStack{
@@ -21,11 +21,13 @@ struct MapBottomSheetMetricsView: View {
             }
             Grid() {
                 GridRow {
-                    MapBottomSheetMetricLabelView(title: "PM2.5", value: String(round(sensor.PM25 * 10) / 10.0) + " µg/m³", progressPercent: 1)
-                    MapBottomSheetMetricLabelView(title: "TVOC", value: String(round(sensor.TVOC * 10) / 10.0) + " ppb", progressPercent: 0.7)
+                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.pm25.rawValue, value:
+                                                    "\(round(sensorData.pm25 * 10) / 10.0) \(Constants.dataTypes.pm25.metric)"
+                                                    , progressPercent: 1)
+                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.tvoc.rawValue, value: "\(round(sensorData.tvoc * 10) / 10.0) \(Constants.dataTypes.tvoc.metric)", progressPercent: 0.7)
                 }
                 GridRow {
-                    MapBottomSheetMetricLabelView(title: "CO2", value: String(round(sensor.CO2 * 10) / 10.0) + " ppm", progressPercent: 0.3)
+                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.co2.rawValue, value: "\(round(sensorData.co2 * 10) / 10.0) \(Constants.dataTypes.co2.metric)", progressPercent: 0.3)
                 }
             }
             
@@ -35,5 +37,5 @@ struct MapBottomSheetMetricsView: View {
 }
 
 #Preview {
-    MapBottomSheetMetricsView(sensor: SensorData(name: "name",lastUpdated: Date.now, lat: 43.873916, long: -79.243139, battery: 100.0, temp: 21.0, humidity: 23.0, PM25: 4.1, TVOC: 3.2, CO2: 2.0))
+    MapBottomSheetMetricsView(sensorData: SensorData(id: UUID(), sensorId: UUID(), temperature: 21.0, humidity: 23.0, pm25: 4.1, tvoc: 3.2, co2: 2.0, date: Date.now))
 }

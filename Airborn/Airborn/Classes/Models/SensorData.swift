@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct SensorData: Codable {
+struct SensorData: Codable, Identifiable {
+    let id: UUID
+
     let sensorId: UUID
     let temperature: Double
     let humidity: Double
