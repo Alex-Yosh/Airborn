@@ -38,11 +38,13 @@ struct MainTab: View {
                     }
                     .tag(Constants.mainTabType.home)
                 
-                DataView()
-                    .tabItem {
-                        Label("Data", systemImage: "chart.bar")
-                    }
-                    .tag(Constants.mainTabType.data)
+                NavigationStack {
+                    DataView()
+                }
+                .tabItem {
+                    Label("Data", systemImage: "chart.bar")
+                }
+                .tag(Constants.mainTabType.data)
                 
             }
         }

@@ -122,7 +122,6 @@ struct DataChartView: View {
         }
         .padding()
         .frame(height: 300)
-        .navigationTitle("Sensor Data")
     }
 }
 
