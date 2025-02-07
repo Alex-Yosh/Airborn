@@ -34,17 +34,16 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        //TODO: get all the sesnors, not just one
-        if let id = UUID(uuidString: "1dfab928-8a67-41f2-81cf-118e7c1fa7a4"){
-            DatabaseManager.shared.getSensor(uuid: id){result in
-                switch result {
-                case .success(let sensor):
-                    self.sensors = [sensor]
-                case .failure(let error):
-                    print("Error fetching sensor: \(error)")
-                }
+        //Get all Sensors
+        DatabaseManager.shared.getAllSensors(){result in
+            switch result {
+            case .success(let sensors):
+                self.sensors = sensors
+            case .failure(let error):
+                print("Error fetching sensor: \(error)")
             }
         }
+        
     }
     
     func ShowSensorSheet(sensor: Sensor) {

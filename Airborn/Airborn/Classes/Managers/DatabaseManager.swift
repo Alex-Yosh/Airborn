@@ -12,7 +12,7 @@ class DatabaseManager: ObservableObject {
     
     static var shared = DatabaseManager()
     
-    private let baseURL = "https://airborne-897502924648.northamerica-northeast1.run.app/api" // Replace with your actual base URL
+    private let baseURL = "https://airborne-897502924648.northamerica-northeast1.run.app/api"
     
     private init() {}
     
@@ -55,6 +55,27 @@ class DatabaseManager: ObservableObject {
             do {
                 let sensor = try JSONDecoder().decode(Sensor.self, from: data)
                 completion(.success(sensor))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getAllSensors(completion: @escaping (Result<[Sensor], Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/sensor") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let sensors = try JSONDecoder().decode([Sensor].self, from: data)
+                completion(.success(sensors))
             } catch {
                 completion(.failure(error))
             }
