@@ -29,77 +29,38 @@ struct DataChartView: View {
             .sorted { ($0.date ?? Date() < ($1.date ?? Date()))}
     }
     
+    func colorCode(sensorType: Constants.dataTypes) -> Color{
+        switch sensorType {
+            
+        case .tvoc:
+            return .purple
+            
+        case .co2:
+            return .green
+            
+        default:
+            return .blue
+        }
+    }
+    
+    
     var body: some View {
         Chart {
             // Add LineMark and PointMark only for available data
             ForEach(last7DaysData, id: \.id) { data in
-                switch sensorType {
-                    
-                case .temperature:
-                    LineMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.temperature)
-                    )
-                    .foregroundStyle(.blue)
-                    
-                    PointMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.temperature)
-                    )
-                    .foregroundStyle(.blue)
-                    
-                case .humidity:
-                    LineMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.humidity)
-                    )
-                    .foregroundStyle(.blue)
-                    
-                    PointMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.humidity)
-                    )
-                    .foregroundStyle(.blue)
-                    
-                case .pm25:
-                    LineMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.pm25)
-                    )
-                    .foregroundStyle(.blue)
-                    
-                    PointMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.pm25)
-                    )
-                    .foregroundStyle(.blue)
-                    
-                case .tvoc:
-                    LineMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.tvoc)
-                    )
-                    .foregroundStyle(.purple)
-                    
-                    PointMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.tvoc)
-                    )
-                    .foregroundStyle(.purple)
-                    
-                case .co2:
-                    LineMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.co2)
-                    )
-                    .foregroundStyle(.green)
-                    
-                    PointMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.co2)
-                    )
-                    .foregroundStyle(.green)
-                }
+                
+                LineMark(
+                    x: .value("Date", data.date ?? Date()),
+                    y: .value(sensorType.rawValue, data.temperature)
+                )
+                .foregroundStyle(colorCode(sensorType: sensorType))
+                
+                PointMark(
+                    x: .value("Date", data.date ?? Date()),
+                    y: .value(sensorType.rawValue, data.temperature)
+                )
+                .foregroundStyle(colorCode(sensorType: sensorType))
+                
             }
             
             

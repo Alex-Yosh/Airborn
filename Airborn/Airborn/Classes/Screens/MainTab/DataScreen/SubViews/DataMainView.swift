@@ -19,10 +19,10 @@ struct DataMainView: View {
         }.padding([.horizontal, .bottom])
         VStack(spacing: 16){
             HStack{
-                DataTempView()
+                DataTempCellView()
                     .dataBoxStyle(title: "Temperature", titleIn: true)
                 
-                DataHumidityView()
+                DataHumidityCellView()
                     .dataBoxStyle(title: "Humidity", titleIn: true)
             }
             

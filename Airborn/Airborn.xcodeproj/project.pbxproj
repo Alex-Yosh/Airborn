@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempView.swift */; };
-		FA7B50912D398991000001DC /* DataHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityView.swift */; };
+		FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempCellView.swift */; };
+		FA7B50912D398991000001DC /* DataHumidityCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityCellView.swift */; };
 		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
 		FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247942D41766C0055738E /* ScaleBarView.swift */; };
 		FA8247972D417BB70055738E /* DataChartScaleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247962D417BB70055738E /* DataChartScaleCellView.swift */; };
@@ -48,8 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA7B508E2D3829F5000001DC /* DataTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempView.swift; sourceTree = "<group>"; };
-		FA7B50902D398991000001DC /* DataHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityView.swift; sourceTree = "<group>"; };
+		FA7B508E2D3829F5000001DC /* DataTempCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempCellView.swift; sourceTree = "<group>"; };
+		FA7B50902D398991000001DC /* DataHumidityCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityCellView.swift; sourceTree = "<group>"; };
 		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		FA8247942D41766C0055738E /* ScaleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleBarView.swift; sourceTree = "<group>"; };
 		FA8247962D417BB70055738E /* DataChartScaleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartScaleCellView.swift; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 		FA7B508D2D3829BB000001DC /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				FA7B508E2D3829F5000001DC /* DataTempView.swift */,
-				FA7B50902D398991000001DC /* DataHumidityView.swift */,
+				FA7B508E2D3829F5000001DC /* DataTempCellView.swift */,
+				FA7B50902D398991000001DC /* DataHumidityCellView.swift */,
 				FA7B50922D39BA06000001DC /* DataChartView.swift */,
 				FA8247962D417BB70055738E /* DataChartScaleCellView.swift */,
 				FA82479C2D45C4270055738E /* DataMainView.swift */,
@@ -365,9 +365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */,
-				FA7B508F2D3829F5000001DC /* DataTempView.swift in Sources */,
+				FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */,
 				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
-				FA7B50912D398991000001DC /* DataHumidityView.swift in Sources */,
+				FA7B50912D398991000001DC /* DataHumidityCellView.swift in Sources */,
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
 				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,

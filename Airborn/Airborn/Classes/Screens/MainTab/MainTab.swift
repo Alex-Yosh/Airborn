@@ -55,4 +55,5 @@ struct MainTab: View {
     MainTab()
         .environmentObject(NavigationManager.shared)
         .environmentObject(MapManager.shared)
+        .environmentObject(DataManager.shared)
 }
