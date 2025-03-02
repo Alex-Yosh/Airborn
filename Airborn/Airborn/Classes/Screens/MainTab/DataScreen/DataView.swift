@@ -14,10 +14,20 @@ struct DataView: View {
     var body: some View {
         ZStack{
             Constants.Colour.SecondaryLightGray.ignoresSafeArea()
-            if dataManager.selectedDataType != nil{
-                DataDetailView()
-            }else{
-                DataScrollView()
+            ScrollView(showsIndicators: false){
+                if let selected = dataManager.selectedDataType{
+                    DataDetailView()
+                        .navigationTitle(selected.rawValue) // Sets the title in the top bar
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button("Back") {
+                                    dataManager.selectedDataType = nil
+                                }
+                            }
+                        }
+                }else{
+                    DataMainView()
+                }
             }
         }
     }

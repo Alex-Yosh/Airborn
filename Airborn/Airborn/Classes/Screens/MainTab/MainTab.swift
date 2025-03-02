@@ -38,11 +38,13 @@ struct MainTab: View {
                     }
                     .tag(Constants.mainTabType.home)
                 
-                DataView()
-                    .tabItem {
-                        Label("Data", systemImage: "chart.bar")
-                    }
-                    .tag(Constants.mainTabType.data)
+                NavigationStack {
+                    DataView()
+                }
+                .tabItem {
+                    Label("Data", systemImage: "chart.bar")
+                }
+                .tag(Constants.mainTabType.data)
                 
             }
         }
@@ -53,4 +55,5 @@ struct MainTab: View {
     MainTab()
         .environmentObject(NavigationManager.shared)
         .environmentObject(MapManager.shared)
+        .environmentObject(DataManager.shared)
 }

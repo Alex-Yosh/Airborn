@@ -1,5 +1,5 @@
 //
-//  DataTempView.swift
+//  DataTempCellView.swift
 //  Airborn
 //
 //  Created by Alex Yoshida on 2025-01-15.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DataTempView: View {
+struct DataTempCellView: View {
     var body: some View {
         
         DataScaleView(progressPercent: getPercent(temp: 22), temp: 22).frame(width: 100, height: 100)
@@ -78,5 +78,5 @@ struct DataScaleView: View {
 }
 
 #Preview {
-    DataTempView()
+    DataTempCellView()
 }

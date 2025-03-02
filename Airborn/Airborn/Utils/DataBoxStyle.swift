@@ -26,7 +26,7 @@ struct DataBoxStyle: ViewModifier {
                         RoundedRectangle(cornerRadius: 15)
                             .fill(.white)
                         Spacer()
-                        content
+                        content.padding()
                         Spacer()
                     }
                 }

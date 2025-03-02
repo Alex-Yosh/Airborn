@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DataHumidityView: View {
+struct DataHumidityCellView: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     var progressPercent: Float = 0.5
     
@@ -49,5 +49,5 @@ struct DataHumidityView: View {
 }
 
 #Preview {
-    DataHumidityView()
+    DataHumidityCellView()
 }
