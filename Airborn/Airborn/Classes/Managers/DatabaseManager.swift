@@ -64,9 +64,6 @@ class DatabaseManager: ObservableObject {
     func getAllSensors(completion: @escaping (Result<[Sensor], Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/sensor") else { return }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
@@ -140,4 +137,39 @@ class DatabaseManager: ObservableObject {
         }.resume()
     }
     
+    func getAverageHumidity(sensorId: UUID, completion: @escaping (Result<Double, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/humidity/avg/\(sensorId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let humidity = try JSONDecoder().decode(Double.self, from: data)
+                completion(.success(humidity))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getDailyAverages(endpoint: Constants.apiAveragesEndpoint, sensorId: UUID, completion: @escaping (Result<[Double], Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/\(endpoint.rawValue)/avg/\(sensorId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let averages = try JSONDecoder().decode([Double].self, from: data)
+                completion(.success(averages))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
