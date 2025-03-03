@@ -20,6 +20,9 @@
 		FA8247A52D45C9D40055738E /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA8247A12D45C9B00055738E /* Inter.ttf */; };
 		FA8247A72D45CDE30055738E /* DataBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8247A62D45CDE30055738E /* DataBoxStyle.swift */; };
 		FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA164C52D39BCB40028D7C6 /* Sensor.swift */; };
+		FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F972D75344F006D7CD5 /* CO2Response.swift */; };
+		FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */; };
+		FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F9C2D753529006D7CD5 /* PM25Response.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
@@ -62,6 +65,9 @@
 		FA8247A22D45C9B00055738E /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FA8247A62D45CDE30055738E /* DataBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBoxStyle.swift; sourceTree = "<group>"; };
 		FAA164C52D39BCB40028D7C6 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		FABA6F972D75344F006D7CD5 /* CO2Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CO2Response.swift; sourceTree = "<group>"; };
+		FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVOCResponse.swift; sourceTree = "<group>"; };
+		FABA6F9C2D753529006D7CD5 /* PM25Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PM25Response.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +131,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		FABA6F992D753503006D7CD5 /* APIResponses */ = {
+			isa = PBXGroup;
+			children = (
+				FABA6F972D75344F006D7CD5 /* CO2Response.swift */,
+				FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */,
+				FABA6F9C2D753529006D7CD5 /* PM25Response.swift */,
+			);
+			path = APIResponses;
+			sourceTree = "<group>";
+		};
 		FACF46212D0D243900E2EB4D = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +194,7 @@
 				FACF46772D173C6F00E2EB4D /* RecentReading.swift */,
 				FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */,
 				FAA164C52D39BCB40028D7C6 /* Sensor.swift */,
+				FABA6F992D753503006D7CD5 /* APIResponses */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */,
 				FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */,
 				FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */,
 				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
@@ -375,6 +393,7 @@
 				FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */,
 				FACF46652D1501AC00E2EB4D /* DataView.swift in Sources */,
 				FACF46672D1501B700E2EB4D /* MapView.swift in Sources */,
+				FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */,
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
 				FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */,
@@ -389,6 +408,7 @@
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
+				FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */,
 				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
 				FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */,

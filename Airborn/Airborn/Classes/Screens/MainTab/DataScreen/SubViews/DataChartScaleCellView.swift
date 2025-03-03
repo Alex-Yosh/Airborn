@@ -18,7 +18,7 @@ struct DataChartScaleCellView: View {
             dataManager.selectedDataType = sensorType
         }){
             VStack{
-                DataChartView(sensorData: dataManager.data, sensorType: sensorType)
+                DataChartView(sensorType: sensorType)
                 HStack{
                     Text("average: 10 \(sensorType.metric)")
                         .textStyle(RegularTextStyle())
@@ -31,6 +31,6 @@ struct DataChartScaleCellView: View {
 }
 
 #Preview {
-    DataChartScaleCellView( sensorType: Constants.dataTypes.pm25)
+    DataChartScaleCellView( sensorType: Constants.dataTypes.co2)
         .environmentObject(DataManager.shared)
 }

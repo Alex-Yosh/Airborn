@@ -38,25 +38,34 @@ struct DataChartView: View {
         }
     }
     
+    func formattedDate(_ date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "M/d" // Removes leading zeros
+            return formatter.string(from: date)
+        }
+    
     var body: some View {
         VStack {
+            
             Chart {
-                // 1️⃣ LineMark appears gradually alongside points
-                ForEach(animatedData) { data in
+                ForEach(Array(last7DaysRange.prefix(7).enumerated()), id: \.element) { index, date in
+                    let value = index < animatedData.count ? animatedData[index] : 0.0 // Ensure correct alignment
+                    
                     LineMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.getValue(ofType: sensorType))
+                        x: .value("Date", date),
+                        y: .value(sensorType.rawValue, value)
                     )
                     .foregroundStyle(colorCode(sensorType: sensorType))
-                }
-                
-                // 2️⃣ Animated `PointMark`s appear progressively
-                ForEach(animatedData) { data in
+                    
                     PointMark(
-                        x: .value("Date", data.date ?? Date()),
-                        y: .value(sensorType.rawValue, data.getValue(ofType: sensorType))
+                        x: .value("Date", date),
+                        y: .value(sensorType.rawValue, value)
                     )
                     .foregroundStyle(colorCode(sensorType: sensorType))
+                    
+                    
+                    RuleMark(x: .value("Date", date))
+                        .foregroundStyle(.gray.opacity(0.2))
                 }
             }
             .chartYAxis {
@@ -65,43 +74,51 @@ struct DataChartView: View {
             .chartYAxisLabel(position: .trailing, alignment: .center) {
                 Text("\(sensorType.rawValue) (\(sensorType.metric))")
             }
-            
+            .chartYScale(domain: (data.min() ?? 0)...(data.max() ?? 500))
             .chartXScale(domain: last7DaysRange.first!...last7DaysRange.last!)
             .chartXAxis {
                 AxisMarks(values: last7DaysRange) { value in
                     if let date = value.as(Date.self) {
                         AxisValueLabel {
-                            Text(date, format: .dateTime.month().day())
+                            Text(date, format: .dateTime.month(.defaultDigits).day(.defaultDigits))
                         }
                     }
                 }
             }
-            .padding()
             .frame(height: 300)
             .opacity(showChart ? 1 : 0) // Fade-in effect
             .scaleEffect(showChart ? 1 : 0.9, anchor: .center) // Scale-up effect
             .animation(.spring(response: 1.2, dampingFraction: 0.8, blendDuration: 0.2), value: showChart) // Bounce effect
+            
         }
         .onAppear {
-            animateChart()
+            fetchData()
+        }
+    }
+    
+    private func fetchData() {
+        dataManager.getLast7DayAverage(type: sensorType) { result in
+            DispatchQueue.main.async {
+                self.data = result // Update UI state with fetched data
+                animateChart()
+            }
         }
     }
     
     // MARK: - Animate Data Points & Line Together
     private func animateChart() {
-        if (!showChart)
-        {
-            animatedData = []
+        if !showChart {
+            animatedData = [] // Reset before animation
             DispatchQueue.main.asyncAfter(deadline: .now() ) {
                 withAnimation {
                     showChart = true // Scale-in the entire chart
                 }
             }
             
-            for (index, data) in last7DaysData.enumerated() {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 + Double(index)*0.25) {
+            for (index, value) in data.enumerated() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 + Double(index) * 0.25) {
                     withAnimation {
-                        animatedData.append(data) // Gradually add points & grow the line
+                        animatedData.append(value) // Append values gradually
                     }
                 }
             }
@@ -109,12 +126,7 @@ struct DataChartView: View {
     }
 }
 
-
 #Preview {
-    DataChartView(sensorData: [
-        SensorData(id: UUID(), sensorId: UUID(), temperature: 20.5, humidity: 50, pm25: 10, tvoc: 1, co2: 400, date: Date()),
-        SensorData(id: UUID(), sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-240000)),
-        SensorData(id: UUID(), sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-480000)),
-        SensorData(id: UUID(), sensorId: UUID(), temperature: 21.0, humidity: 48, pm25: 15, tvoc: 1.2, co2: 420, date: Date().addingTimeInterval(-360000))
-    ], sensorType: Constants.dataTypes.pm25)
+    DataChartView(sensorType: Constants.dataTypes.co2)
+        .environmentObject(DataManager.shared)
 }
