@@ -28,7 +28,7 @@ struct DataDetailView: View {
             }
             .dataBoxStyle(title:"What is a good reading?", titleIn: false)
             
-            DataChartView(sensorData: dataManager.data, sensorType: dataManager.selectedDataType ?? .co2)
+            DataChartView(sensorType: dataManager.selectedDataType ?? .co2)
                 .dataBoxStyle(title:"Recent Exposure", titleIn: false)
             
             VStack{

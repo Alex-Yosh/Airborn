@@ -38,7 +38,7 @@ struct DataBoxStyle: ViewModifier {
                     Text(title)
                         .textStyle(DataHeadingTextStyle()).padding()
                     Spacer()
-                    content
+                    content.padding(.horizontal, 8)
                     Spacer()
                 }
             }

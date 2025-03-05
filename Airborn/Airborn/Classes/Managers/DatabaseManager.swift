@@ -12,7 +12,7 @@ class DatabaseManager: ObservableObject {
     
     static var shared = DatabaseManager()
     
-    private let baseURL = "http://127.0.0.1:5000/api" // Replace with your actual base URL
+    private let baseURL = "https://airborne-897502924648.northamerica-northeast1.run.app/api"
     
     private init() {}
     
@@ -55,6 +55,24 @@ class DatabaseManager: ObservableObject {
             do {
                 let sensor = try JSONDecoder().decode(Sensor.self, from: data)
                 completion(.success(sensor))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getAllSensors(completion: @escaping (Result<[Sensor], Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/sensor") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let sensors = try JSONDecoder().decode([Sensor].self, from: data)
+                completion(.success(sensors))
             } catch {
                 completion(.failure(error))
             }
@@ -119,4 +137,78 @@ class DatabaseManager: ObservableObject {
         }.resume()
     }
     
+    func getAverageHumidity(sensorId: UUID, completion: @escaping (Result<Double, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/humidity/avg/\(sensorId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let humidity = try JSONDecoder().decode(Double.self, from: data)
+                completion(.success(humidity))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getCO2DailyAverages(sensorId: UUID, completion: @escaping (Result<CO2Response, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/co2/avg/\(sensorId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(CO2Response.self, from: data)
+                completion(.success(decodedResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getTVOCDailyAverages(sensorId: UUID, completion: @escaping (Result<TVOCResponse, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/tvoc/avg/\(sensorId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(TVOCResponse.self, from: data)
+                completion(.success(decodedResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getPM25DailyAverages(sensorId: UUID, completion: @escaping (Result<PM25Response, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/pm25/avg/\(sensorId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(PM25Response.self, from: data)
+                completion(.success(decodedResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }

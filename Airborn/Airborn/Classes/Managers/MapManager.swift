@@ -18,7 +18,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     
     @Published var showSelectedSensor: Bool = false
-    @Published var selectedSensor: Sensor? = Sensor(id: UUID(), name: "test", latitude: 43.474823, longitude: -80.536141)
+    @Published var selectedSensor: Sensor?
     
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 36.7783, longitude: -119.4179),
@@ -33,6 +33,17 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        //Get all Sensors
+        DatabaseManager.shared.getAllSensors(){result in
+            switch result {
+            case .success(let sensors):
+                self.sensors = sensors
+            case .failure(let error):
+                print("Error fetching sensor: \(error)")
+            }
+        }
+        
     }
     
     func ShowSensorSheet(sensor: Sensor) {

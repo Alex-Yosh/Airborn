@@ -42,7 +42,12 @@ struct Constants {
                 return "ppm"
             }
         }
-        
+    }
+    
+    enum apiAveragesEndpoint: String {
+        case pm25 = "pm25"
+        case tvoc = "tvoc"
+        case co2 = "co2"
     }
     
     enum dataFilterType {
