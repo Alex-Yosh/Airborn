@@ -10,7 +10,6 @@ import Combine
 import MapKit
 import CoreLocation
 
-
 class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     static var shared = MapManager()
@@ -19,6 +18,9 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var showSelectedSensor: Bool = false
     @Published var selectedSensor: Sensor?
+    
+    @Published var nearestSensor: Sensor?
+
     
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 36.7783, longitude: -119.4179),
@@ -34,16 +36,17 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        //Get all Sensors
-        DatabaseManager.shared.getAllSensors(){result in
+        // Fetch all sensors from database
+        DatabaseManager.shared.getAllSensors { result in
             switch result {
             case .success(let sensors):
-                self.sensors = sensors
+                DispatchQueue.main.async {
+                    self.sensors = sensors
+                }
             case .failure(let error):
                 print("Error fetching sensor: \(error)")
             }
         }
-        
     }
     
     func ShowSensorSheet(sensor: Sensor) {
@@ -73,11 +76,13 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         checkAuthorization()
     }
     
+    ///when location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             DispatchQueue.main.async {
                 self.userLocation = location.coordinate
                 self.locationManager.stopUpdatingLocation()
+                self.findNearestSensor()
             }
         }
     }
@@ -86,4 +91,16 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Failed to find user's location: \(error.localizedDescription)")
     }
     
+    
+    func findNearestSensor() {
+        guard let userLocation = userLocation else { return }
+        
+        let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        
+        nearestSensor = sensors.min(by: {
+            let distance1 = userCLLocation.distance(from: CLLocation(latitude: $0.latitude, longitude: $0.longitude))
+            let distance2 = userCLLocation.distance(from: CLLocation(latitude: $1.latitude, longitude: $1.longitude))
+            return distance1 < distance2
+        })
+    }
 }
