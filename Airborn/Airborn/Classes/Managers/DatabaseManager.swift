@@ -194,7 +194,7 @@ class DatabaseManager: ObservableObject {
     }
     
     func getPM25DailyAverages(sensorId: UUID, completion: @escaping (Result<PM25Response, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/co2/avg/\(sensorId)") else { return }
+        guard let url = URL(string: "\(baseURL)/data/pm25/avg/\(sensorId)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {

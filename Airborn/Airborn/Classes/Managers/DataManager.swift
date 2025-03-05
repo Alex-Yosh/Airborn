@@ -18,7 +18,7 @@ class DataManager: ObservableObject {
                                          SensorData(id: UUID(), sensorId: UUID(), temperature: 22.3, humidity: 46, pm25: 8, tvoc: 1.1, co2: 410, date: Date().addingTimeInterval(-320000))]
     @Published var filterType: Constants.dataFilterType = .last7Days
     
-    @Published var closestSensor: Sensor? = Sensor(id: UUID(uuidString: "1dfab928-8a67-41f2-81cf-118e7c1fa7a4")!, name: "hi", latitude: 0, longitude: 0)
+    @Published var closestSensor: Sensor? = Sensor(id: UUID(uuidString: "f870ac18-e281-4b32-8809-7010221ed1cc")!, name: "hi", latitude: 0, longitude: 0)
     
     func getLast7DayAverage(type: Constants.dataTypes, completion: @escaping ([Double]) -> Void) {
         if let closestSensor = closestSensor {

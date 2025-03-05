@@ -9,10 +9,13 @@ import SwiftUI
 import Charts
 
 struct DataChartView: View {
-    let sensorData: [SensorData] // Full dataset
+    
+    @EnvironmentObject var dataManager: DataManager
+    
+    @State var data: [Double] = []
     let sensorType: Constants.dataTypes
     
-    @State private var animatedData: [SensorData] = [] // Gradually added for animation
+    @State private var animatedData: [Double] = [] // Gradually added for animation
     @State private var showChart: Bool = false // Controls fade-in & scale animation
     
     private var last7DaysRange: [Date] {
@@ -23,12 +26,6 @@ struct DataChartView: View {
         return (0..<8).map { Calendar.current.date(byAdding: .day, value: -$0, to: tomorrow)! }.reversed()
     }
     
-    private var last7DaysData: [SensorData] {
-        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
-        return sensorData
-            .filter { ($0.date ?? Date()) >= sevenDaysAgo }
-            .sorted { ($0.date ?? Date()) < ($1.date ?? Date()) }
-    }
     
     func colorCode(sensorType: Constants.dataTypes) -> Color {
         switch sensorType {
