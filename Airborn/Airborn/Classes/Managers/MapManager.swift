@@ -18,6 +18,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var showSelectedSensor: Bool = false
     @Published var selectedSensor: Sensor?
+    @Published var isLocationPermissionGranted: Bool = false
     
     @Published var nearestSensor: Sensor?
 
@@ -35,13 +36,17 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
+        checkAuthorization()
+    }
+    
+    func fetchSensors(){
         // Fetch all sensors from database
         DatabaseManager.shared.getAllSensors { result in
             switch result {
             case .success(let sensors):
                 DispatchQueue.main.async {
                     self.sensors = sensors
+                    self.findNearestSensor()
                 }
             case .failure(let error):
                 print("Error fetching sensor: \(error)")
@@ -60,17 +65,19 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func checkAuthorization() {
-        switch locationManager.authorizationStatus {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted, .denied:
-            print("Location access denied or restricted")
-        case .authorizedWhenInUse, .authorizedAlways:
-            locationManager.startUpdatingLocation()
-        @unknown default:
-            print("Unknown location authorization status")
+            switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted, .denied:
+                self.isLocationPermissionGranted = false
+                
+            case .authorizedWhenInUse, .authorizedAlways:
+                locationManager.startUpdatingLocation()
+                self.isLocationPermissionGranted = true
+            @unknown default:
+                print("Unknown location authorization status")
+            }
         }
-    }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkAuthorization()
@@ -93,14 +100,15 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     
     func findNearestSensor() {
-        guard let userLocation = userLocation else { return }
-        
+        guard let userLocation = userLocation else {return}
+
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        
+
         nearestSensor = sensors.min(by: {
             let distance1 = userCLLocation.distance(from: CLLocation(latitude: $0.latitude, longitude: $0.longitude))
             let distance2 = userCLLocation.distance(from: CLLocation(latitude: $1.latitude, longitude: $1.longitude))
             return distance1 < distance2
         })
     }
+
 }

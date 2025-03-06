@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTab: View {
+
     @EnvironmentObject var navigationManager: NavigationManager
     
     init() {

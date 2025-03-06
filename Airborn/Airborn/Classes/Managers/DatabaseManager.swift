@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class DatabaseManager: ObservableObject {
     
@@ -96,29 +97,7 @@ class DatabaseManager: ObservableObject {
     
     // MARK: - Data Endpoints
     
-    func addDataEntry(data: SensorData, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data") else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            request.httpBody = try JSONEncoder().encode(data)
-        } catch {
-            completion(.failure(error))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: request) { _, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            completion(.success(()))
-        }.resume()
-    }
-    
+    ///get average temperature for specific sensor from last 10 minutes
     func getAverageTemperature(sensorId: UUID, completion: @escaping (Result<Double, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/data/temp/avg/\(sensorId)") else { return }
         
@@ -137,6 +116,7 @@ class DatabaseManager: ObservableObject {
         }.resume()
     }
     
+    ///get average humidity for specific sensor from last 10 minutes
     func getAverageHumidity(sensorId: UUID, completion: @escaping (Result<Double, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/data/humidity/avg/\(sensorId)") else { return }
         
@@ -155,6 +135,7 @@ class DatabaseManager: ObservableObject {
         }.resume()
     }
     
+    ///daily average for last 7 days
     func getCO2DailyAverages(sensorId: UUID, completion: @escaping (Result<CO2Response, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/data/co2/avg/\(sensorId)") else { return }
         
@@ -174,6 +155,7 @@ class DatabaseManager: ObservableObject {
         }.resume()
     }
     
+    ///daily average for last 7 days
     func getTVOCDailyAverages(sensorId: UUID, completion: @escaping (Result<TVOCResponse, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/data/tvoc/avg/\(sensorId)") else { return }
         
@@ -210,5 +192,36 @@ class DatabaseManager: ObservableObject {
                 completion(.failure(error))
             }
         }.resume()
+    }
+    
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    /// Fetch latest sensor data from the API
+    func fetchLatestSensorData(completion: @escaping (SensorData?) -> Void) {
+        guard let closestSensor = MapManager.shared.nearestSensor else {
+            completion(nil) // Return nil if there's no closest sensor
+            return
+        }
+        guard let url = URL(string: "\(baseURL)/data/latest/\(closestSensor.id)") else { return }
+
+
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map { data, response -> Data in
+                return data
+            }
+            .decode(type: LatestDataResponse.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completionStatus in
+                switch completionStatus {
+                case .failure(let error):
+                    completion(nil)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { response in
+                completion(response.latest_reading) // Return the latest SensorData
+            })
+            .store(in: &cancellables)
     }
 }

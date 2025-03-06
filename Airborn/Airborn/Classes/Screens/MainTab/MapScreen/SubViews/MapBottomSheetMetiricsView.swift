@@ -37,5 +37,5 @@ struct MapBottomSheetMetricsView: View {
 }
 
 #Preview {
-    MapBottomSheetMetricsView(sensorData: SensorData(id: UUID(), sensorId: UUID(), temperature: 21.0, humidity: 23.0, pm25: 4.1, tvoc: 3.2, co2: 2.0, date: Date.now))
+    MapBottomSheetMetricsView(sensorData: SensorData(temperature: 21.0, humidity: 23.0, pm25: 4.1, tvoc: 3.2, co2: 2.0, timestamp: Date.now))
 }
