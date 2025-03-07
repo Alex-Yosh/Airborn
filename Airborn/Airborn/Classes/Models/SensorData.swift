@@ -8,11 +8,11 @@
 import Foundation
 
 struct SensorData: Codable {
-    let temperature: Double
-    let humidity: Double
-    let pm25: Double
-    let tvoc: Double
-    let co2: Double
+    let temperature: Double?
+    let humidity: Double?
+    let pm25: Double?
+    let tvoc: Double?
+    let co2: Double?
     let timestamp: Date
     
     private enum CodingKeys: String, CodingKey {
@@ -33,11 +33,11 @@ extension SensorData {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.temperature = try container.decode(Double.self, forKey: .temperature)
-        self.humidity = try container.decode(Double.self, forKey: .humidity)
-        self.pm25 = try container.decode(Double.self, forKey: .pm25)
-        self.tvoc = try container.decode(Double.self, forKey: .tvoc)
-        self.co2 = try container.decode(Double.self, forKey: .co2)
+        self.temperature = try container.decodeIfPresent(Double.self, forKey: .temperature)
+        self.humidity = try container.decodeIfPresent(Double.self, forKey: .humidity)
+        self.pm25 = try container.decodeIfPresent(Double.self, forKey: .pm25)
+        self.tvoc = try container.decodeIfPresent(Double.self, forKey: .tvoc)
+        self.co2 = try container.decodeIfPresent(Double.self, forKey: .co2)
         
         let timestampString = try container.decode(String.self, forKey: .timestamp)
         if let date = SensorData.dateFormatter.date(from: timestampString) {
@@ -47,7 +47,7 @@ extension SensorData {
         }
     }
     
-    func getValue(ofType: Constants.dataTypes) -> Double {
+    func getValue(ofType: Constants.dataTypes) -> Double? {
         switch ofType {
         case .co2:
             return self.co2

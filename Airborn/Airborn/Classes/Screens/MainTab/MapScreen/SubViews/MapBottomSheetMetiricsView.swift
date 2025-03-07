@@ -20,15 +20,15 @@ struct MapBottomSheetMetricsView: View {
                 Spacer()
             }
             Grid() {
-                GridRow {
-                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.pm25.rawValue, value:
-                                                    "\(round(sensorData.pm25 * 10) / 10.0) \(Constants.dataTypes.pm25.metric)"
-                                                    , progressPercent: 1)
-                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.tvoc.rawValue, value: "\(round(sensorData.tvoc * 10) / 10.0) \(Constants.dataTypes.tvoc.metric)", progressPercent: 0.7)
-                }
-                GridRow {
-                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.co2.rawValue, value: "\(round(sensorData.co2 * 10) / 10.0) \(Constants.dataTypes.co2.metric)", progressPercent: 0.3)
-                }
+//                GridRow {
+//                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.pm25.rawValue, value:
+//                                                    "\(round(sensorData.pm25 * 10) / 10.0) \(Constants.dataTypes.pm25.metric)"
+//                                                    , progressPercent: 1)
+//                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.tvoc.rawValue, value: "\(round(sensorData.tvoc * 10) / 10.0) \(Constants.dataTypes.tvoc.metric)", progressPercent: 0.7)
+//                }
+//                GridRow {
+//                    MapBottomSheetMetricLabelView(title: Constants.dataTypes.co2.rawValue, value: "\(round(sensorData.co2 * 10) / 10.0) \(Constants.dataTypes.co2.metric)", progressPercent: 0.3)
+//                }
             }
             
             
