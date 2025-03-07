@@ -18,10 +18,12 @@ struct LoginView: View {
             
             TextField("Username", text: $loginManager.username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
                 .padding()
 
-            SecureField("Password", text: $loginManager.password)
+            TextField("Password", text: $loginManager.password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
                 .padding()
 
             if let errorMessage = loginManager.errorMessage {

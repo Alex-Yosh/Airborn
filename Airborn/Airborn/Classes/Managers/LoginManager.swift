@@ -15,6 +15,8 @@ class LoginManager: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     @Published var errorMessage: String?
+    
+    @Published var uuid: UUID?
 
     func login() {
         guard !username.isEmpty, !password.isEmpty else {
@@ -23,14 +25,16 @@ class LoginManager: ObservableObject {
         }
 
         errorMessage = nil
-
         DatabaseManager.shared.loginUser(username: username, password: password) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success:
-                    break // NavigationManager is already updating the state
-                case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+                case .success(let loginResponse):
+                    self.uuid = loginResponse.user_id
+                    NavigationManager.shared.appStatus.send(.loading)
+                    
+                case .failure(_):
+                    self.errorMessage = "Invalid Credentials"
+                    return
                 }
             }
         }

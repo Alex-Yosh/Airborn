@@ -18,9 +18,9 @@ class DatabaseManager: ObservableObject {
     private init() {}
     
     
-    // MARK: - User Authentication
+    // MARK: - Login
     
-    func loginUser(username: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func loginUser(username: String, password: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/user/login") else { return }
         
         var request = URLRequest(url: url)
@@ -30,34 +30,52 @@ class DatabaseManager: ObservableObject {
         let body: [String: String] = ["username": username, "password": password]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
-        // Move to "loading" state
-        NavigationManager.shared.appStatus.send(.loading)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
+                completion(.success(loginResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func signupUser(username: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/user") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: String] = ["username": username, "password": password]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    NavigationManager.shared.appStatus.send(.login) // Move back to login if error
                     completion(.failure(error))
                     return
                 }
                 
                 guard let data = data, let responseString = String(data: data, encoding: .utf8) else {
-                    NavigationManager.shared.appStatus.send(.login)
                     completion(.failure(NSError(domain: "InvalidResponse", code: 0, userInfo: nil)))
                     return
                 }
                 
-                if responseString.contains("login success") {
-                    NavigationManager.shared.appStatus.send(.restOfApp) // Successfully logged in
+                if responseString.contains("id") { 
+                    NavigationManager.shared.appStatus.send(.restOfApp) // Navigate to main app
                     completion(.success(()))
                 } else {
-                    NavigationManager.shared.appStatus.send(.login)
-                    completion(.failure(NSError(domain: "InvalidCredentials", code: 401, userInfo: nil)))
+                    completion(.failure(NSError(domain: "SignupFailed", code: 400, userInfo: nil)))
                 }
             }
         }.resume()
     }
-    
     
     
     // MARK: - Sensor Endpoints
