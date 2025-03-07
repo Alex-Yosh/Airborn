@@ -23,6 +23,7 @@
 		FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F972D75344F006D7CD5 /* CO2Response.swift */; };
 		FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */; };
 		FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F9C2D753529006D7CD5 /* PM25Response.swift */; };
+		FABA6FA32D78FF79006D7CD5 /* LatestDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FA22D78FF79006D7CD5 /* LatestDataResponse.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		FABA6F972D75344F006D7CD5 /* CO2Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CO2Response.swift; sourceTree = "<group>"; };
 		FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVOCResponse.swift; sourceTree = "<group>"; };
 		FABA6F9C2D753529006D7CD5 /* PM25Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PM25Response.swift; sourceTree = "<group>"; };
+		FABA6FA22D78FF79006D7CD5 /* LatestDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestDataResponse.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				FABA6F972D75344F006D7CD5 /* CO2Response.swift */,
 				FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */,
 				FABA6F9C2D753529006D7CD5 /* PM25Response.swift */,
+				FABA6FA22D78FF79006D7CD5 /* LatestDataResponse.swift */,
 			);
 			path = APIResponses;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
+				FABA6FA32D78FF79006D7CD5 /* LatestDataResponse.swift in Sources */,
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
 				FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */,
 				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
