@@ -17,6 +17,49 @@ class DatabaseManager: ObservableObject {
     
     private init() {}
     
+    
+    // MARK: - User Authentication
+    
+    func loginUser(username: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/user/login") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: String] = ["username": username, "password": password]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        // Move to "loading" state
+        NavigationManager.shared.appStatus.send(.loading)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    NavigationManager.shared.appStatus.send(.login) // Move back to login if error
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let data = data, let responseString = String(data: data, encoding: .utf8) else {
+                    NavigationManager.shared.appStatus.send(.login)
+                    completion(.failure(NSError(domain: "InvalidResponse", code: 0, userInfo: nil)))
+                    return
+                }
+                
+                if responseString.contains("login success") {
+                    NavigationManager.shared.appStatus.send(.restOfApp) // Successfully logged in
+                    completion(.success(()))
+                } else {
+                    NavigationManager.shared.appStatus.send(.login)
+                    completion(.failure(NSError(domain: "InvalidCredentials", code: 401, userInfo: nil)))
+                }
+            }
+        }.resume()
+    }
+    
+    
+    
     // MARK: - Sensor Endpoints
     
     func addSensor(name: String, latitude: Double, longitude: Double, completion: @escaping (Result<Sensor, Error>) -> Void) {
@@ -204,8 +247,8 @@ class DatabaseManager: ObservableObject {
             return
         }
         guard let url = URL(string: "\(baseURL)/data/latest/\(closestSensor.id)") else { return }
-
-
+        
+        
         URLSession.shared.dataTaskPublisher(for: url)
             .map { data, response -> Data in
                 return data

@@ -17,6 +17,7 @@ struct AirbornApp: App {
                 .environmentObject(NavigationManager.shared)
                 .environmentObject(MapManager.shared)
                 .environmentObject(DataManager.shared)
+                .environmentObject(LoginManager.shared)
         }
     }
 }

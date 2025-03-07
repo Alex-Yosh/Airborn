@@ -14,7 +14,7 @@ class NavigationManager: ObservableObject {
     
     static var shared = NavigationManager()
     
-    var appStatus: CurrentValueSubject<Constants.appNavigationControllers, Never> = .init(.loading)
+    var appStatus: CurrentValueSubject<Constants.appNavigationControllers, Never> = .init(.login)
     @Published var selectedHomeTab: Constants.mainTabType = .home
     
     

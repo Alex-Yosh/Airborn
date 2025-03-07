@@ -9,19 +9,22 @@ import SwiftUI
 
 struct LaunchView: View {
     @EnvironmentObject var navigationManager: NavigationManager
-    
-    @State private var currentAppStatus: Constants.appNavigationControllers = .loading
-    
+
+    @State private var currentAppStatus: Constants.appNavigationControllers = .login
+
     var body: some View {
         VStack {
             switch currentAppStatus {
+            case .login:
+                LoginView()
             case .loading:
                 Loading()
             case .restOfApp:
                 MainTab()
             }
-        }.onReceive(navigationManager.appStatus) {
-            currentAppStatus = $0
+        }
+        .onReceive(navigationManager.appStatus) { newStatus in
+            currentAppStatus = newStatus
         }
     }
 }
