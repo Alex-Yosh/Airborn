@@ -54,14 +54,13 @@ struct Loading: View {
                 hasCheckedPermissions = true
                 if !mapManager.isLocationPermissionGranted {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        checkPermissions() // ✅ Recheck in 1 second if not granted
+                        checkPermissions() // Recheck in 1 second if not granted
                     }
                 }
             }
         }
     }
     
-    /// ✅ Keeps retrying nearestSensor detection if it's missing
     private func startLoadingProcess() {
         let group = DispatchGroup()
         
