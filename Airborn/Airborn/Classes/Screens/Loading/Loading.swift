@@ -66,10 +66,10 @@ struct Loading: View {
         let group = DispatchGroup()
         
         
-        // ✅ Ensure sensors are fetched first
+        // Ensure sensors are fetched first
         mapManager.fetchSensors()
         
-        // ✅ Task 1: Wait until `nearestSensor` is set before fetching sensor data
+        // Task 1: Wait until `nearestSensor` is set before fetching sensor data
         group.enter()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if let _ = mapManager.nearestSensor {
@@ -88,7 +88,7 @@ struct Loading: View {
             }
         }
         
-        // ✅ Task 2: Ensure location permission is granted and nearestSensor is available
+        // Task 2: Ensure location permission is granted and nearestSensor is available
         group.enter()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if mapManager.isLocationPermissionGranted && mapManager.nearestSensor != nil {
@@ -97,13 +97,13 @@ struct Loading: View {
             group.leave()
         }
         
-        // ✅ Task 3: Minimum 2-second delay
+        // Task 3: Minimum 2-second delay
         group.enter()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             group.leave()
         }
         
-        // ✅ Notify when all tasks are complete
+        // Notify when all tasks are complete
         group.notify(queue: .main) {
             if self.isDataFetched && self.isLocationFetched {
                 navigationManager.appStatus.value = .restOfApp
