@@ -1,61 +1,78 @@
-//
-//  HomeTableView.swift
-//  Airborn
-//
-//  Created by Alex Yoshida on 2024-12-20.
-//
-
 import SwiftUI
 
 struct HomeTableView: View {
     
-    //TODO: add to some manager that recieves from database
-    let exRecent = [RecentReading(date: Date.now, quality: "Okay"),         RecentReading(date: Date.now, quality: "Excellent"), RecentReading(date: Date.now, quality: "Good")]
-    
+    @EnvironmentObject var dataManager: DataManager
     
     var body: some View {
-        VStack{
+        VStack {
             Text("Recent Reading")
                 .textStyle(SubHeadingTextStyle())
-            ZStack{
+            
+            ZStack {
                 RoundedRectangle(cornerRadius: 34)
                     .fill(Constants.Colour.PrimaryGreen.opacity(0.4))
-                VStack{
-                    Grid {
-                        GridRow {
-                            Text("Date")
-                            Text("Quality")
-                        }.padding(.vertical, 8)
-                        
-                        Divider()
-                        
-                        ForEach(Array(exRecent.enumerated()), id: \.offset){ index, recentReading in
-                            
+                
+                if let sensorData = dataManager.latestSensorData {
+                    VStack {
+                        Grid {
                             GridRow {
-                                Text(recentReading.date, format: .dateTime.day().month().year()).frame(alignment: .leading)
-                                Text(recentReading.quality)
-                            }.padding(.vertical, 8)
+                                Text("Metric")
+                                Text("Quality")
+                            }
+                            .padding(.vertical, 8)
+                            
                             Divider()
+                            
+                            SensorRow(metric: Constants.dataTypes.pm25.rawValue, quality: sensorData.getQuality(ofType: Constants.dataTypes.pm25))
+                            SensorRow(metric: Constants.dataTypes.tvoc.rawValue, quality: sensorData.getQuality(ofType: Constants.dataTypes.tvoc))
+                            SensorRow(metric: Constants.dataTypes.co2.rawValue, quality: sensorData.getQuality(ofType: Constants.dataTypes.co2))
+                        }
+                        
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                // Handle "See More" navigation
+                            }) {
+                                Text("See More")
+                                    .textStyle(RegularTextStyle())
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal)
                         }
                     }
-                    
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                            
-                        }, label: {
-                            Text("See More")
-                                .textStyle(RegularTextStyle())
-                        }).padding(.vertical, 8)
-                        .padding(.horizontal)
+                } else {
+                    // Show loading indicator while data is being fetched
+                    VStack {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .padding()
+                        Text("Loading data...")
+                            .textStyle(RegularTextStyle())
                     }
                 }
             }
-            .frame(height: 250).padding(.horizontal, 32)
+            .frame(height: 250)
+            .padding(.horizontal, 32)
         }
+    }
+}
+
+struct SensorRow: View {
+    let metric: String
+    let quality: String
+    
+    var body: some View {
+        GridRow {
+            Text(metric)
+            Text(quality)
+        }
+        .padding(.vertical, 8)
+        Divider()
     }
 }
 
 #Preview {
     HomeTableView()
+        .environmentObject(DataManager.shared)
 }
