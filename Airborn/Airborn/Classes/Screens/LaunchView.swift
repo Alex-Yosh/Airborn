@@ -16,7 +16,7 @@ struct LaunchView: View {
         VStack {
             switch currentAppStatus {
             case .login:
-                LoginView()
+                Login()
             case .loading:
                 Loading()
             case .restOfApp:

@@ -45,38 +45,41 @@ class DatabaseManager: ObservableObject {
         }.resume()
     }
     
-    func signupUser(username: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/user") else { return }
-        
+    func signupUser(username: String, password: String, completion: @escaping (Result<SignUpResponse, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/user") else {
+            print("Invalid URL")
+            return
+        }
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         let body: [String: String] = ["username": username, "password": password]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                
-                guard let data = data, let responseString = String(data: data, encoding: .utf8) else {
-                    completion(.failure(NSError(domain: "InvalidResponse", code: 0, userInfo: nil)))
-                    return
-                }
-                
-                if responseString.contains("id") { 
-                    NavigationManager.shared.appStatus.send(.restOfApp) // Navigate to main app
-                    completion(.success(()))
-                } else {
-                    completion(.failure(NSError(domain: "SignupFailed", code: 400, userInfo: nil)))
-                }
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(NSError(domain: "NoData", code: 0, userInfo: nil)))
+                return
+            }
+
+            do {
+                let signupResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
+                print("Signup successful! User ID: \(signupResponse.id)")
+                completion(.success(signupResponse))
+            } catch {
+                print("JSON Decoding Error: \(error)")
+                completion(.failure(error))
             }
         }.resume()
     }
-    
+
     
     // MARK: - Sensor Endpoints
     

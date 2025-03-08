@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct LoginView: View {
     @EnvironmentObject var loginManager: LoginManager
     
@@ -44,11 +46,20 @@ struct LoginView: View {
             }
             .padding()
 
+            Button(action: {
+                loginManager.switchToSignUpScreen()
+            }) {
+                Text("Don't have an account? Sign Up")
+                    .foregroundColor(.blue)
+            }
+            .padding()
+
             Spacer()
         }
         .padding()
     }
 }
+
 
 
 #Preview {

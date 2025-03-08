@@ -12,8 +12,11 @@ class LoginManager: ObservableObject {
     
     static var shared = LoginManager()
     
+    @Published var signingUp: Bool = false
+    
     @Published var username: String = ""
     @Published var password: String = ""
+    @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
     @Published var uuid: UUID?
@@ -38,6 +41,45 @@ class LoginManager: ObservableObject {
                 }
             }
         }
+    }
+    
+    func signup() {
+        guard !username.isEmpty, !password.isEmpty else {
+            errorMessage = "Username and password cannot be empty"
+            return
+        }
+        
+        isLoading = true
+        errorMessage = nil
+        
+        DatabaseManager.shared.signupUser(username: username, password: password) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success(let signupResponse):
+                    self.uuid = signupResponse.id
+                    NavigationManager.shared.appStatus.send(.loading)
+                    
+                case .failure(_):
+                    self.errorMessage = "Failed to Sign up"
+                    return
+                }
+            }
+        }
+    }
+    
+    func switchToSignUpScreen(){
+        username = ""
+        password = ""
+        errorMessage = nil
+        signingUp = true
+    }
+    
+    func backToLoginScreen(){
+        username = ""
+        password = ""
+        errorMessage = nil
+        signingUp = false
     }
 }
 
