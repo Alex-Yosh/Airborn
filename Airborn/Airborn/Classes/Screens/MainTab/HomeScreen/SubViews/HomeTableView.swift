@@ -24,9 +24,9 @@ struct HomeTableView: View {
                             
                             Divider()
                             
-                            SensorRow(metric: Constants.dataTypes.pm25.rawValue, quality: sensorData.getQuality(ofType: Constants.dataTypes.pm25))
-                            SensorRow(metric: Constants.dataTypes.tvoc.rawValue, quality: sensorData.getQuality(ofType: Constants.dataTypes.tvoc))
-                            SensorRow(metric: Constants.dataTypes.co2.rawValue, quality: sensorData.getQuality(ofType: Constants.dataTypes.co2))
+                            SensorRow(metric: Constants.dataTypes.pm25.rawValue, quality: sensorData.getQualityText(ofType: Constants.dataTypes.pm25))
+                            SensorRow(metric: Constants.dataTypes.tvoc.rawValue, quality: sensorData.getQualityText(ofType: Constants.dataTypes.tvoc))
+                            SensorRow(metric: Constants.dataTypes.co2.rawValue, quality: sensorData.getQualityText(ofType: Constants.dataTypes.co2))
                         }
                         
                         HStack {

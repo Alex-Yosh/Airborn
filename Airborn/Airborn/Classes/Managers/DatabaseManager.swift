@@ -50,11 +50,11 @@ class DatabaseManager: ObservableObject {
             print("Invalid URL")
             return
         }
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         let body: [String: String] = ["username": username, "password": password]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
@@ -63,12 +63,12 @@ class DatabaseManager: ObservableObject {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(NSError(domain: "NoData", code: 0, userInfo: nil)))
                 return
             }
-
+            
             do {
                 let signupResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
                 print("Signup successful! User ID: \(signupResponse.id)")
@@ -79,7 +79,7 @@ class DatabaseManager: ObservableObject {
             }
         }.resume()
     }
-
+    
     
     // MARK: - Sensor Endpoints
     
@@ -261,8 +261,8 @@ class DatabaseManager: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    /// Fetch latest sensor data from the API
-    func fetchLatestSensorData(completion: @escaping (SensorData?) -> Void) {
+    /// Fetch latest sensor data from nearest sensor
+    func fetchLatestNearestSensorData(completion: @escaping (SensorData?) -> Void) {
         guard let closestSensor = MapManager.shared.nearestSensor else {
             completion(nil) // Return nil if there's no closest sensor
             return
@@ -287,5 +287,26 @@ class DatabaseManager: ObservableObject {
                 completion(response.latest_reading) // Return the latest SensorData
             })
             .store(in: &cancellables)
+    }
+    
+    /// Fetch data from selected sensor
+    func fetchLatestSelectedSensorData(selectedSensor: Sensor, completion: @escaping (Result<SensorData, Error>) -> Void) {
+        
+        guard let url = URL(string: "\(baseURL)/data/latest/\(selectedSensor.id)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(LatestDataResponse.self, from: data)
+                completion(.success(decodedResponse.latest_reading))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
     }
 }

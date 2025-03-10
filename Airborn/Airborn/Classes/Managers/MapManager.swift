@@ -18,10 +18,11 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var showSelectedSensor: Bool = false
     @Published var selectedSensor: Sensor?
+    @Published var selectedSensorData: SensorData?
     @Published var isLocationPermissionGranted: Bool = false
     
     @Published var nearestSensor: Sensor?
-
+    
     
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 36.7783, longitude: -119.4179),
@@ -30,7 +31,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var userLocation: CLLocationCoordinate2D?
     
-    @Published var sensors = [Sensor(id: UUID(), name: "test", latitude: 43.474823, longitude: -80.536141)]
+    @Published var sensors: [Sensor] = []
     
     override init() {
         super.init()
@@ -45,7 +46,11 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             switch result {
             case .success(let sensors):
                 DispatchQueue.main.async {
-                    self.sensors = sensors
+                    self.sensors = sensors.filter { sensor in
+                        (sensor.latitude >= -90.0 && sensor.latitude <= 90.0) &&
+                        (sensor.longitude >= -180.0 && sensor.longitude <= 180.0)
+                    }
+
                     self.findNearestSensor()
                 }
             case .failure(let error):
@@ -55,29 +60,42 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func ShowSensorSheet(sensor: Sensor) {
+        //get data
+        DatabaseManager.shared.fetchLatestSelectedSensorData(selectedSensor: sensor){ result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let sensorData):
+                    self.selectedSensorData = sensorData
+                case .failure(_):
+                    return
+                }
+            }
+        }
+        
         selectedSensor = sensor
         showSelectedSensor = true
     }
     
     func HideSensorSheet() {
         selectedSensor = nil
+        selectedSensorData = nil
         showSelectedSensor = false
     }
     
     func checkAuthorization() {
-            switch locationManager.authorizationStatus {
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted, .denied:
-                self.isLocationPermissionGranted = false
-                
-            case .authorizedWhenInUse, .authorizedAlways:
-                locationManager.startUpdatingLocation()
-                self.isLocationPermissionGranted = true
-            @unknown default:
-                print("Unknown location authorization status")
-            }
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            self.isLocationPermissionGranted = false
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            self.isLocationPermissionGranted = true
+        @unknown default:
+            print("Unknown location authorization status")
         }
+    }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkAuthorization()
@@ -110,5 +128,5 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             return distance1 < distance2
         })
     }
-
+    
 }
