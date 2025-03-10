@@ -24,6 +24,12 @@
 		FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */; };
 		FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6F9C2D753529006D7CD5 /* PM25Response.swift */; };
 		FABA6FA32D78FF79006D7CD5 /* LatestDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FA22D78FF79006D7CD5 /* LatestDataResponse.swift */; };
+		FABA6FA52D7BA3F5006D7CD5 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FA42D7BA3F5006D7CD5 /* LoginManager.swift */; };
+		FABA6FA82D7BA4E4006D7CD5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FA72D7BA4E4006D7CD5 /* LoginView.swift */; };
+		FABA6FAA2D7BB1CD006D7CD5 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FA92D7BB1CD006D7CD5 /* LoginResponse.swift */; };
+		FABA6FAC2D7BB738006D7CD5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FAB2D7BB738006D7CD5 /* Login.swift */; };
+		FABA6FAF2D7BB7D7006D7CD5 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FAE2D7BB7D7006D7CD5 /* SignupView.swift */; };
+		FABA6FB12D7BBAA2006D7CD5 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
@@ -41,7 +47,6 @@
 		FACF46722D15BFB400E2EB4D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46712D15BFB400E2EB4D /* Color.swift */; };
 		FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */; };
 		FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46752D15DD7100E2EB4D /* FontStyle.swift */; };
-		FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46772D173C6F00E2EB4D /* RecentReading.swift */; };
 		FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */; };
 		FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */; };
 		FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167D62D286DBB007E4E7F /* MapManager.swift */; };
@@ -70,6 +75,12 @@
 		FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVOCResponse.swift; sourceTree = "<group>"; };
 		FABA6F9C2D753529006D7CD5 /* PM25Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PM25Response.swift; sourceTree = "<group>"; };
 		FABA6FA22D78FF79006D7CD5 /* LatestDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestDataResponse.swift; sourceTree = "<group>"; };
+		FABA6FA42D7BA3F5006D7CD5 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		FABA6FA72D7BA4E4006D7CD5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FABA6FA92D7BB1CD006D7CD5 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		FABA6FAB2D7BB738006D7CD5 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		FABA6FAE2D7BB7D7006D7CD5 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +99,6 @@
 		FACF46712D15BFB400E2EB4D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		FACF46752D15DD7100E2EB4D /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
-		FACF46772D173C6F00E2EB4D /* RecentReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReading.swift; sourceTree = "<group>"; };
 		FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
 		FAE167D62D286DBB007E4E7F /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
@@ -139,9 +149,29 @@
 				FABA6F972D75344F006D7CD5 /* CO2Response.swift */,
 				FABA6F9A2D75351C006D7CD5 /* TVOCResponse.swift */,
 				FABA6F9C2D753529006D7CD5 /* PM25Response.swift */,
+				FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */,
 				FABA6FA22D78FF79006D7CD5 /* LatestDataResponse.swift */,
+				FABA6FA92D7BB1CD006D7CD5 /* LoginResponse.swift */,
 			);
 			path = APIResponses;
+			sourceTree = "<group>";
+		};
+		FABA6FA62D7BA4D6006D7CD5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FABA6FAB2D7BB738006D7CD5 /* Login.swift */,
+				FABA6FAD2D7BB7B9006D7CD5 /* SubViews */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FABA6FAD2D7BB7B9006D7CD5 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FABA6FA72D7BA4E4006D7CD5 /* LoginView.swift */,
+				FABA6FAE2D7BB7D7006D7CD5 /* SignupView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		FACF46212D0D243900E2EB4D = {
@@ -187,6 +217,7 @@
 				FACF46542D14F34700E2EB4D /* NavigationManager.swift */,
 				FAE167D62D286DBB007E4E7F /* MapManager.swift */,
 				FA8247982D45BBDC0055738E /* DataManager.swift */,
+				FABA6FA42D7BA3F5006D7CD5 /* LoginManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -194,7 +225,6 @@
 		FACF46412D10F0D400E2EB4D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FACF46772D173C6F00E2EB4D /* RecentReading.swift */,
 				FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */,
 				FAA164C52D39BCB40028D7C6 /* Sensor.swift */,
 				FABA6F992D753503006D7CD5 /* APIResponses */,
@@ -225,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				FACF46462D10F40100E2EB4D /* LaunchView.swift */,
+				FABA6FA62D7BA4D6006D7CD5 /* Login */,
 				FACF46572D14FD7100E2EB4D /* Loading */,
 				FACF46562D14FD1100E2EB4D /* MainTab */,
 			);
@@ -385,11 +416,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */,
-				FACF46782D173C6F00E2EB4D /* RecentReading.swift in Sources */,
 				FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */,
 				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
 				FA7B50912D398991000001DC /* DataHumidityCellView.swift in Sources */,
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
+				FABA6FAF2D7BB7D7006D7CD5 /* SignupView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
 				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,
 				FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */,
@@ -398,12 +429,15 @@
 				FACF46672D1501B700E2EB4D /* MapView.swift in Sources */,
 				FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */,
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
+				FABA6FA82D7BA4E4006D7CD5 /* LoginView.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
+				FABA6FB12D7BBAA2006D7CD5 /* SignUpResponse.swift in Sources */,
 				FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */,
 				FA8247A72D45CDE30055738E /* DataBoxStyle.swift in Sources */,
+				FABA6FA52D7BA3F5006D7CD5 /* LoginManager.swift in Sources */,
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */,
 				FA82479D2D45C4270055738E /* DataMainView.swift in Sources */,
@@ -414,7 +448,9 @@
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
 				FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */,
 				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
+				FABA6FAC2D7BB738006D7CD5 /* Login.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
+				FABA6FAA2D7BB1CD006D7CD5 /* LoginResponse.swift in Sources */,
 				FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */,
 				FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */,
 				FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */,

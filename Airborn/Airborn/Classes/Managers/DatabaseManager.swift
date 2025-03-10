@@ -17,6 +17,70 @@ class DatabaseManager: ObservableObject {
     
     private init() {}
     
+    
+    // MARK: - Login
+    
+    func loginUser(username: String, password: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/user/login") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: String] = ["username": username, "password": password]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
+                completion(.success(loginResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func signupUser(username: String, password: String, completion: @escaping (Result<SignUpResponse, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/user") else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let body: [String: String] = ["username": username, "password": password]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(NSError(domain: "NoData", code: 0, userInfo: nil)))
+                return
+            }
+
+            do {
+                let signupResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
+                print("Signup successful! User ID: \(signupResponse.id)")
+                completion(.success(signupResponse))
+            } catch {
+                print("JSON Decoding Error: \(error)")
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+    
     // MARK: - Sensor Endpoints
     
     func addSensor(name: String, latitude: Double, longitude: Double, completion: @escaping (Result<Sensor, Error>) -> Void) {
@@ -204,8 +268,8 @@ class DatabaseManager: ObservableObject {
             return
         }
         guard let url = URL(string: "\(baseURL)/data/latest/\(closestSensor.id)") else { return }
-
-
+        
+        
         URLSession.shared.dataTaskPublisher(for: url)
             .map { data, response -> Data in
                 return data

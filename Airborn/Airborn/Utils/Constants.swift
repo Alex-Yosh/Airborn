@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Constants {
     enum appNavigationControllers {
+        case login
         case loading
         case restOfApp
     }
