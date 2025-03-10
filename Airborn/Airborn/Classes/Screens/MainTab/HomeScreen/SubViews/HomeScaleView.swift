@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct HomeScaleView: View {
-    @State var progressPercent: Float = 0.7
+    
+    @EnvironmentObject var dataManager: DataManager
+    
+    var progressPercent: Float = 0.7
     
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var startingProgress: Float = 0
@@ -18,19 +21,19 @@ struct HomeScaleView: View {
             let size = min(geometry.size.width, geometry.size.height)
             let radius = size * 0.42 // Adjusted radius for better fit
             let circleRadius = size * 0.5 // Adjusted circle radius to fit arc
-
+            
             // Calculate Angle and Position
             let angle = getNeedleAngle(progress: progressPercent) - 90 // Offset by 90° for correct positioning
             let radians = angle * .pi / 180
-
+            
             let circleX = cos(radians) * circleRadius
             let circleY = sin(radians) * circleRadius
-
+            
             // Needle slightly inward
             let needleRadius = size * 0.40
             let needleX = cos(radians) * needleRadius
             let needleY = sin(radians) * needleRadius
-
+            
             ZStack {
                 // Background Gauge Arc
                 Circle()
@@ -45,11 +48,11 @@ struct HomeScaleView: View {
                     .stroke(
                         AngularGradient(
                             gradient: Gradient(stops: [
-                                .init(color: Color(red: 0.9, green: 0.2, blue: 0.1), location: 0.35), // Stronger Red
-                                .init(color: Color(red: 1.0, green: 0.7, blue: 0.2), location: 0.45), // Darker Orange
+                                .init(color: Color(red: 0.3, green: 0.9, blue: 0.5), location: 0.35), // Stronger Green
+                                .init(color: Color(red: 0.7, green: 1.0, blue: 0.6), location: 0.45), // Greenish Yellow
                                 .init(color: Color(red: 1.0, green: 0.9, blue: 0.3), location: 0.60), // Strong Yellow
-                                .init(color: Color(red: 0.7, green: 1.0, blue: 0.6), location: 0.75), // Greenish Yellow
-                                .init(color: Color(red: 0.3, green: 0.9, blue: 0.5), location: 0.85)  // Strong Green
+                                .init(color: Color(red: 1.0, green: 0.7, blue: 0.2), location: 0.75), // Darker Orange
+                                .init(color: Color(red: 0.9, green: 0.2, blue: 0.1), location: 0.85)  // Strong Red
                             ]),
                             center: .center
                         ),
@@ -59,9 +62,11 @@ struct HomeScaleView: View {
                 
                 // AQI Value & Category Label
                 VStack {
-                    Text("\(Int(progressPercent * 100))")
-                        .font(.system(size: size * 0.15, weight: .bold))
-                        .foregroundColor(.black)
+                    if let latestData = dataManager.latestSensorData{
+                        Text("\(Int(latestData.calculateAQI()))")
+                            .font(.system(size: size * 0.15, weight: .bold))
+                            .foregroundColor(.black)
+                    }
                     
                     Text(aqiCategory(progress: progressPercent))
                         .font(.system(size: size * 0.06, weight: .semibold))
@@ -95,7 +100,7 @@ struct HomeScaleView: View {
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
-        
+        }
         .onReceive(timer) { _ in
             withAnimation(.easeInOut(duration: 1.0)) {
                 if startingProgress < (9 * progressPercent / 10) {
@@ -111,15 +116,15 @@ struct HomeScaleView: View {
     func aqiCategory(progress: Float) -> String {
         switch progress {
         case 0...0.2:
-            return "Unhealthy"
+            return "Excellent"
         case 0.21...0.4:
-            return "Moderate"
+            return "Good"
         case 0.41...0.6:
             return "Decent"
         case 0.61...0.8:
-            return "Good"
+            return "Moderate"
         default:
-            return "Excellent"
+            return "Unhealthy"
         }
     }
     
@@ -127,15 +132,15 @@ struct HomeScaleView: View {
     func aqiCategoryColor(progress: Float) -> Color {
         switch progress {
         case 0...0.2:
-            return Color(red: 0.9, green: 0.2, blue: 0.1) // Stronger Red
+            return Color(red: 0.3, green: 0.9, blue: 0.5) // Strong Green
         case 0.21...0.4:
-            return Color(red: 1.0, green: 0.7, blue: 0.2) // Darker Orange
+            return Color(red: 0.7, green: 1.0, blue: 0.6) // Greenish Yellow
         case 0.41...0.6:
             return Color(red: 1.0, green: 0.9, blue: 0.3) // Strong Yellow
         case 0.61...0.8:
-            return Color(red: 0.7, green: 1.0, blue: 0.6) // Greenish Yellow
+            return Color(red: 1.0, green: 0.7, blue: 0.2) // Darker Orange
         default:
-            return Color(red: 0.3, green: 0.9, blue: 0.5) // Strong Green
+            return Color(red: 0.9, green: 0.2, blue: 0.1) // Stronger Red
         }
     }
     
@@ -161,4 +166,5 @@ struct Needle: Shape {
 
 #Preview {
     HomeScaleView()
+        .environmentObject(DataManager.shared)
 }

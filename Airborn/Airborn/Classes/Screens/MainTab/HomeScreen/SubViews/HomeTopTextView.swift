@@ -10,10 +10,14 @@ import SwiftUI
 struct HomeTopTextView: View {
     var body: some View {
         VStack(spacing: 12){
-            Text(greeting())
-                .textStyle(HeadingTextStyle())
             Text(Date.now, format: .dateTime.day().month(.wide).year())
-                .textStyle(HeadingTextStyle()) 
+                .textStyle(HeadingTextStyle())
+            HStack{
+                Image("MapPin")
+                Text("ERC")
+                    .textStyle(HeadingTextStyle())
+            }
+
         }
     }
     

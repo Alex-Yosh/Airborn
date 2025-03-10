@@ -8,25 +8,50 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @EnvironmentObject var dataManager: DataManager
+    
     var body: some View {
         ZStack{
             //top gradiant
             LinearGradient(colors: [Constants.Colour.PrimaryBlue, .white], startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             
-            VStack(spacing: 32){
+            VStack(spacing: 0) {
                 HomeTopTextView()
-                Spacer()
-                //TODO: remove constant and add real valaues
-                HomeScaleView(progressPercent: 0.875)
                 
-                HomeTableView()
+                // Check if data is loaded
+                if let latestData = dataManager.latestSensorData {
+                    TemperatureHumidityView(temperature: latestData.temperature, humidity: latestData.humidity)
+
+                    // Show Scale View with Default Progress or Real Data
+                    HomeScaleView(progressPercent: Float(latestData.calculateAQIPercentage()))
+                
+                    VStack(spacing: 8) {
+                        HomeBarView(title: "VOC", value: latestData.tvoc, unit: "", progress: latestData.getQualityPercentage(ofType: .tvoc))
+                        HomeBarView(title: "PM2.5", value: latestData.pm25, unit: Constants.dataTypes.pm25.metric, progress: latestData.getQualityPercentage(ofType: .pm25))
+//                        HomeBarView(title: "CO2", value: latestData.co2, unit: Constants.dataTypes.co2.metric, progress: latestData.getQualityPercentage(ofType: .co2))
+                    }
+                    .padding(.horizontal)
+                } else {
+                    // Loading Placeholder View
+                    VStack(spacing: 8) {
+                        ForEach(0..<3, id: \.self) { _ in
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(height: 40)
+                                .redacted(reason: .placeholder)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+                
                 Spacer()
             }
-            
         }
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(DataManager.shared)
 }

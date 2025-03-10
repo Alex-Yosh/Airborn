@@ -30,6 +30,8 @@
 		FABA6FAC2D7BB738006D7CD5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FAB2D7BB738006D7CD5 /* Login.swift */; };
 		FABA6FAF2D7BB7D7006D7CD5 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FAE2D7BB7D7006D7CD5 /* SignupView.swift */; };
 		FABA6FB12D7BBAA2006D7CD5 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */; };
+		FABA6FB32D7F6091006D7CD5 /* HomeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB22D7F6091006D7CD5 /* HomeBarView.swift */; };
+		FABA6FB52D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB42D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
@@ -45,7 +47,6 @@
 		FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */; };
 		FACF466E2D15BBC300E2EB4D /* HomeScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */; };
 		FACF46722D15BFB400E2EB4D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46712D15BFB400E2EB4D /* Color.swift */; };
-		FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */; };
 		FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46752D15DD7100E2EB4D /* FontStyle.swift */; };
 		FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */; };
 		FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */; };
@@ -81,6 +82,8 @@
 		FABA6FAB2D7BB738006D7CD5 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		FABA6FAE2D7BB7D7006D7CD5 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		FABA6FB22D7F6091006D7CD5 /* HomeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarView.swift; sourceTree = "<group>"; };
+		FABA6FB42D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTemperatureHumidityView.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,7 +100,6 @@
 		FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopTextView.swift; sourceTree = "<group>"; };
 		FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScaleView.swift; sourceTree = "<group>"; };
 		FACF46712D15BFB400E2EB4D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		FACF46752D15DD7100E2EB4D /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		FACF467A2D1E2CC300E2EB4D /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		FACF467C2D1E2DCA00E2EB4D /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
@@ -325,7 +327,8 @@
 			children = (
 				FACF466B2D15BA5C00E2EB4D /* HomeTopTextView.swift */,
 				FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */,
-				FACF46732D15DBDB00E2EB4D /* HomeTableView.swift */,
+				FABA6FB22D7F6091006D7CD5 /* HomeBarView.swift */,
+				FABA6FB42D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABA6FB32D7F6091006D7CD5 /* HomeBarView.swift in Sources */,
 				FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */,
 				FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */,
 				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
@@ -432,7 +436,6 @@
 				FABA6FA82D7BA4E4006D7CD5 /* LoginView.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
 				FABA6FB12D7BBAA2006D7CD5 /* SignUpResponse.swift in Sources */,
-				FACF46742D15DBDB00E2EB4D /* HomeTableView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */,
@@ -447,6 +450,7 @@
 				FABA6FA32D78FF79006D7CD5 /* LatestDataResponse.swift in Sources */,
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
 				FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */,
+				FABA6FB52D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift in Sources */,
 				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
 				FABA6FAC2D7BB738006D7CD5 /* Login.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,

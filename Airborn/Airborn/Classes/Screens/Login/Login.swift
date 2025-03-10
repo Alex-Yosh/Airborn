@@ -22,4 +22,5 @@ struct Login: View {
 
 #Preview {
     Login()
+        .environmentObject(LoginManager.shared)
 }
