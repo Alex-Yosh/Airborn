@@ -20,6 +20,14 @@ class LoginManager: ObservableObject {
     @Published var errorMessage: String?
     
     @Published var uuid: UUID?
+    
+    init() {
+        if let savedUUIDString = UserDefaults.standard.string(forKey: "user_id"),
+           let savedUUID = UUID(uuidString: savedUUIDString) {
+            self.goToApp(uuid: savedUUID)
+        }
+    }
+    
 
     func login() {
         guard !username.isEmpty, !password.isEmpty else {
@@ -32,8 +40,7 @@ class LoginManager: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let loginResponse):
-                    self.uuid = loginResponse.user_id
-                    NavigationManager.shared.appStatus.send(.loading)
+                    self.goToApp(uuid: loginResponse.user_id)
                     
                 case .failure(_):
                     self.errorMessage = "Invalid Credentials"
@@ -57,8 +64,7 @@ class LoginManager: ObservableObject {
                 self.isLoading = false
                 switch result {
                 case .success(let signupResponse):
-                    self.uuid = signupResponse.id
-                    NavigationManager.shared.appStatus.send(.loading)
+                    self.goToApp(uuid: signupResponse.id)
                     
                 case .failure(_):
                     self.errorMessage = "Failed to Sign up"
@@ -66,6 +72,16 @@ class LoginManager: ObservableObject {
                 }
             }
         }
+    }
+    
+    func goToApp(uuid: UUID)
+    {
+        // Store user ID in UserDefaults
+        UserDefaults.standard.set(uuid.uuidString, forKey: "user_id")
+        UserDefaults.standard.synchronize() // Ensures data is saved immediately
+        
+        //navigate to loading
+        NavigationManager.shared.appStatus.send(.loading)
     }
     
     func switchToSignUpScreen(){
