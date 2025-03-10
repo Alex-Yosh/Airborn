@@ -80,7 +80,7 @@ struct Loading: View {
             if let nearestSensor = mapManager.nearestSensor {
                 print("Nearest sensor found: \(nearestSensor.id)")
                 
-                databaseManager.fetchLatestSensorData { latestData in
+                databaseManager.fetchLatestNearestSensorData { latestData in
                     DispatchQueue.main.async {
                         if let latestData = latestData {
                             self.isDataFetched = true

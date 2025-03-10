@@ -29,7 +29,7 @@ class DataManager: ObservableObject {
         timer = Timer.publish(every: 10, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                DatabaseManager.shared.fetchLatestSensorData{ latestData in
+                DatabaseManager.shared.fetchLatestNearestSensorData{ latestData in
                     self.latestSensorData = latestData
                 }
             }

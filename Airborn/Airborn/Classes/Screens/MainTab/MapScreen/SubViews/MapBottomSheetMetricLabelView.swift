@@ -10,7 +10,6 @@ import SwiftUI
 struct MapBottomSheetMetricLabelView: View {
     
     var title: String
-    var value: String
     
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     var progressPercent: Float = 1
@@ -22,9 +21,6 @@ struct MapBottomSheetMetricLabelView: View {
                         .textStyle(SubHeadingTextStyle())
                         .lineLimit(1)
                     Spacer()
-                    Text(value)
-                        .textStyle(RegularTextStyle())
-                        .lineLimit(1)
                 }.padding([.horizontal, .top])
                 ScaleBarView(progressPercent: progressPercent)
             }.background{
@@ -37,5 +33,5 @@ struct MapBottomSheetMetricLabelView: View {
 }
 
 #Preview {
-    MapBottomSheetMetricLabelView(title: "PM2.5", value: "10 μg/m3")
+    MapBottomSheetMetricLabelView(title: "PM2.5")
 }

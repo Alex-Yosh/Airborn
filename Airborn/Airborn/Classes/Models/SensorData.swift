@@ -62,7 +62,7 @@ extension SensorData {
         }
     }
     
-    func getQuality(ofType: Constants.dataTypes) -> String {
+    func getQualityText(ofType: Constants.dataTypes) -> String {
         switch ofType {
         case .co2:
             switch(self.co2)
@@ -124,7 +124,59 @@ extension SensorData {
         default:
             return "No need"
         }
-        
     }
+    
+    func getQualityPercentage(ofType: Constants.dataTypes) -> Float {
+        func interpolate(value: Double, lowerBound: Double, upperBound: Double, minPercentage: Double, maxPercentage: Double, invert: Bool = false) -> Float {
+            guard upperBound > lowerBound else { return Float(minPercentage) } // Avoid division by zero
+            
+            let fraction = (value - lowerBound) / (upperBound - lowerBound) // Normalize value within range
+            let interpolatedValue = minPercentage + fraction * (maxPercentage - minPercentage) // Scale to range
+            
+            return invert ? Float(maxPercentage - (interpolatedValue - minPercentage)) : Float(interpolatedValue) // Invert if needed
+        }
+        
+        switch ofType {
+        case .co2:
+            switch self.co2 {
+            case 0...600.0:
+                return interpolate(value: self.co2, lowerBound: 0, upperBound: 600, minPercentage: 0.81, maxPercentage: 1.0, invert: true)
+            case 600.1...800.0:
+                return interpolate(value: self.co2, lowerBound: 600.1, upperBound: 800, minPercentage: 0.61, maxPercentage: 0.8, invert: true)
+            case 800.1...1000.0:
+                return interpolate(value: self.co2, lowerBound: 800.1, upperBound: 1000, minPercentage: 0.41, maxPercentage: 0.6, invert: true)
+            case 1000.1...1500.0:
+                return interpolate(value: self.co2, lowerBound: 1000.1, upperBound: 1500, minPercentage: 0.21, maxPercentage: 0.4, invert: true)
+            case 1500.1...2000.0:
+                return interpolate(value: self.co2, lowerBound: 1500.1, upperBound: 2000, minPercentage: 0.01, maxPercentage: 0.2, invert: true)
+            default:
+                return 0.0 // Hazardous (CO2 > 2000)
+            }
+            
+        case .pm25:
+            switch self.pm25 {
+            case 0...4.0:
+                return interpolate(value: self.pm25, lowerBound: 0, upperBound: 4, minPercentage: 0.81, maxPercentage: 1.0, invert: true)
+            case 4.1...9.0:
+                return interpolate(value: self.pm25, lowerBound: 4.1, upperBound: 9, minPercentage: 0.61, maxPercentage: 0.8, invert: true)
+            case 9.1...45.3:
+                return interpolate(value: self.pm25, lowerBound: 9.1, upperBound: 45.3, minPercentage: 0.41, maxPercentage: 0.6, invert: true)
+            case 45.4...125.4:
+                return interpolate(value: self.pm25, lowerBound: 45.4, upperBound: 125.4, minPercentage: 0.21, maxPercentage: 0.4, invert: true)
+            case 125.5...225.4:
+                return interpolate(value: self.pm25, lowerBound: 125.5, upperBound: 225.4, minPercentage: 0.01, maxPercentage: 0.2, invert: true)
+            default:
+                return 0.0 // Hazardous (PM2.5 > 225.4)
+            }
+            
+            
+        case .tvoc:
+            return Float(self.tvoc/100.0)
+            
+        default:
+            return -1.0 // No need
+        }
+    }
+    
     
 }
