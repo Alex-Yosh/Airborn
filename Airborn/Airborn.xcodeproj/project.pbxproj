@@ -32,8 +32,9 @@
 		FABA6FB12D7BBAA2006D7CD5 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */; };
 		FABA6FB32D7F6091006D7CD5 /* HomeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB22D7F6091006D7CD5 /* HomeBarView.swift */; };
 		FABA6FB52D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB42D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift */; };
-        FABA6FB72D7FBF76006D7CD5 /* NominatimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB62D7FBF76006D7CD5 /* NominatimResponse.swift */; };
-        FABA6FB92D7FBFA9006D7CD5 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB82D7FBFA9006D7CD5 /* Address.swift */; };
+		FABA6FB72D7FBF76006D7CD5 /* NominatimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB62D7FBF76006D7CD5 /* NominatimResponse.swift */; };
+		FABA6FB92D7FBFA9006D7CD5 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB82D7FBFA9006D7CD5 /* Address.swift */; };
+		FABA6FBB2D7FCF95006D7CD5 /* HomeBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FBA2D7FCF95006D7CD5 /* HomeBoxStyle.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
@@ -86,8 +87,9 @@
 		FABA6FB02D7BBAA2006D7CD5 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		FABA6FB22D7F6091006D7CD5 /* HomeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarView.swift; sourceTree = "<group>"; };
 		FABA6FB42D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTemperatureHumidityView.swift; sourceTree = "<group>"; };
-        FABA6FB62D7FBF76006D7CD5 /* NominatimResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominatimResponse.swift; sourceTree = "<group>"; };
-        FABA6FB82D7FBFA9006D7CD5 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		FABA6FB62D7FBF76006D7CD5 /* NominatimResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominatimResponse.swift; sourceTree = "<group>"; };
+		FABA6FB82D7FBFA9006D7CD5 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		FABA6FBA2D7FCF95006D7CD5 /* HomeBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBoxStyle.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				FACF46712D15BFB400E2EB4D /* Color.swift */,
 				FACF46752D15DD7100E2EB4D /* FontStyle.swift */,
 				FA8247A62D45CDE30055738E /* DataBoxStyle.swift */,
+				FABA6FBA2D7FCF95006D7CD5 /* HomeBoxStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */,
 				FABA6FB52D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift in Sources */,
 				FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */,
+				FABA6FBB2D7FCF95006D7CD5 /* HomeBoxStyle.swift in Sources */,
 				FABA6FAC2D7BB738006D7CD5 /* Login.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
 				FABA6FAA2D7BB1CD006D7CD5 /* LoginResponse.swift in Sources */,

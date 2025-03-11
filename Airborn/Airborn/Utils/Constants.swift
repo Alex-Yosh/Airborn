@@ -71,6 +71,12 @@ struct Constants {
         static var ScaleYellow = Color(hex: "EEED56")
         static var ScaleGreen = Color(hex: "32E1A0")
         
+        static var HomeScaleStrongerGreen = Color(hex: "4DE680")
+        static var HomeScaleGreenishYellow = Color(hex: "B3FF99")
+        static var HomeScaleStrongYellow = Color(hex: "FFE64D")
+        static var HomeScaleDarkerOrange = Color(hex: "FFB333")
+        static var HomeScaleStrongRed = Color(hex: "E6331A")
+        
         static var GrayishWhite = Color(hex: "F9F9F9")
         
         static var ScaleBlue = Color(hex: "007BFF")

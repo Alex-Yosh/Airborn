@@ -16,63 +16,70 @@ struct HomeBarView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Title
-            HStack{
-                
+            HStack {
                 Text(title)
-                    .font(.headline)
-                    .foregroundColor(.black)
+                    .textStyle(SubHeadingTextStyle())
+
                 Spacer()
                 Text("\(Int(value)) \(unit)")
                     .font(.caption)
                     .foregroundColor(.black)
             }
             
-            ZStack(alignment: .leading) {
-                // Gradient Bar with Spacing
-                GeometryReader { geo in
-                    let barWidth = geo.size.width
-                    let segmentWidth = (barWidth - 5 * 4) / 6 // Adjust for spacing
-                    
-                    HStack(spacing: 4) { // Add spacing between segments
-                        Color.blue.frame(width: segmentWidth)
-                        Color.cyan.frame(width: segmentWidth)
-                        Color.green.frame(width: segmentWidth)
-                        Color.yellow.frame(width: segmentWidth)
-                        Color.orange.frame(width: segmentWidth)
-                        Color.red.frame(width: segmentWidth)
+            VStack(spacing: 2) {
+                ZStack(alignment: .leading) {
+                    GeometryReader { geo in
+                        let barWidth = geo.size.width
+                        let segmentCount = 5
+                        let segmentSpacing: CGFloat = 3
+                        let segmentWidth = (barWidth - CGFloat(segmentCount - 1) * segmentSpacing) / CGFloat(segmentCount)
+                        
+                        // Full Gradient Bar
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [
+                                        Color.blue, Color.cyan, Color.green, Color.yellow, Color.orange, Color.red
+                                    ]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .frame(height: 12)
+                            .mask(
+                                // Masking the gradient to make it appear segmented
+                                HStack(spacing: segmentSpacing) {
+                                    ForEach(0..<segmentCount, id: \.self) { _ in
+                                        RoundedRectangle(cornerRadius: 4)
+                                            .frame(width: segmentWidth, height: 12)
+                                    }
+                                }
+                            )
+                        
+                        Needle()
+                            .rotation(.degrees(180))
+                            .frame(width: 12, height: 10)
+                            .position(x: max(6, min(barWidth - 6, CGFloat(progress) * barWidth)), y: -5)
                     }
                     .frame(height: 12)
-                    .cornerRadius(6)
-                    
-                    // Triangle Indicator
-                    Triangle()
-                        .fill(Color.black.opacity(0.6))
-                        .frame(width: 12, height: 10)
-                        .position(x: CGFloat(1-progress) * barWidth, y: -5)
                 }
-                .frame(height: 12)
-            }
-            .padding(.vertical, 4)
-            
-            // Labels
-            HStack {
-                Text("Low")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Spacer()
-                Text("High")
-                    .font(.caption)
-                    .foregroundColor(.gray)
+                .padding(.vertical, 4)
+                
+                // Labels
+                HStack {
+                    Text("Low")
+                        .textStyle(BarLowHighTextStyle())
+                    Spacer()
+                    Text("High")
+                        .textStyle(BarLowHighTextStyle())
+                }
             }
         }
-        .padding()
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(radius: 2)
     }
 }
 
 #Preview {
     HomeBarView(title: "VOC", value: 50, unit: "µg/m3", progress: 0.2)
 }
+
 

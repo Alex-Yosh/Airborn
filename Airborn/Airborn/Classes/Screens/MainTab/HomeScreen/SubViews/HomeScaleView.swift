@@ -11,7 +11,7 @@ struct HomeScaleView: View {
     
     @EnvironmentObject var dataManager: DataManager
     
-    var progressPercent: Float = 0.7
+    var progressPercent: Float = 0
     
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var startingProgress: Float = 0
@@ -19,13 +19,17 @@ struct HomeScaleView: View {
     var body: some View {
         GeometryReader { geometry in
             let size = min(geometry.size.width, geometry.size.height)
-            let radius = size * 0.42 // Adjusted radius for better fit
-            let circleRadius = size * 0.5 // Adjusted circle radius to fit arc
+            let radius = size * 0.45 // Slightly increased radius
             
-            // Calculate Angle and Position
-            let angle = getNeedleAngle(progress: progressPercent) - 90 // Offset by 90° for correct positioning
+            // Adjusted trim range for a larger arc
+            let arcStart: CGFloat = 0.3 // Starts earlier
+            let arcEnd: CGFloat = 0.90 // Ends later
+            
+            // Calculate Needle Positioning
+            let angle = getNeedleAngle(progress: progressPercent) - 90
             let radians = angle * .pi / 180
             
+            let circleRadius = size * 0.5
             let circleX = cos(radians) * circleRadius
             let circleY = sin(radians) * circleRadius
             
@@ -37,69 +41,68 @@ struct HomeScaleView: View {
             ZStack {
                 // Background Gauge Arc
                 Circle()
-                    .trim(from: 0.35, to: 0.85)
-                    .stroke(style: StrokeStyle(lineWidth: size * 0.1, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(Color.gray.opacity(0.3))
-                    .rotationEffect(.degrees(55)) // Corrected rotation
+                    .trim(from: arcStart, to: arcEnd)
+                    .stroke(style: StrokeStyle(lineWidth: size * 0.09, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(.black)
+                    .rotationEffect(.degrees(55)) // Adjusted for new arc
                 
-                // Color Gradient Gauge Arc
+                // Colored Gauge Arc (Larger)
                 Circle()
-                    .trim(from: 0.35, to: 0.85)
+                    .trim(from: arcStart, to: arcEnd)
                     .stroke(
                         AngularGradient(
                             gradient: Gradient(stops: [
-                                .init(color: Color(red: 0.3, green: 0.9, blue: 0.5), location: 0.35), // Stronger Green
-                                .init(color: Color(red: 0.7, green: 1.0, blue: 0.6), location: 0.45), // Greenish Yellow
-                                .init(color: Color(red: 1.0, green: 0.9, blue: 0.3), location: 0.60), // Strong Yellow
-                                .init(color: Color(red: 1.0, green: 0.7, blue: 0.2), location: 0.75), // Darker Orange
-                                .init(color: Color(red: 0.9, green: 0.2, blue: 0.1), location: 0.85)  // Strong Red
+                                .init(color: Constants.Colour.HomeScaleStrongerGreen, location: 0.25),
+                                .init(color: Constants.Colour.HomeScaleGreenishYellow, location: 0.45),
+                                .init(color: Constants.Colour.HomeScaleStrongYellow, location: 0.60),
+                                .init(color: Constants.Colour.HomeScaleDarkerOrange, location: 0.75),
+                                .init(color: Constants.Colour.HomeScaleStrongRed, location: 0.90)
                             ]),
                             center: .center
                         ),
-                        style: StrokeStyle(lineWidth: size * 0.1, lineCap: .round, lineJoin: .round)
+                        style: StrokeStyle(lineWidth: size * 0.08, lineCap: .round, lineJoin: .round)
                     )
                     .rotationEffect(.degrees(55))
                 
                 // AQI Value & Category Label
                 VStack {
-                    if let latestData = dataManager.latestSensorData{
+                    if let latestData = dataManager.latestSensorData {
                         Text("\(Int(latestData.calculateAQI()))")
-                            .font(.system(size: size * 0.15, weight: .bold))
-                            .foregroundColor(.black)
+                            .textStyle(HomeScaleAQIbigTextStyle())
                     }
                     
                     Text(aqiCategory(progress: progressPercent))
-                        .font(.system(size: size * 0.06, weight: .semibold))
+                        .textStyle(HomeScaleAQIsmallTextStyle())
                         .foregroundColor(aqiCategoryColor(progress: progressPercent))
                     
                     Text("AQI")
-                        .font(.system(size: size * 0.05, weight: .medium))
-                        .foregroundColor(Color.gray.opacity(0.9))
+                        .textStyle(HomeScaleAQIsmallTextStyle())
+                        .foregroundColor(.black)
                 }
                 
                 // Circular Indicator & Needle
                 ZStack {
-                    // Triangle Needle (Placed Below the Circle)
+                    // Triangle Needle
                     Needle()
                         .fill(Color.black.opacity(0.6))
                         .frame(width: size * 0.04, height: size * 0.05)
                         .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
-                        .rotationEffect(.degrees(angle + 90)) // Rotate correctly towards the arc
-                        .position(x: geometry.size.width / 2 + needleX, y: geometry.size.height / 2 + needleY) // Perfect alignment
+                        .rotationEffect(.degrees(angle + 90))
+                        .position(x: geometry.size.width / 2 + needleX, y: geometry.size.height / 2 + needleY)
                     
-                    // Circular Indicator (Perfectly Following the Arc)
+                    // Circular Indicator
                     Circle()
                         .frame(width: size * 0.08, height: size * 0.08)
                         .foregroundColor(Color.white)
                         .overlay(
                             Circle()
-                                .stroke(Color.gray.opacity(0.5), lineWidth: size * 0.015) // Thicker outline
+                                .stroke(Color.gray.opacity(0.5), lineWidth: size * 0.015)
                         )
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
                         .position(x: geometry.size.width / 2 + circleX, y: geometry.size.height / 2 + circleY)
                 }
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
+            .offset(y: circleRadius / 2.5) // Adjusted offset to center arc properly
         }
         .onReceive(timer) { _ in
             withAnimation(.easeInOut(duration: 1.0)) {
@@ -122,9 +125,9 @@ struct HomeScaleView: View {
         case 0.41...0.6:
             return "Decent"
         case 0.61...0.8:
-            return "Moderate"
-        default:
             return "Unhealthy"
+        default:
+            return "Hazardous"
         }
     }
     
@@ -132,22 +135,22 @@ struct HomeScaleView: View {
     func aqiCategoryColor(progress: Float) -> Color {
         switch progress {
         case 0...0.2:
-            return Color(red: 0.3, green: 0.9, blue: 0.5) // Strong Green
+            return Constants.Colour.HomeScaleStrongerGreen
         case 0.21...0.4:
-            return Color(red: 0.7, green: 1.0, blue: 0.6) // Greenish Yellow
+            return Constants.Colour.HomeScaleGreenishYellow
         case 0.41...0.6:
-            return Color(red: 1.0, green: 0.9, blue: 0.3) // Strong Yellow
+            return Constants.Colour.HomeScaleStrongYellow
         case 0.61...0.8:
-            return Color(red: 1.0, green: 0.7, blue: 0.2) // Darker Orange
+            return Constants.Colour.HomeScaleDarkerOrange
         default:
-            return Color(red: 0.9, green: 0.2, blue: 0.1) // Stronger Red
+            return Constants.Colour.HomeScaleStrongRed
         }
     }
     
     // Function to determine indicator angle (Now Uses Radians)
     func getNeedleAngle(progress: Float) -> CGFloat {
-        let minAngle: CGFloat = -90 // Adjusted for perfect arc
-        let maxAngle: CGFloat = 90  // Adjusted for perfect arc
+        let minAngle: CGFloat = -107.5 // Adjusted for larger arc
+        let maxAngle: CGFloat = 107.5  // Adjusted for larger arc
         return (minAngle + (maxAngle - minAngle) * CGFloat(progress))
     }
 }

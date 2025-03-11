@@ -49,17 +49,52 @@ struct RegularTextStyle: ViewModifier {
 }
 
 //Home
-struct HomeScaleTextStyle: ViewModifier {
+struct HomeScaleAQIbigTextStyle: ViewModifier {
     
-    static var fontSize = 44.0
+    static var fontSize = 75.0
     static var color: Color = .black
     
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("Inter-Bold", size: HomeScaleTextStyle.fontSize))
-            .foregroundColor(HomeScaleTextStyle.color)
+            .font(Font.custom("Inter", size: HomeScaleAQIbigTextStyle.fontSize))
+            .foregroundColor(HomeScaleAQIbigTextStyle.color)
     }
 }
+
+struct HomeScaleAQIsmallTextStyle: ViewModifier {
+    
+    static var fontSize = 20.0
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter", size: HomeScaleAQIsmallTextStyle.fontSize))
+    }
+}
+
+struct LocationTextStyle: ViewModifier {
+    
+    static var fontSize = 18.0
+    static var color: Color = .black
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter", size: LocationTextStyle.fontSize))
+            .foregroundColor(LocationTextStyle.color)
+    }
+}
+
+struct BarLowHighTextStyle: ViewModifier {
+    
+    static var fontSize = 15.0
+    static var color: Color = .black
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter", size: LocationTextStyle.fontSize))
+            .foregroundColor(LocationTextStyle.color)
+    }
+}
+
 
 
 //Map

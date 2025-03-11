@@ -12,13 +12,13 @@ struct HomeTopTextView: View {
     @EnvironmentObject var mapManager: MapManager
     
     var body: some View {
-        VStack(spacing: 12){
+        VStack(spacing: 6){
             Text(Date.now, format: .dateTime.day().month(.wide).year())
-                .textStyle(HeadingTextStyle())
+                .textStyle(SubHeadingTextStyle())
             HStack{
                 Image("MapPin")
                 Text(mapManager.sensorAddress)
-                        .textStyle(HeadingTextStyle())
+                        .textStyle(LocationTextStyle())
                 
             }
 

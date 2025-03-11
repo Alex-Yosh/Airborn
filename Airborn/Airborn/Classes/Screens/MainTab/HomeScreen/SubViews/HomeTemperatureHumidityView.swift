@@ -22,6 +22,7 @@ struct TemperatureHumidityView: View {
                     .font(.system(size: 40, weight: .bold))
                     .foregroundColor(.black)
             }
+            Spacer()
 
             // Humidity
             HStack {
@@ -33,11 +34,6 @@ struct TemperatureHumidityView: View {
                     .foregroundColor(.black)
             }
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Constants.Colour.GrayishWhite)
-        .cornerRadius(12)
-        .padding()
     }
 }
 
