@@ -35,18 +35,7 @@ struct HomeView: View {
                             .homeBoxStyle()
                     }
                     
-                } else {
-                    // Loading Placeholder View
-                    VStack(spacing: 8) {
-                        ForEach(0..<3, id: \.self) { _ in
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(height: 40)
-                                .redacted(reason: .placeholder)
-                        }
-                    }
-                    .padding(.horizontal)
-                }
+                } 
                 
                 Spacer()
             }

@@ -10,6 +10,22 @@ import SwiftUI
 
 // Inter-Bold weight 700, Inter-SemiBold weight 500, Inter weight 400
 
+    
+
+
+//Loading
+struct LoadingTextStyle: ViewModifier {
+    
+    static var fontSize = 45.0
+    static var color: Color = .black
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.custom("Dolce Vita", size: LoadingTextStyle.fontSize))
+            .foregroundColor(LoadingTextStyle.color)
+    }
+}
+
 //Main
 struct HeadingTextStyle: ViewModifier {
     

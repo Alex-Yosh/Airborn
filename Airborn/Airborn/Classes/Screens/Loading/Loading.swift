@@ -17,11 +17,20 @@ struct Loading: View {
     @State private var hasCheckedPermissions = false
     @State private var isLoadingStarted = false
     
+    @State private var opacity: Double = 1.0
+    @State private var isLoading = true
+    @State private var text = "A"
+    
     var body: some View {
         VStack {
             if !hasCheckedPermissions {
-                ProgressView("Checking Permissions...")
+                Text(text)
+                    .textStyle(LoadingTextStyle())
+                    .foregroundColor(.primary)
+                    .opacity(opacity)
+                    .animation(.easeInOut(duration: 0.1), value: text)
                     .onAppear {
+                        startTextAnimation()
                         print("Checking permissions...")
                         checkPermissions()
                     }
@@ -32,20 +41,50 @@ struct Loading: View {
                         .padding()
                 }
             } else {
-                VStack {
-                    Text("Loading...")
-                        .font(.title)
-                        .padding()
-                    ProgressView()
-                }
-                .onAppear {
-                    if !isLoadingStarted {
-                        print("Starting loading process...")
-                        isLoadingStarted = true
+                Text("AIRBORNE")
+                    .textStyle(LoadingTextStyle())
+                    .opacity(opacity)
+                    .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true), value: opacity)
+                    .onAppear {
+                        startLoadingAnimation()
                         startLoadingProcess()
                     }
-                }
             }
+        }
+    }
+    
+    private func startLoadingAnimation() {
+        opacity = 0.2
+    }
+    
+    private func startTextAnimation() {
+        // Step 1: Delay for a moment with just "A"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            text = "AI"
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+            text = "AIR"
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            text = "AIRB"
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+            text = "AIRBO"
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+            text = "AIRBOR"
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            text = "AIRBORN"
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+            text = "AIRBORNE"
         }
     }
     
@@ -54,7 +93,7 @@ struct Loading: View {
             print("Requesting location permission...")
             mapManager.checkAuthorization()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 hasCheckedPermissions = true
                 print("Location permission granted: \(mapManager.isLocationPermissionGranted)")
                 

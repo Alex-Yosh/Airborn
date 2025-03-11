@@ -35,6 +35,10 @@
 		FABA6FB72D7FBF76006D7CD5 /* NominatimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB62D7FBF76006D7CD5 /* NominatimResponse.swift */; };
 		FABA6FB92D7FBFA9006D7CD5 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FB82D7FBFA9006D7CD5 /* Address.swift */; };
 		FABA6FBB2D7FCF95006D7CD5 /* HomeBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FBA2D7FCF95006D7CD5 /* HomeBoxStyle.swift */; };
+		FABA6FBF2D7FEB49006D7CD5 /* Dolce_Vita_Heavy_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABA6FBC2D7FE642006D7CD5 /* Dolce_Vita_Heavy_Bold.ttf */; };
+		FABA6FC02D7FEB49006D7CD5 /* Dolce_Vita_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABA6FBE2D7FE643006D7CD5 /* Dolce_Vita_Light.ttf */; };
+		FABA6FC12D7FEB49006D7CD5 /* Dolce_Vita.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABA6FBD2D7FE643006D7CD5 /* Dolce_Vita.ttf */; };
+		FABA6FC32D7FEC8F006D7CD5 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA6FC22D7FEC8F006D7CD5 /* Loading.swift */; };
 		FACF462E2D0D243900E2EB4D /* AirbornApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF462D2D0D243900E2EB4D /* AirbornApp.swift */; };
 		FACF46322D0D243B00E2EB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46312D0D243B00E2EB4D /* Assets.xcassets */; };
 		FACF46352D0D243B00E2EB4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF46342D0D243B00E2EB4D /* Preview Assets.xcassets */; };
@@ -42,7 +46,6 @@
 		FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */; };
 		FACF46532D14F21100E2EB4D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46522D14F21100E2EB4D /* Constants.swift */; };
 		FACF46552D14F34700E2EB4D /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46542D14F34700E2EB4D /* NavigationManager.swift */; };
-		FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46582D14FD9B00E2EB4D /* Loading.swift */; };
 		FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF465A2D14FDAE00E2EB4D /* MainTab.swift */; };
 		FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46622D15019D00E2EB4D /* HomeView.swift */; };
 		FACF46652D1501AC00E2EB4D /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF46642D1501AC00E2EB4D /* DataView.swift */; };
@@ -90,6 +93,10 @@
 		FABA6FB62D7FBF76006D7CD5 /* NominatimResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominatimResponse.swift; sourceTree = "<group>"; };
 		FABA6FB82D7FBFA9006D7CD5 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		FABA6FBA2D7FCF95006D7CD5 /* HomeBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBoxStyle.swift; sourceTree = "<group>"; };
+		FABA6FBC2D7FE642006D7CD5 /* Dolce_Vita_Heavy_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dolce_Vita_Heavy_Bold.ttf; sourceTree = "<group>"; };
+		FABA6FBD2D7FE643006D7CD5 /* Dolce_Vita.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dolce_Vita.ttf; sourceTree = "<group>"; };
+		FABA6FBE2D7FE643006D7CD5 /* Dolce_Vita_Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dolce_Vita_Light.ttf; sourceTree = "<group>"; };
+		FABA6FC22D7FEC8F006D7CD5 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		FACF462A2D0D243900E2EB4D /* Airborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF462D2D0D243900E2EB4D /* AirbornApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbornApp.swift; sourceTree = "<group>"; };
 		FACF46312D0D243B00E2EB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,7 +105,6 @@
 		FACF46502D10F9A200E2EB4D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		FACF46522D14F21100E2EB4D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FACF46542D14F34700E2EB4D /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
-		FACF46582D14FD9B00E2EB4D /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		FACF465A2D14FDAE00E2EB4D /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		FACF46622D15019D00E2EB4D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FACF46642D1501AC00E2EB4D /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 				FA8247A12D45C9B00055738E /* Inter.ttf */,
 				FA8247A02D45C9B00055738E /* Inter-SemiBold.ttf */,
 				FA8247A22D45C9B00055738E /* Inter-Bold.ttf */,
+				FABA6FBC2D7FE642006D7CD5 /* Dolce_Vita_Heavy_Bold.ttf */,
+				FABA6FBE2D7FE643006D7CD5 /* Dolce_Vita_Light.ttf */,
+				FABA6FBD2D7FE643006D7CD5 /* Dolce_Vita.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -326,7 +335,7 @@
 		FACF46572D14FD7100E2EB4D /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				FACF46582D14FD9B00E2EB4D /* Loading.swift */,
+				FABA6FC22D7FEC8F006D7CD5 /* Loading.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -412,6 +421,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABA6FBF2D7FEB49006D7CD5 /* Dolce_Vita_Heavy_Bold.ttf in Resources */,
+				FABA6FC02D7FEB49006D7CD5 /* Dolce_Vita_Light.ttf in Resources */,
+				FABA6FC12D7FEB49006D7CD5 /* Dolce_Vita.ttf in Resources */,
 				FA8247A42D45C9D10055738E /* Inter-SemiBold.ttf in Resources */,
 				FA8247A52D45C9D40055738E /* Inter.ttf in Resources */,
 				FA8247A32D45C9CF0055738E /* Inter-Bold.ttf in Resources */,
@@ -437,6 +449,7 @@
 				FABA6FAF2D7BB7D7006D7CD5 /* SignupView.swift in Sources */,
 				FACF46532D14F21100E2EB4D /* Constants.swift in Sources */,
 				FABA6FB92D7FBFA9006D7CD5 /* Address.swift in Sources */,
+				FABA6FC32D7FEC8F006D7CD5 /* Loading.swift in Sources */,
 				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,
 				FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */,
 				FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */,
@@ -457,7 +470,6 @@
 				FA82479D2D45C4270055738E /* DataMainView.swift in Sources */,
 				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
-				FACF46592D14FD9B00E2EB4D /* Loading.swift in Sources */,
 				FABA6FA32D78FF79006D7CD5 /* LatestDataResponse.swift in Sources */,
 				FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */,
 				FABA6F982D75344F006D7CD5 /* CO2Response.swift in Sources */,
