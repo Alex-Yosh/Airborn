@@ -20,6 +20,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var selectedSensor: Sensor?
     @Published var selectedSensorData: SensorData?
     @Published var isLocationPermissionGranted: Bool = false
+    @Published var sensorAddress: String = ""
     
     @Published var nearestSensor: Sensor?
     
@@ -50,7 +51,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                         (sensor.latitude >= -90.0 && sensor.latitude <= 90.0) &&
                         (sensor.longitude >= -180.0 && sensor.longitude <= 180.0)
                     }
-
+                    
                     self.findNearestSensor()
                 }
             case .failure(let error):
@@ -119,14 +120,51 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func findNearestSensor() {
         guard let userLocation = userLocation else {return}
-
+        
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-
+        
         nearestSensor = sensors.min(by: {
             let distance1 = userCLLocation.distance(from: CLLocation(latitude: $0.latitude, longitude: $0.longitude))
             let distance2 = userCLLocation.distance(from: CLLocation(latitude: $1.latitude, longitude: $1.longitude))
             return distance1 < distance2
         })
+        
+        //get address
+        guard let sensor = nearestSensor else {
+            DispatchQueue.main.async {
+                self.sensorAddress = "No sensor found."
+            }
+            return
+        }
+        
+        Task {
+            if let addressModel = await DatabaseManager.shared.fetchAddressFromCoordinates(latitude: sensor.latitude, longitude: sensor.longitude) {
+                let formattedAddress = self.formatAddress(addressModel)
+                DispatchQueue.main.async {
+                    self.sensorAddress = formattedAddress
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.sensorAddress = "Failed to get address"
+                }
+            }
+        }
+        
+    }
+    
+    // Formats the AddressModel into a readable string
+    private func formatAddress(_ address: Address) -> String {
+        if let houseNumber = address.house_number, let road = address.road {
+            return "\(houseNumber) \(road)"  // "200 University Ave W"
+        } else if let building = address.building {
+            return building  // "E7 Engineering"
+        } else if let road = address.road {
+            return road  // "Ring Road"
+        } else if let university = address.university {
+            return university  // "University of Waterloo"
+        } else {
+            return "No detailed address found"
+        }
     }
     
 }

@@ -177,6 +177,71 @@ extension SensorData {
             return -1.0 // No need
         }
     }
+}
+extension SensorData {
+    func calculateAQI() -> Int {
+        // AQI calculation for PM2.5 (EPA Standard in μg/m³)
+        let pm25AQI = getAQI(value: pm25, breakpoints: [
+            (0.0, 12.0, 0, 50),
+            (12.1, 35.4, 51, 100),
+            (35.5, 55.4, 101, 150),
+            (55.5, 150.4, 151, 200),
+            (150.5, 250.4, 201, 300),
+            (250.5, 500.4, 301, 500)
+        ])
+//        
+        // AQI calculation for CO2 (ppm, based on health impact)
+//        let co2AQI = getAQI(value: co2, breakpoints: [
+//            (0, 600, 0, 50),
+//            (601, 800, 51, 100),
+//            (801, 1000, 101, 150),
+//            (1001, 1500, 151, 200),
+//            (1501, 2000, 201, 300),
+//            (2001, 5000, 301, 500)
+//        ])
+//        
+        // **Invert TVOC** because 100 = good, 0 = bad
+        let invertedTVOC = 100 - tvoc // Now 100 = worst, 0 = best
+        let tvocAQI = getAQI(value: invertedTVOC, breakpoints: [
+            (0, 10, 0, 50),
+            (11, 30, 51, 100),
+            (31, 50, 101, 150),
+            (51, 70, 151, 200),
+            (71, 90, 201, 300),
+            (91, 100, 301, 500)
+        ])
+        
+        //  Return the highest AQI (worst air quality factor)
+//        return max(pm25AQI, co2AQI, tvocAQI)
+        return max(pm25AQI, tvocAQI)
+    }
+    
+    /// Helper function to calculate AQI based on breakpoints
+    private func getAQI(value: Double, breakpoints: [(Double, Double, Int, Int)]) -> Int {
+        for (low, high, aqiLow, aqiHigh) in breakpoints {
+            if value >= low && value <= high {
+                return interpolateAQI(value: value, low: low, high: high, aqiLow: aqiLow, aqiHigh: aqiHigh)
+            }
+        }
+        return 500 // If value exceeds max, return max AQI
+    }
+    
+    /// **Fixed** Linear interpolation for AQI calculation
+    private func interpolateAQI(value: Double, low: Double, high: Double, aqiLow: Int, aqiHigh: Int) -> Int {
+        if high == low { return aqiLow } // Prevent division by zero
+        let fraction = (value - low) / (high - low)
+        let interpolatedAQI = fraction * Double(aqiHigh - aqiLow) + Double(aqiLow)
+        return min(500, max(0, Int(interpolatedAQI))) // Ensure AQI stays within 0-500
+    }
+    
+    func calculateAQIPercentage() -> Double {
+        let aqi = Double(calculateAQI()) // Get the AQI value (0 - 500)
+        
+        // **Non-Linear Scaling: Higher AQI increases percentage more aggressively**
+        let scaledPercentage = pow(aqi / 500.0, 1.2) // Exponent 1.2 makes higher values worse faster
+        
+        return min(1.0, scaledPercentage) // Ensure it never exceeds 1.0
+    }
     
     
 }
