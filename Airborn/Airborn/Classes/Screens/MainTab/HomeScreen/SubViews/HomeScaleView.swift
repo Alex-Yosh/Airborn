@@ -11,22 +11,19 @@ struct HomeScaleView: View {
     
     @EnvironmentObject var dataManager: DataManager
     
-    var progressPercent: Float = 0
-    
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    @State private var startingProgress: Float = 0
-    
+    @State private var animatedProgress: Float = 0
+    @State private var animationTimer: Timer? = nil
+
     var body: some View {
         GeometryReader { geometry in
             let size = min(geometry.size.width, geometry.size.height)
-            let radius = size * 0.45 // Slightly increased radius
+            let radius = size * 0.45
             
-            // Adjusted trim range for a larger arc
-            let arcStart: CGFloat = 0.3 // Starts earlier
-            let arcEnd: CGFloat = 0.90 // Ends later
+            let arcStart: CGFloat = 0.3
+            let arcEnd: CGFloat = 0.9
             
             // Calculate Needle Positioning
-            let angle = getNeedleAngle(progress: progressPercent) - 90
+            let angle = getNeedleAngle(progress: animatedProgress) - 90
             let radians = angle * .pi / 180
             
             let circleRadius = size * 0.5
@@ -44,9 +41,8 @@ struct HomeScaleView: View {
                     .trim(from: arcStart, to: arcEnd)
                     .stroke(style: StrokeStyle(lineWidth: size * 0.09, lineCap: .round, lineJoin: .round))
                     .foregroundColor(.black)
-                    .rotationEffect(.degrees(55)) // Adjusted for new arc
+                    .rotationEffect(.degrees(55))
                 
-                // Colored Gauge Arc (Larger)
                 Circle()
                     .trim(from: arcStart, to: arcEnd)
                     .stroke(
@@ -71,9 +67,9 @@ struct HomeScaleView: View {
                             .textStyle(HomeScaleAQIbigTextStyle())
                     }
                     
-                    Text(aqiCategory(progress: progressPercent))
+                    Text(aqiCategory(progress: animatedProgress))
                         .textStyle(HomeScaleAQIsmallTextStyle())
-                        .foregroundColor(aqiCategoryColor(progress: progressPercent))
+                        .foregroundColor(aqiCategoryColor(progress: animatedProgress))
                     
                     Text("AQI")
                         .textStyle(HomeScaleAQIsmallTextStyle())
@@ -102,15 +98,32 @@ struct HomeScaleView: View {
                         .position(x: geometry.size.width / 2 + circleX, y: geometry.size.height / 2 + circleY)
                 }
             }
-            .offset(y: circleRadius / 2.5) // Adjusted offset to center arc properly
+            .offset(y: circleRadius / 2.5)
         }
-        .onReceive(timer) { _ in
-            withAnimation(.easeInOut(duration: 1.0)) {
-                if startingProgress < (9 * progressPercent / 10) {
-                    startingProgress += (progressPercent / 10)
-                } else {
-                    startingProgress = progressPercent
-                }
+        .onAppear {
+            if let latestData = dataManager.latestSensorData{
+                startAnimatingProgress(progress: Float(latestData.calculateAQIPercentage()))
+            }
+        }
+        .onReceive(dataManager.$latestSensorData) { newData in
+            if let newData = newData{
+                startAnimatingProgress(progress: Float(newData.calculateAQIPercentage()))
+            }
+        }
+    }
+    
+    // Function to smoothly animate needle movement
+    private func startAnimatingProgress(progress: Float) {
+        animationTimer?.invalidate() // Stop any running timer
+        
+        animationTimer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { timer in
+            let step: Float = 0.01
+            
+            if abs(progress - animatedProgress) < step {
+                animatedProgress = progress
+                timer.invalidate()
+            } else {
+                animatedProgress += (progress - animatedProgress) * 0.1
             }
         }
     }
@@ -126,8 +139,10 @@ struct HomeScaleView: View {
             return "Decent"
         case 0.61...0.8:
             return "Unhealthy"
-        default:
+        case 0.81...1:
             return "Hazardous"
+        default:
+            return ""
         }
     }
     
@@ -147,7 +162,6 @@ struct HomeScaleView: View {
         }
     }
     
-    // Function to determine indicator angle (Now Uses Radians)
     func getNeedleAngle(progress: Float) -> CGFloat {
         let minAngle: CGFloat = -107.5 // Adjusted for larger arc
         let maxAngle: CGFloat = 107.5  // Adjusted for larger arc
@@ -171,3 +185,4 @@ struct Needle: Shape {
     HomeScaleView()
         .environmentObject(DataManager.shared)
 }
+

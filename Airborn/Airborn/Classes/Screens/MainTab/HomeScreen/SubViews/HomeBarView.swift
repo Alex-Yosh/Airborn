@@ -13,6 +13,8 @@ struct HomeBarView: View {
     var unit: String
     var progress: Float
     
+    @State private var animatedProgress: Float = 1  // Animated version of progress
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Title
@@ -56,10 +58,12 @@ struct HomeBarView: View {
                                 }
                             )
                         
+                        // Needle with Smooth Animation
                         Needle()
-                            .rotation(.degrees(180))
+                            .rotationEffect(.degrees(180))
                             .frame(width: 12, height: 10)
-                            .position(x: max(6, min(barWidth - 6, CGFloat(progress) * barWidth)), y: -5)
+                            .position(x: max(6, min(barWidth - 6, CGFloat(1 - animatedProgress) * barWidth)), y: -5)
+                            .animation(.easeInOut(duration: 1.2), value: animatedProgress) // Smooth movement
                     }
                     .frame(height: 12)
                 }
@@ -73,6 +77,14 @@ struct HomeBarView: View {
                     Text("High")
                         .textStyle(BarLowHighTextStyle())
                 }
+            }
+        }
+        .onAppear {
+            animatedProgress = progress // Start animation on appear
+        }
+        .onChange(of: progress) { newProgress in
+            withAnimation(.easeInOut(duration: 1.2)) {
+                animatedProgress = newProgress // Animate when progress changes
             }
         }
     }

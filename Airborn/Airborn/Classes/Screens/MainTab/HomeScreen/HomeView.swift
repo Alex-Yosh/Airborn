@@ -24,10 +24,10 @@ struct HomeView: View {
                     TemperatureHumidityView(temperature: latestData.temperature, humidity: latestData.humidity)
                         .homeBoxStyle()
 
-                    HomeScaleView(progressPercent: Float(latestData.calculateAQIPercentage()))
+                    HomeScaleView()
                 
                     VStack(spacing: 8) {
-                        HomeBarView(title: "VOC", value: latestData.tvoc, unit: "", progress: latestData.getQualityPercentage(ofType: .tvoc))
+                        HomeBarView(title: "TVOC", value: latestData.tvoc, unit: "", progress: latestData.getQualityPercentage(ofType: .tvoc))
                             .homeBoxStyle()
                         HomeBarView(title: "PM2.5", value: latestData.pm25, unit: Constants.dataTypes.pm25.metric, progress: latestData.getQualityPercentage(ofType: .pm25))
                             .homeBoxStyle()
