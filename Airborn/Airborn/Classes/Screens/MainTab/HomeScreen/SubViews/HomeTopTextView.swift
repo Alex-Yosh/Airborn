@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct HomeTopTextView: View {
+    
+    @EnvironmentObject var mapManager: MapManager
+    
     var body: some View {
         VStack(spacing: 12){
             Text(Date.now, format: .dateTime.day().month(.wide).year())
                 .textStyle(HeadingTextStyle())
             HStack{
                 Image("MapPin")
-                Text("ERC")
-                    .textStyle(HeadingTextStyle())
+                Text(mapManager.sensorAddress)
+                        .textStyle(HeadingTextStyle())
+                
             }
 
         }
@@ -45,4 +49,6 @@ struct HomeTopTextView: View {
 
 #Preview {
     HomeTopTextView()
+        .environmentObject(MapManager.shared)
+        .environmentObject(DataManager.shared)
 }

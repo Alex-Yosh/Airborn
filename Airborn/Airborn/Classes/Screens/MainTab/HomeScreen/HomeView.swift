@@ -29,7 +29,7 @@ struct HomeView: View {
                     VStack(spacing: 8) {
                         HomeBarView(title: "VOC", value: latestData.tvoc, unit: "", progress: latestData.getQualityPercentage(ofType: .tvoc))
                         HomeBarView(title: "PM2.5", value: latestData.pm25, unit: Constants.dataTypes.pm25.metric, progress: latestData.getQualityPercentage(ofType: .pm25))
-//                        HomeBarView(title: "CO2", value: latestData.co2, unit: Constants.dataTypes.co2.metric, progress: latestData.getQualityPercentage(ofType: .co2))
+                        HomeBarView(title: "CO2", value: latestData.co2, unit: Constants.dataTypes.co2.metric, progress: latestData.getQualityPercentage(ofType: .co2))
                     }
                     .padding(.horizontal)
                 } else {

@@ -35,22 +35,6 @@ struct MapBottomSheetView: View {
         }
         
     }
-    
-    func thermometerImage(for temperature: Double) -> String {
-        switch temperature {
-        case ..<0:
-            return "thermometer.snowflake"
-        case 0..<10:
-            return "thermometer.low"
-        case 10..<25:
-            return "thermometer.medium"
-        case 25..<35:
-            return "thermometer.high"
-        default:
-            return "thermometer.sun"
-        }
-    }
-    
 }
 
 #Preview {

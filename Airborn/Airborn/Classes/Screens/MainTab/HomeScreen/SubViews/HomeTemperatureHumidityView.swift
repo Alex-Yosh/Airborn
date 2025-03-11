@@ -15,7 +15,7 @@ struct TemperatureHumidityView: View {
         HStack(spacing: 24) {
             // Temperature
             HStack {
-                Image(systemName: "thermometer")
+                Image(systemName: thermometerImage(for: temperature))
                     .font(.system(size: 32))
                     .foregroundColor(.black)
                 Text("\(Int(temperature))°C")
@@ -41,14 +41,22 @@ struct TemperatureHumidityView: View {
     }
 }
 
-// Preview
-struct ContentView: View {
-    var body: some View {
-        TemperatureHumidityView(temperature: 23, humidity: 34)
-            .padding()
+func thermometerImage(for temperature: Double) -> String {
+    switch temperature {
+    case ..<0:
+        return "thermometer.snowflake"
+    case 0..<10:
+        return "thermometer.low"
+    case 10..<25:
+        return "thermometer.medium"
+    case 25..<35:
+        return "thermometer.high"
+    default:
+        return "thermometer.sun"
     }
 }
 
+
 #Preview {
-    ContentView()
+    TemperatureHumidityView(temperature: 2, humidity: 2)
 }
