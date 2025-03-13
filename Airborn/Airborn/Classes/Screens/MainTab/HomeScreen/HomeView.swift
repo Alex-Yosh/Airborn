@@ -25,6 +25,7 @@ struct HomeView: View {
                         .homeBoxStyle()
 
                     HomeScaleView()
+                        .border(.red)
                 
                     VStack(spacing: 8) {
                         HomeBarView(title: "TVOC", value: latestData.tvoc, unit: "", progress: latestData.getQualityPercentage(ofType: .tvoc))

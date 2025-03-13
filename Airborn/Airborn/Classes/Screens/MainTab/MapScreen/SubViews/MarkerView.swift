@@ -17,8 +17,7 @@ struct MarkerView: View {
     var body: some View {
         Button(action: {
             mapManager.ShowSensorSheet(sensor: sensor)
-            mapManager.region.center = CLLocationCoordinate2D(latitude: sensor.latitude - 0.001, longitude: sensor.longitude)
-            mapManager.region.span = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003)
+            mapManager.centerMapOnSensor(sensor: sensor)
             
         }, label: {
             ZStack() {

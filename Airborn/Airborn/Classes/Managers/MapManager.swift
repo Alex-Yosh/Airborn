@@ -20,7 +20,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var selectedSensor: Sensor?
     @Published var selectedSensorData: SensorData?
     @Published var isLocationPermissionGranted: Bool = false
-    @Published var sensorAddress: String = ""
+    @Published var sensorAddress: String?
     
     @Published var nearestSensor: Sensor?
     
@@ -75,6 +75,17 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         selectedSensor = sensor
         showSelectedSensor = true
+    }
+    
+    
+    func centerMapOnSensor(sensor: Sensor) {
+        let regionSpan = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003)
+        let adjustedLatitude = sensor.latitude - (regionSpan.latitudeDelta / 3) // Moves the marker up slightly
+
+        region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: adjustedLatitude, longitude: sensor.longitude),
+            span: regionSpan
+        )
     }
     
     func HideSensorSheet() {
@@ -143,17 +154,13 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 DispatchQueue.main.async {
                     self.sensorAddress = formattedAddress
                 }
-            } else {
-                DispatchQueue.main.async {
-                    self.sensorAddress = "Failed to get address"
-                }
-            }
+            } 
         }
         
     }
     
     // Formats the AddressModel into a readable string
-    private func formatAddress(_ address: Address) -> String {
+    private func formatAddress(_ address: Address) -> String? {
         if let houseNumber = address.house_number, let road = address.road {
             return "\(houseNumber) \(road)"  // "200 University Ave W"
         } else if let building = address.building {
@@ -163,7 +170,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         } else if let university = address.university {
             return university  // "University of Waterloo"
         } else {
-            return "No detailed address found"
+            return nil
         }
     }
     

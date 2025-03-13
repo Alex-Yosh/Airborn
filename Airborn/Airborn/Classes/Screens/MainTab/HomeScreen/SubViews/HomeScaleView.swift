@@ -98,7 +98,7 @@ struct HomeScaleView: View {
                         .position(x: geometry.size.width / 2 + circleX, y: geometry.size.height / 2 + circleY)
                 }
             }
-            .offset(y: circleRadius / 2.5)
+            .offset(y: circleRadius / 2.75)
         }
         .onAppear {
             if let latestData = dataManager.latestSensorData{

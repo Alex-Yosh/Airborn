@@ -15,11 +15,12 @@ struct HomeTopTextView: View {
         VStack(spacing: 6){
             Text(Date.now, format: .dateTime.day().month(.wide).year())
                 .textStyle(SubHeadingTextStyle())
-            HStack{
-                Image("MapPin")
-                Text(mapManager.sensorAddress)
-                        .textStyle(LocationTextStyle())
-                
+            if let address = mapManager.sensorAddress{
+                HStack{
+                    Image("MapPin")
+                    Text(address)
+                            .textStyle(LocationTextStyle())
+                }
             }
 
         }
