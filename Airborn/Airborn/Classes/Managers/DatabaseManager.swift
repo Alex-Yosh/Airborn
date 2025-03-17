@@ -262,13 +262,16 @@ class DatabaseManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     /// Fetch latest sensor data from nearest sensor
-    func fetchLatestNearestSensorData(completion: @escaping (SensorData?) -> Void) {
+    func fetchLatestNearestSensorData(completion: @escaping (LatestDataResponse?) -> Void) {
         guard let closestSensor = MapManager.shared.nearestSensor else {
             completion(nil) // Return nil if there's no closest sensor
             return
         }
-        guard let url = URL(string: "\(baseURL)/data/latest/\(closestSensor.id)") else { return }
-        
+        guard let userid = LoginManager.shared.uuid else {
+            completion(nil)
+            return
+        }
+        guard let url = URL(string: "\(baseURL)/data/latest/\(closestSensor.id)/\(userid)") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
             .map { data, response -> Data in
@@ -278,18 +281,19 @@ class DatabaseManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completionStatus in
                 switch completionStatus {
-                case .failure(let error):
+                case .failure(_):
                     completion(nil)
                 case .finished:
                     break
                 }
             }, receiveValue: { response in
-                completion(response.latest_reading) // Return the latest SensorData
+                completion(response) // Return the latest SensorData
             })
             .store(in: &cancellables)
     }
     
-    /// Fetch data from selected sensor
+    // TODO: Deprecate
+    /// Fetch data from selected sensoR
     func fetchLatestSelectedSensorData(selectedSensor: Sensor, completion: @escaping (Result<SensorData, Error>) -> Void) {
         
         guard let url = URL(string: "\(baseURL)/data/latest/\(selectedSensor.id)") else { return }

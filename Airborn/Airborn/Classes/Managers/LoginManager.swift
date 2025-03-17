@@ -80,6 +80,7 @@ class LoginManager: ObservableObject {
         UserDefaults.standard.set(uuid.uuidString, forKey: "user_id")
         UserDefaults.standard.synchronize() // Ensures data is saved immediately
         
+        self.uuid = uuid
         //navigate to loading
         NavigationManager.shared.appStatus.send(.loading)
     }

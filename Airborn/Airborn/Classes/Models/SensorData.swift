@@ -19,12 +19,11 @@ struct SensorData: Codable {
         case temperature, humidity, pm25, tvoc, co2, timestamp
     }
     
-    /// Custom Decoder for Handling Non-Standard Timestamp
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss zzz"
         formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.timeZone = TimeZone(identifier: "America/New_York")
         return formatter
     }()
 }
@@ -189,17 +188,17 @@ extension SensorData {
             (150.5, 250.4, 201, 300),
             (250.5, 500.4, 301, 500)
         ])
-//        
+        //
         // AQI calculation for CO2 (ppm, based on health impact)
-//        let co2AQI = getAQI(value: co2, breakpoints: [
-//            (0, 600, 0, 50),
-//            (601, 800, 51, 100),
-//            (801, 1000, 101, 150),
-//            (1001, 1500, 151, 200),
-//            (1501, 2000, 201, 300),
-//            (2001, 5000, 301, 500)
-//        ])
-//        
+        //        let co2AQI = getAQI(value: co2, breakpoints: [
+        //            (0, 600, 0, 50),
+        //            (601, 800, 51, 100),
+        //            (801, 1000, 101, 150),
+        //            (1001, 1500, 151, 200),
+        //            (1501, 2000, 201, 300),
+        //            (2001, 5000, 301, 500)
+        //        ])
+        //
         // **Invert TVOC** because 100 = good, 0 = bad
         let invertedTVOC = 100 - tvoc // Now 100 = worst, 0 = best
         let tvocAQI = getAQI(value: invertedTVOC, breakpoints: [
@@ -212,7 +211,7 @@ extension SensorData {
         ])
         
         //  Return the highest AQI (worst air quality factor)
-//        return max(pm25AQI, co2AQI, tvocAQI)
+        //        return max(pm25AQI, co2AQI, tvocAQI)
         return max(pm25AQI, tvocAQI)
     }
     

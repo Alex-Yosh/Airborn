@@ -119,9 +119,9 @@ struct Loading: View {
             if let nearestSensor = mapManager.nearestSensor {
                 print("Nearest sensor found: \(nearestSensor.id)")
                 
-                databaseManager.fetchLatestNearestSensorData { latestData in
+                databaseManager.fetchLatestNearestSensorData { latestDataResponse in
                     DispatchQueue.main.async {
-                        if let latestData = latestData {
+                        if let latestData = latestDataResponse?.latest_reading {
                             self.isDataFetched = true
                             print("Latest sensor data fetched successfully.")
                         } else {
