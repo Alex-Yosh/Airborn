@@ -18,23 +18,9 @@ struct HomeSettingBottomSheetView: View {
             Divider()
 
             // Logout Button
-            Button(action: {
+            LongButtonView(title: "Logout", systemImage: "arrow.right.square.fill", backgroundColor: Color.red, action: {
                 loginManager.logout()
-            }) {
-                HStack {
-                    Image(systemName: "arrow.right.square.fill")
-                        .font(.title2)
-                    Text("Logout")
-                        .textStyle(LogOutTextStyle())
-                }
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.red.opacity(0.8))
-                .cornerRadius(14)
-                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
-            }
-            .padding(.horizontal, 30)
+            })
 
             Spacer()
         }
