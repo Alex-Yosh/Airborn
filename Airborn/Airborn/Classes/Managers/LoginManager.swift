@@ -50,6 +50,18 @@ class LoginManager: ObservableObject {
         }
     }
     
+    func logout() {
+        //remove uuid key
+        UserDefaults.resetStandardUserDefaults()
+        
+        self.username = ""
+        self.password = ""
+        self.errorMessage = nil
+        self.uuid = nil
+        
+        NavigationManager.shared.appStatus.send(.login)
+    }
+    
     func signup() {
         guard !username.isEmpty, !password.isEmpty else {
             errorMessage = "Username and password cannot be empty"
@@ -78,7 +90,7 @@ class LoginManager: ObservableObject {
     {
         // Store user ID in UserDefaults
         UserDefaults.standard.set(uuid.uuidString, forKey: "user_id")
-        UserDefaults.standard.synchronize() // Ensures data is saved immediately
+        UserDefaults.standard.synchronize()
         
         self.uuid = uuid
         //navigate to loading
