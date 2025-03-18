@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var dataManager: DataManager
+    @State private var showSettingsSheet = false
     
     var body: some View {
         ZStack{
@@ -17,7 +18,13 @@ struct HomeView: View {
             LinearGradient(colors: [Constants.Colour.PrimaryBlue, .white], startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             
             VStack(spacing: 12) {
-                HomeTopTextView()
+                ZStack{
+                    HomeTopTextView()
+                    HStack{
+                        Spacer()
+                        HomeSettingButtonView(showSettingsSheet: $showSettingsSheet)
+                    }
+                }
                 
                 // Check if data is loaded
                 if let latestData = dataManager.latestSensorData {
@@ -39,6 +46,9 @@ struct HomeView: View {
                 
                 Spacer()
             }
+        }.sheet(isPresented: $showSettingsSheet) {
+            HomeSettingBottomSheetView()
+                .presentationDetents([.fraction(0.3)])
         }
     }
 }
@@ -47,4 +57,5 @@ struct HomeView: View {
     HomeView()
         .environmentObject(DataManager.shared)
         .environmentObject(MapManager.shared)
+        .environmentObject(LoginManager.shared)
 }

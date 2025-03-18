@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1B706E2D89F881009C42D1 /* HomeSettingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B706D2D89F881009C42D1 /* HomeSettingButtonView.swift */; };
+		FA1B70702D8A028B009C42D1 /* HomeSettingBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B706F2D8A028B009C42D1 /* HomeSettingBottomSheetView.swift */; };
 		FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B508E2D3829F5000001DC /* DataTempCellView.swift */; };
 		FA7B50912D398991000001DC /* DataHumidityCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50902D398991000001DC /* DataHumidityCellView.swift */; };
 		FA7B50932D39BA06000001DC /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B50922D39BA06000001DC /* DataChartView.swift */; };
@@ -64,6 +66,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA1B706D2D89F881009C42D1 /* HomeSettingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingButtonView.swift; sourceTree = "<group>"; };
+		FA1B706F2D8A028B009C42D1 /* HomeSettingBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingBottomSheetView.swift; sourceTree = "<group>"; };
 		FA7B508E2D3829F5000001DC /* DataTempCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTempCellView.swift; sourceTree = "<group>"; };
 		FA7B50902D398991000001DC /* DataHumidityCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHumidityCellView.swift; sourceTree = "<group>"; };
 		FA7B50922D39BA06000001DC /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 				FACF466D2D15BBC300E2EB4D /* HomeScaleView.swift */,
 				FABA6FB22D7F6091006D7CD5 /* HomeBarView.swift */,
 				FABA6FB42D7F732B006D7CD5 /* HomeTemperatureHumidityView.swift */,
+				FA1B706D2D89F881009C42D1 /* HomeSettingButtonView.swift */,
+				FA1B706F2D8A028B009C42D1 /* HomeSettingBottomSheetView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -454,12 +460,14 @@
 				FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */,
 				FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */,
 				FACF46652D1501AC00E2EB4D /* DataView.swift in Sources */,
+				FA1B706E2D89F881009C42D1 /* HomeSettingButtonView.swift in Sources */,
 				FACF46672D1501B700E2EB4D /* MapView.swift in Sources */,
 				FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */,
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
 				FABA6FA82D7BA4E4006D7CD5 /* LoginView.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
 				FABA6FB12D7BBAA2006D7CD5 /* SignUpResponse.swift in Sources */,
+				FA1B70702D8A028B009C42D1 /* HomeSettingBottomSheetView.swift in Sources */,
 				FACF46472D10F40100E2EB4D /* LaunchView.swift in Sources */,
 				FACF465B2D14FDAE00E2EB4D /* MainTab.swift in Sources */,
 				FA82479B2D45C05B0055738E /* DataDetailView.swift in Sources */,

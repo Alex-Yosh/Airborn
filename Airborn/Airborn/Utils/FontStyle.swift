@@ -77,6 +77,18 @@ struct HomeScaleAQIbigTextStyle: ViewModifier {
     }
 }
 
+struct LogOutTextStyle: ViewModifier {
+    
+    static var fontSize = 18.0
+    static var color: Color = .white
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter-SemiBold", size: LogOutTextStyle.fontSize))
+            .foregroundColor(LogOutTextStyle.color)
+    }
+}
+
 struct HomeScaleAQIsmallTextStyle: ViewModifier {
     
     static var fontSize = 20.0
