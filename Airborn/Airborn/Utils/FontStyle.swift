@@ -10,8 +10,28 @@ import SwiftUI
 
 // Inter-Bold weight 700, Inter-SemiBold weight 500, Inter weight 400
 
-    
 
+struct LongButtonTextStyle: ViewModifier {
+    
+    static var fontSize = 18.0
+    static var color: Color = .white
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter-SemiBold", size: LongButtonTextStyle.fontSize))
+            .foregroundColor(LongButtonTextStyle.color)
+    }
+}
+
+//login
+struct LoginTextStyle: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .bold()
+    }
+}
 
 //Loading
 struct LoadingTextStyle: ViewModifier {
@@ -23,6 +43,25 @@ struct LoadingTextStyle: ViewModifier {
         content
             .font(.custom("Dolce Vita", size: LoadingTextStyle.fontSize))
             .foregroundColor(LoadingTextStyle.color)
+    }
+}
+
+//internet
+struct NoInternetTitleTextStyle: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.title2)
+            .fontWeight(.semibold)
+    }
+}
+
+struct NoInternetSubTitleTextStyle: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.gray)
+            .multilineTextAlignment(.center)
     }
 }
 
@@ -74,18 +113,6 @@ struct HomeScaleAQIbigTextStyle: ViewModifier {
         content
             .font(Font.custom("Inter", size: HomeScaleAQIbigTextStyle.fontSize))
             .foregroundColor(HomeScaleAQIbigTextStyle.color)
-    }
-}
-
-struct LogOutTextStyle: ViewModifier {
-    
-    static var fontSize = 18.0
-    static var color: Color = .white
-    
-    func body(content: Content) -> some View {
-        content
-            .font(Font.custom("Inter-SemiBold", size: LogOutTextStyle.fontSize))
-            .foregroundColor(LogOutTextStyle.color)
     }
 }
 

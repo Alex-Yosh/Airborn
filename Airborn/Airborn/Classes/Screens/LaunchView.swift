@@ -9,22 +9,30 @@ import SwiftUI
 
 struct LaunchView: View {
     @EnvironmentObject var navigationManager: NavigationManager
+    @EnvironmentObject var networkManager: NetworkManager
 
     @State private var currentAppStatus: Constants.appNavigationControllers = .login
 
     var body: some View {
-        VStack {
-            switch currentAppStatus {
-            case .login:
-                Login()
-            case .loading:
-                Loading()
-            case .restOfApp:
-                MainTab()
+        ZStack{
+            VStack {
+                switch currentAppStatus {
+                case .login:
+                    Login()
+                case .loading:
+                    Loading()
+                case .restOfApp:
+                    MainTab()
+                }
             }
-        }
-        .onReceive(navigationManager.appStatus) { newStatus in
-            currentAppStatus = newStatus
+            .onReceive(navigationManager.appStatus) { newStatus in
+                currentAppStatus = newStatus
+            }
+            
+            //overlay if no internet
+            if !networkManager.isConnected {
+                NoInternetView()
+            }
         }
     }
 }
@@ -32,4 +40,6 @@ struct LaunchView: View {
 #Preview {
     LaunchView()
         .environmentObject(NavigationManager.shared)
+        .environmentObject(LoginManager.shared)
+        .environmentObject(NetworkManager.shared)
 }

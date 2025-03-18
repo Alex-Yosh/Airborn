@@ -63,6 +63,9 @@
 		FAE167DD2D29BF71007E4E7F /* MapBottomSheetLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167DC2D29BF71007E4E7F /* MapBottomSheetLabelView.swift */; };
 		FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167DE2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift */; };
 		FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE167E02D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift */; };
+		FAE5D3EF2D8A09BF00FCF004 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3EE2D8A09BF00FCF004 /* NetworkManager.swift */; };
+		FAE5D3F22D8A0A7F00FCF004 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3F12D8A0A7F00FCF004 /* NoInternetView.swift */; };
+		FAE5D3F42D8A109000FCF004 /* LongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3F32D8A109000FCF004 /* LongButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +127,9 @@
 		FAE167DC2D29BF71007E4E7F /* MapBottomSheetLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetLabelView.swift; sourceTree = "<group>"; };
 		FAE167DE2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetMetiricsView.swift; sourceTree = "<group>"; };
 		FAE167E02D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetMetricLabelView.swift; sourceTree = "<group>"; };
+		FAE5D3EE2D8A09BF00FCF004 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		FAE5D3F12D8A0A7F00FCF004 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
+		FAE5D3F32D8A109000FCF004 /* LongButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +246,7 @@
 				FAE167D62D286DBB007E4E7F /* MapManager.swift */,
 				FA8247982D45BBDC0055738E /* DataManager.swift */,
 				FABA6FA42D7BA3F5006D7CD5 /* LoginManager.swift */,
+				FAE5D3EE2D8A09BF00FCF004 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -259,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				FA8247942D41766C0055738E /* ScaleBarView.swift */,
+				FAE5D3F32D8A109000FCF004 /* LongButtonView.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -279,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				FACF46462D10F40100E2EB4D /* LaunchView.swift */,
+				FAE5D3F02D8A0A6500FCF004 /* Internet */,
 				FABA6FA62D7BA4D6006D7CD5 /* Login */,
 				FACF46572D14FD7100E2EB4D /* Loading */,
 				FACF46562D14FD1100E2EB4D /* MainTab */,
@@ -369,6 +378,14 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		FAE5D3F02D8A0A6500FCF004 /* Internet */ = {
+			isa = PBXGroup;
+			children = (
+				FAE5D3F12D8A0A7F00FCF004 /* NoInternetView.swift */,
+			);
+			path = Internet;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -449,6 +466,7 @@
 				FABA6FB72D7FBF76006D7CD5 /* NominatimResponse.swift in Sources */,
 				FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */,
 				FA7B508F2D3829F5000001DC /* DataTempCellView.swift in Sources */,
+				FAE5D3F22D8A0A7F00FCF004 /* NoInternetView.swift in Sources */,
 				FAE167E12D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift in Sources */,
 				FA7B50912D398991000001DC /* DataHumidityCellView.swift in Sources */,
 				FACF46632D15019D00E2EB4D /* HomeView.swift in Sources */,
@@ -463,6 +481,7 @@
 				FA1B706E2D89F881009C42D1 /* HomeSettingButtonView.swift in Sources */,
 				FACF46672D1501B700E2EB4D /* MapView.swift in Sources */,
 				FABA6F9D2D753529006D7CD5 /* PM25Response.swift in Sources */,
+				FAE5D3F42D8A109000FCF004 /* LongButtonView.swift in Sources */,
 				FACF46512D10F9A200E2EB4D /* DatabaseManager.swift in Sources */,
 				FABA6FA82D7BA4E4006D7CD5 /* LoginView.swift in Sources */,
 				FACF466C2D15BA5C00E2EB4D /* HomeTopTextView.swift in Sources */,
@@ -476,6 +495,7 @@
 				FACF46722D15BFB400E2EB4D /* Color.swift in Sources */,
 				FAE167DB2D28EF98007E4E7F /* MapBottomSheetView.swift in Sources */,
 				FA82479D2D45C4270055738E /* DataMainView.swift in Sources */,
+				FAE5D3EF2D8A09BF00FCF004 /* NetworkManager.swift in Sources */,
 				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FABA6FA32D78FF79006D7CD5 /* LatestDataResponse.swift in Sources */,

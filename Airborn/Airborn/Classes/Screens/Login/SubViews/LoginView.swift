@@ -15,8 +15,7 @@ struct LoginView: View {
     var body: some View {
         VStack {
             Text("Login")
-                .font(.largeTitle)
-                .bold()
+                .textStyle(LoginTextStyle())
             
             TextField("Username", text: $loginManager.username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -34,17 +33,9 @@ struct LoginView: View {
                     .padding()
             }
 
-            Button(action: {
+            LongButtonView(title: "Login", systemImage: "", backgroundColor: Color.blue, action: {
                 loginManager.login()
-            }) {
-                Text("Login")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .padding()
+            })
 
             Button(action: {
                 loginManager.switchToSignUpScreen()
