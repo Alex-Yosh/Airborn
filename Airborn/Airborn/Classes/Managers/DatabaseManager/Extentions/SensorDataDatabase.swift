@@ -47,65 +47,31 @@ extension DatabaseManager{
         }.resume()
     }
     
-    ///daily average for last 7 days
-    func getCO2DailyAverages(sensorId: UUID, completion: @escaping (Result<CO2Response, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/co2/avg/\(sensorId)") else { return }
+    ///daily average for last 7 days for sensor
+    func getSensorDailyAverages<T: Decodable>(sensorId: UUID, type: Constants.apiAveragesEndpoint, completion: @escaping (Result<T, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/\(type.rawValue)/avg/\(sensorId)") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            guard let data = data else { return }
-            
-            do {
-                let decodedResponse = try JSONDecoder().decode(CO2Response.self, from: data)
-                completion(.success(decodedResponse))
-            } catch {
-                completion(.failure(error))
-            }
-        }.resume()
-    }
-    
-    ///daily average for last 7 days
-    func getTVOCDailyAverages(sensorId: UUID, completion: @escaping (Result<TVOCResponse, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/tvoc/avg/\(sensorId)") else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No Data", code: 0, userInfo: nil)))
                 return
             }
-            guard let data = data else { return }
             
             do {
-                let decodedResponse = try JSONDecoder().decode(TVOCResponse.self, from: data)
+                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(decodedResponse))
             } catch {
                 completion(.failure(error))
             }
         }.resume()
     }
-    
-    func getPM25DailyAverages(sensorId: UUID, completion: @escaping (Result<PM25Response, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/pm25/avg/\(sensorId)") else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            guard let data = data else { return }
-            
-            do {
-                let decodedResponse = try JSONDecoder().decode(PM25Response.self, from: data)
-                completion(.success(decodedResponse))
-            } catch {
-                completion(.failure(error))
-            }
-        }.resume()
-    }
-    
     
     /// Fetch latest sensor data from nearest sensor
     func fetchLatestNearestSensorData(completion: @escaping (LatestDataResponse?) -> Void) {

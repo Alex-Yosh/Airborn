@@ -62,9 +62,7 @@ class DataManager: ObservableObject {
             return
         }
         
-        print(apitype.rawValue)
         DatabaseManager.shared.getUserWeekAverages(type: apitype) { (result: [Double]) in
-            print(result)
             completion(result)
         }
     }
