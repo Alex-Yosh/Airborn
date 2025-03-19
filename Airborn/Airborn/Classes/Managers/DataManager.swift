@@ -17,13 +17,13 @@ class DataManager: ObservableObject {
     @Published var filterType: Constants.dataFilterType = .last7Days
     
     @Published var latestSensorData: SensorData?
-
+    
     private var timer: AnyCancellable?
     
     init() {
         startPolling()
     }
-
+    
     /// Starts polling for new sensor data every 10 seconds
     private func startPolling() {
         timer = Timer.publish(every: 10, on: .main, in: .common)
@@ -40,86 +40,32 @@ class DataManager: ObservableObject {
         timer?.cancel()
         timer = nil
     }
-
-
-    /// Fetches 7-day historical data for the closest sensor
+    
+    
+    /// Get last 7-day average from user exposure data
     func getLast7DayAverage(type: Constants.dataTypes, completion: @escaping ([Double]) -> Void) {
-        if let closestSensor = MapManager.shared.nearestSensor {
-            switch type {
-            case .co2:
-                DatabaseManager.shared.getCO2DailyAverages(sensorId: closestSensor.id) { result in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(let co2Response):
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy-MM-dd"
-                            
-                            let sortedAverages = co2Response.co2_daily_averages
-                                .compactMap { item -> (date: Date, value: Double)? in
-                                    guard let date = dateFormatter.date(from: item.date) else { return nil }
-                                    return (date, item.average_co2)
-                                }
-                                .sorted { $0.date < $1.date }
-                                .map { $0.value }
-                            
-                            completion(sortedAverages) // Return data via completion
-                        case .failure(_):
-                            completion([]) // Return empty array on failure
-                        }
-                    }
-                }
-
-            case .pm25:
-                DatabaseManager.shared.getPM25DailyAverages(sensorId: closestSensor.id) { result in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(let pm25Response):
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy-MM-dd"
-                            
-                            let sortedAverages = pm25Response.pm25_daily_averages
-                                .compactMap { item -> (date: Date, value: Double)? in
-                                    guard let date = dateFormatter.date(from: item.date) else { return nil }
-                                    return (date, item.average_pm25)
-                                }
-                                .sorted { $0.date < $1.date }
-                                .map { $0.value }
-                            
-                            completion(sortedAverages)
-                        case .failure(_):
-                            completion([])
-                        }
-                    }
-                }
-
-            case .tvoc:
-                DatabaseManager.shared.getTVOCDailyAverages(sensorId: closestSensor.id) { result in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(let tvocResponse):
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy-MM-dd"
-                            
-                            let sortedAverages = tvocResponse.tvoc_daily_averages
-                                .compactMap { item -> (date: Date, value: Double)? in
-                                    guard let date = dateFormatter.date(from: item.date) else { return nil }
-                                    return (date, item.average_tvoc)
-                                }
-                                .sorted { $0.date < $1.date }
-                                .map { $0.value }
-                            
-                            completion(sortedAverages)
-                        case .failure(_):
-                            completion([])
-                        }
-                    }
-                }
-
-            default:
-                completion([])
-            }
-        } else {
+        guard let userId = LoginManager.shared.uuid else {
             completion([])
+            return
+        }
+        
+        var apitype = Constants.apiAveragesEndpoint.co2
+        switch(type){
+        case .co2:
+            apitype = Constants.apiAveragesEndpoint.co2
+        case .pm25:
+            apitype = Constants.apiAveragesEndpoint.pm25
+        case .tvoc:
+            apitype = Constants.apiAveragesEndpoint.tvoc
+        default:
+            completion([])
+            return
+        }
+        
+        print(apitype.rawValue)
+        DatabaseManager.shared.getUserWeekAverages(type: apitype) { (result: [Double]) in
+            print(result)
+            completion(result)
         }
     }
 }
