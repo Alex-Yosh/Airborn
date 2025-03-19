@@ -348,9 +348,9 @@
 			isa = PBXGroup;
 			children = (
 				FACF465A2D14FDAE00E2EB4D /* MainTab.swift */,
+				FACF464A2D10F4C500E2EB4D /* MapScreen */,
 				FACF46482D10F46100E2EB4D /* HomeScreen */,
 				FACF46492D10F48100E2EB4D /* DataScreen */,
-				FACF464A2D10F4C500E2EB4D /* MapScreen */,
 			);
 			path = MainTab;
 			sourceTree = "<group>";

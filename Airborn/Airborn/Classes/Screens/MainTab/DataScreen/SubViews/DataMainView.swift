@@ -14,9 +14,9 @@ struct DataMainView: View {
     var body: some View {
         HStack{
             Text("My Exposure")
-                .textStyle(HeadingTextStyle())
+                .textStyle(DataMyExposureTextStyle())
             Spacer()
-        }.padding([.horizontal, .bottom])
+        }.padding([.horizontal])
         VStack(spacing: 16){
             HStack{
                 DataTempCellView()

@@ -17,7 +17,7 @@ struct DataView: View {
             ScrollView(showsIndicators: false){
                 if let selected = dataManager.selectedDataType{
                     DataDetailView()
-                        .navigationTitle(selected.rawValue) // Sets the title in the top bar
+                        .navigationTitle(selected.rawValue)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
                                 Button("Back") {
