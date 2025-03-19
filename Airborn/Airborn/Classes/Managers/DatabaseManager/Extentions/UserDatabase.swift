@@ -9,63 +9,90 @@ import Foundation
 
 extension DatabaseManager {
     
-    /// Get user exposure daily average for PM2.5 for the last 7 days
-    func getPM25Week(userId: UUID, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/pm25/avg/user/\(userId)") else { return }
-        fetchData(url: url, completion: completion)
+    /// Generic function to fetch daily averages for last 7 days
+    func getUserWeekAverages(type: Constants.apiAveragesEndpoint, completion: @escaping ([Double]) -> Void) {
+        guard let userId = LoginManager.shared.uuid else {
+            completion([]) // Return empty array if user is not logged in
+            return
+        }
+        
+        guard let url = URL(string: "\(baseURL)/data/\(type.rawValue)/avg/user/\(userId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if error != nil {
+                completion([])
+                return
+            }
+            guard let data = data else {
+                completion([])
+                return
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                let key = "\(type.rawValue)_daily_averages"
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                let sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
+                    .compactMap { item -> (date: Date, value: Double)? in
+                        guard let dateString = item["date"] as? String,
+                              let value = item["average_\(type.rawValue)"] as? Double,
+                              let date = dateFormatter.date(from: dateString) else { return nil }
+                        return (date, value)
+                    }
+                    .sorted { $0.date < $1.date }
+                    .map { $0.value } ?? []
+                
+                completion(sortedAverages)
+            } catch {
+                completion([])
+            }
+        }.resume()
     }
     
-    /// Get user exposure daily average for TVOC for the last 7 days
-    func getTVOCWeek(userId: UUID, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/tvoc/avg/user/\(userId)") else { return }
-        fetchData(url: url, completion: completion)
-    }
-    
-    /// Get user exposure daily average for CO2 for the last 7 days
-    func getCO2Week(userId: UUID, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/co2/avg/user/\(userId)") else { return }
-        fetchData(url: url, completion: completion)
-    }
-    
-    /// Get user exposure hourly for PM2.5 for the day
-    func getPM25Day(userId: UUID, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/pm25/hourly/user/\(userId)") else { return }
-        fetchData(url: url, completion: completion)
-    }
-    
-    /// Get user exposure hourly for TVOC for the day
-    func getTVOCDay(userId: UUID, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/tvoc/hourly/user/\(userId)") else { return }
-        fetchData(url: url, completion: completion)
-    }
-    
-    /// Get user exposure hourly for CO2 for the day
-    func getCO2Day(userId: UUID, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/data/co2/hourly/user/\(userId)") else { return }
-        fetchData(url: url, completion: completion)
-    }
-    
-    /// Generic fetch function for exposure data
-    private func fetchData(url: URL, completion: @escaping (Result<[ExposureData], Error>) -> Void) {
+    /// Generic function to fetch hourly averages for a given day
+    func getUserDayAverages(type: Constants.apiAveragesEndpoint, completion: @escaping ([Double]) -> Void) {
+        guard let userId = LoginManager.shared.uuid else {
+            completion([]) // Return empty array if user is not logged in
+            return
+        }
+        
+        guard let url = URL(string: "\(baseURL)/data/\(type.rawValue)/hourly/user/\(userId)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                completion(.failure(error))
+                completion([])
                 return
             }
-            guard let data = data else { return }
+            guard let data = data else {
+                completion([])
+                return
+            }
+            
             do {
-                let decodedResponse = try JSONDecoder().decode([ExposureData].self, from: data)
-                completion(.success(decodedResponse))
+                let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                let key = "\(type.rawValue)_hourly_averages"
+                
+                let dateFormatter = ISO8601DateFormatter()
+                
+                let sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
+                    .compactMap { item -> (date: Date, value: Double)? in
+                        guard let hourString = item["hour"] as? String,
+                              let value = item["avg_\(type.rawValue)"] as? Double,
+                              let date = dateFormatter.date(from: hourString) else { return nil }
+                        return (date, value)
+                    }
+                    .sorted { $0.date < $1.date }
+                    .map { $0.value } ?? []
+                
+                completion(sortedAverages)
+                
             } catch {
-                completion(.failure(error))
+                completion([])
             }
         }.resume()
     }
 }
 
-/// Define ExposureData model
-struct ExposureData: Codable {
-    let timestamp: String
-    let value: Double
-}
