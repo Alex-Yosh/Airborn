@@ -82,9 +82,9 @@ struct HomeBarView: View {
         .onAppear {
             animatedProgress = progress // Start animation on appear
         }
-        .onChange(of: progress) { newProgress in
+        .onChange(of: progress) { oldProgress, newProgress in
             withAnimation(.easeInOut(duration: 1.2)) {
-                animatedProgress = newProgress // Animate when progress changes
+                animatedProgress = newProgress
             }
         }
     }

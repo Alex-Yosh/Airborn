@@ -121,7 +121,7 @@ struct Loading: View {
                 
                 databaseManager.fetchLatestNearestSensorData { latestDataResponse in
                     DispatchQueue.main.async {
-                        if let latestData = latestDataResponse?.latest_reading {
+                        if (latestDataResponse?.latest_reading) != nil {
                             self.isDataFetched = true
                             print("Latest sensor data fetched successfully.")
                         } else {

@@ -62,7 +62,7 @@ extension DatabaseManager {
         guard let url = URL(string: "\(baseURL)/data/\(type.rawValue)/hourly/user/\(userId)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
+            if error != nil {
                 completion([])
                 return
             }

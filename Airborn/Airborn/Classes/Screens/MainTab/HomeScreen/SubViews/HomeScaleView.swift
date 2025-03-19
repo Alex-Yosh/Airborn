@@ -17,7 +17,6 @@ struct HomeScaleView: View {
     var body: some View {
         GeometryReader { geometry in
             let size = min(geometry.size.width, geometry.size.height)
-            let radius = size * 0.45
             
             let arcStart: CGFloat = 0.3
             let arcEnd: CGFloat = 0.9

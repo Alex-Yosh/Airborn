@@ -44,7 +44,7 @@ class DataManager: ObservableObject {
     
     /// Get last 7-day average from user exposure data
     func getLast7DayAverage(type: Constants.dataTypes, completion: @escaping ([Double]) -> Void) {
-        guard let userId = LoginManager.shared.uuid else {
+        guard LoginManager.shared.uuid != nil else {
             completion([])
             return
         }
