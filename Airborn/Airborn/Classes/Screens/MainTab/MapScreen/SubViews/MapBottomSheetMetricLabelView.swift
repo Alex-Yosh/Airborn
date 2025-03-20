@@ -22,7 +22,7 @@ struct MapBottomSheetMetricLabelView: View {
                         .lineLimit(1)
                     Spacer()
                 }.padding([.horizontal, .top])
-                ScaleBarView(progressPercent: progressPercent)
+//                ScaleBarView(progressPercent: progressPercent)
             }.background{
                 Rectangle()
                     .cornerRadius(5)

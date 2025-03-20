@@ -36,39 +36,39 @@ struct DataDetailView: View {
                 DataChartView(sensorType: datatype)
                     .dataBoxStyle(title:"Recent Exposure", titleIn: false)
                 
-                VStack{
-                    Grid {
-                        GridRow {
-                            Text("Last 7 days")
-                                .textStyle(RegularTextStyle())
-                            Text("10 \(datatype.metric)")
-                                .textStyle(RegularTextStyle())
-                            ScaleBarView()
-                        }.padding(.vertical, 8)
-                        
-                        Divider()
-                        
-                        GridRow {
-                            Text("Last 14 days")
-                                .textStyle(RegularTextStyle())
-                            Text("10 \(datatype.metric)")
-                                .textStyle(RegularTextStyle())
-                            ScaleBarView()
-                        }.padding(.vertical, 8)
-                        Divider()
-                        
-                        GridRow {
-                            Text("Last 31 days")
-                                .textStyle(RegularTextStyle())
-                            Text("10 \(datatype.metric)")
-                                .textStyle(RegularTextStyle())
-                            ScaleBarView()
-                        }.padding(.vertical, 8)
-                        
-                        
-                    }
-                }
-                .dataBoxStyle(title:"Trends", titleIn: false)
+//                VStack{
+//                    Grid {
+//                        GridRow {
+//                            Text("Last 7 days")
+//                                .textStyle(RegularTextStyle())
+//                            Text("10 \(datatype.metric)")
+//                                .textStyle(RegularTextStyle())
+//                            ScaleBarView()
+//                        }.padding(.vertical, 8)
+//                        
+//                        Divider()
+//                        
+//                        GridRow {
+//                            Text("Last 14 days")
+//                                .textStyle(RegularTextStyle())
+//                            Text("10 \(datatype.metric)")
+//                                .textStyle(RegularTextStyle())
+//                            ScaleBarView()
+//                        }.padding(.vertical, 8)
+//                        Divider()
+//                        
+//                        GridRow {
+//                            Text("Last 31 days")
+//                                .textStyle(RegularTextStyle())
+//                            Text("10 \(datatype.metric)")
+//                                .textStyle(RegularTextStyle())
+//                            ScaleBarView()
+//                        }.padding(.vertical, 8)
+//                        
+//                        
+//                    }
+//                }
+//                .dataBoxStyle(title:"Trends", titleIn: false)
             }
         }
     }
