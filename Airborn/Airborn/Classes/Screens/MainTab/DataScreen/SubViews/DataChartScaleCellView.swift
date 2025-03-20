@@ -33,10 +33,10 @@ struct DataChartScaleCellView: View {
                 }
                 .padding(.vertical)
             }
-            .onChange(of: getMean()) { newMean in
+            .onChange(of: getMean()) { _, newMean in
                 localMean = newMean
             }
-            .onChange(of: getPercent()) { newPercent in
+            .onChange(of: getPercent()) { _, newPercent in
                 localPercent = newPercent
             }
             .onAppear{
@@ -46,7 +46,6 @@ struct DataChartScaleCellView: View {
         }
     }
 
-    // ✅ Get mean value from DataManager
     private func getMean() -> Double {
         switch sensorType {
         case .co2: return dataManager.meanco2

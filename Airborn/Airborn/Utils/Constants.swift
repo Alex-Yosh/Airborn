@@ -38,7 +38,7 @@ struct Constants {
             case .pm25:
                 return "µg/m³"
             case .tvoc:
-                return "ppb"
+                return "%"
             case .co2:
                 return "ppm"
             }
@@ -80,8 +80,8 @@ struct Constants {
     }
     
     enum dataFilterType: String, CaseIterable  {
-        case last7Days = "Last Week"
         case lastDay = "Today"
+        case last7Days = "Last Week"
     }
     
     struct Colour {

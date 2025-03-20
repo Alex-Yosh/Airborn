@@ -35,8 +35,11 @@ extension SensorData {
         self.temperature = try container.decode(Double.self, forKey: .temperature)
         self.humidity = try container.decode(Double.self, forKey: .humidity)
         self.pm25 = try container.decode(Double.self, forKey: .pm25)
-        self.tvoc = try container.decode(Double.self, forKey: .tvoc)
         self.co2 = try container.decode(Double.self, forKey: .co2)
+        
+        //Invert TVOC when decoding
+        let rawTvoc = try container.decode(Double.self, forKey: .tvoc)
+        self.tvoc = (rawTvoc == 0) ? 0 : (100 - rawTvoc)
         
         let timestampString = try container.decode(String.self, forKey: .timestamp)
         if let date = SensorData.dateFormatter.date(from: timestampString) {
@@ -106,15 +109,15 @@ extension SensorData {
             switch(self.tvoc)
             {
             case 0...20.0:
-                return "Very Unhealthy"
+                return "Excellent"
             case 20.0...40.0:
-                return "Unhealthy"
+                return "Good"
             case 40.1...60.0:
                 return "Moderate"
             case 60.1...80.0:
-                return "Good"
+                return "Unhealthy"
             case 80.1...100:
-                return "Excellent"
+                return "Very Unhealthy"
                 
             default:
                 return "No Reading"
@@ -170,7 +173,7 @@ extension SensorData {
             
             
         case .tvoc:
-            return Float(self.tvoc/100.0)
+            return 1 - Float(self.tvoc/100.0)
             
         default:
             return -1.0 // No need
@@ -190,18 +193,16 @@ extension SensorData {
         ])
         //
         // AQI calculation for CO2 (ppm, based on health impact)
-        //        let co2AQI = getAQI(value: co2, breakpoints: [
-        //            (0, 600, 0, 50),
-        //            (601, 800, 51, 100),
-        //            (801, 1000, 101, 150),
-        //            (1001, 1500, 151, 200),
-        //            (1501, 2000, 201, 300),
-        //            (2001, 5000, 301, 500)
-        //        ])
+        let co2AQI = getAQI(value: co2, breakpoints: [
+            (0, 600, 0, 50),
+            (601, 800, 51, 100),
+            (801, 1000, 101, 150),
+            (1001, 1500, 151, 200),
+            (1501, 2000, 201, 300),
+            (2001, 5000, 301, 500)
+        ])
         //
-        // **Invert TVOC** because 100 = good, 0 = bad
-        let invertedTVOC = 100 - tvoc // Now 100 = worst, 0 = best
-        let tvocAQI = getAQI(value: invertedTVOC, breakpoints: [
+        let tvocAQI = getAQI(value: tvoc, breakpoints: [
             (0, 10, 0, 50),
             (11, 30, 51, 100),
             (31, 50, 101, 150),
@@ -211,8 +212,8 @@ extension SensorData {
         ])
         
         //  Return the highest AQI (worst air quality factor)
-        //        return max(pm25AQI, co2AQI, tvocAQI)
-        return max(pm25AQI, tvocAQI)
+        return max(pm25AQI, co2AQI, tvocAQI)
+        //        return max(pm25AQI, tvocAQI)
     }
     
     /// Helper function to calculate AQI based on breakpoints
