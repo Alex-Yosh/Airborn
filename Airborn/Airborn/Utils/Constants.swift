@@ -51,8 +51,9 @@ struct Constants {
         case co2 = "co2"
     }
     
-    enum dataFilterType {
-        case last7Days
+    enum dataFilterType: String, CaseIterable  {
+        case last7Days = "Last Week"
+        case lastDay = "Today"
     }
     
     struct Colour {

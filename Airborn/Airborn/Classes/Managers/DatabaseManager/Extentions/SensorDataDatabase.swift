@@ -83,7 +83,7 @@ extension DatabaseManager{
             completion(nil)
             return
         }
-        guard let url = URL(string: "\(baseURL)/data/latest/\(closestSensor.id)/\(userid)") else { return }
+        guard let url = URL(string: "\(baseURL)/data/latest/user/\(closestSensor.id)/\(userid)") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
             .map { data, response -> Data in

@@ -12,20 +12,27 @@ struct DataChartView: View {
     
     @EnvironmentObject var dataManager: DataManager
     
-    @State var data: [Double] = []
+    @State var data: [Double] = Array(repeating: 0.0, count: 24)
     let sensorType: Constants.dataTypes
     
-    @State private var animatedData: [Double] = [] // Gradually added for animation
-    @State private var showChart: Bool = false // Controls fade-in & scale animation
+    @State private var animatedData: [Double] = Array(repeating: 0.0, count: 24)
+    @State private var showChart: Bool = false
     
-    private var last7DaysRange: [Date] {
+    // MARK: - Generate Time Ranges
+    private var dateRange: [Date] {
         let calendar = Calendar.current
-        let today = Date()
-        let midnight = calendar.startOfDay(for: today)
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: midnight)!
-        return (0..<8).map { Calendar.current.date(byAdding: .day, value: -$0, to: tomorrow)! }.reversed()
+        let today = calendar.startOfDay(for: Date()) // Start at 12 AM
+        
+        switch dataManager.filterType {
+        case .lastDay:
+            return (0..<24).compactMap { hour in
+                calendar.date(bySettingHour: hour, minute: 0, second: 0, of: today)
+            }
+        case .last7Days:
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+            return (0..<8).map { calendar.date(byAdding: .day, value: -$0, to: tomorrow)! }.reversed()
+        }
     }
-    
     
     func colorCode(sensorType: Constants.dataTypes) -> Color {
         switch sensorType {
@@ -35,35 +42,24 @@ struct DataChartView: View {
         }
     }
     
-    func formattedDate(_ date: Date) -> String {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "M/d" // Removes leading zeros
-            return formatter.string(from: date)
-        }
-    
     var body: some View {
         VStack {
-            
             Chart {
-                ForEach(Array(last7DaysRange.prefix(7).enumerated()), id: \.element) { index, date in
-                    let value = index < animatedData.count ? animatedData[index] : 0.0 // Ensure correct alignment
-                    
+                let chartData = zip(dateRange, animatedData.prefix(dateRange.count))
+                    .map { ($0, $1) } // Precompute
+                
+                ForEach(chartData, id: \.0) { (time, value) in
                     LineMark(
-                        x: .value("Date", date),
+                        x: .value("Time", time),
                         y: .value(sensorType.rawValue, value)
                     )
                     .foregroundStyle(colorCode(sensorType: sensorType))
                     
                     PointMark(
-                        x: .value("Date", date),
+                        x: .value("Time", time),
                         y: .value(sensorType.rawValue, value)
                     )
-                    .foregroundStyle(colorCode(sensorType: sensorType))
-                    
-                    
-                    RuleMark(x: .value("Date", date))
-                        .foregroundStyle(.gray.opacity(0.2))
-                }
+                    .foregroundStyle(colorCode(sensorType: sensorType))                }
             }
             .chartYAxis {
                 AxisMarks(position: .trailing)
@@ -71,17 +67,47 @@ struct DataChartView: View {
             .chartYAxisLabel(position: .trailing, alignment: .center) {
                 Text("\(sensorType.rawValue) (\(sensorType.metric))")
             }
-            .chartYScale(domain: (data.min() ?? 0)...(data.max() ?? 500))
-            .chartXScale(domain: last7DaysRange.first!...last7DaysRange.last!)
+            .chartYScale(domain: (data.min() ?? 1) ... (data.max() ?? 10)+1)
+            .chartXScale(domain: dateRange.first!...dateRange.last!)
             .chartXAxis {
-                AxisMarks(values: last7DaysRange) { value in
+                AxisMarks(
+                    values: dataManager.filterType == .lastDay ? .stride(by: .hour, count: 3) : .stride(by: .day, count: 1)
+                ) { value in
                     if let date = value.as(Date.self) {
+                        let calendar = Calendar.current
+                        let hour = calendar.component(.hour, from: date)
+
                         AxisValueLabel {
-                            Text(date, format: .dateTime.month(.defaultDigits).day(.defaultDigits))
+                            VStack(alignment: .leading) {
+                                if dataManager.filterType == .lastDay {
+                                    switch hour {
+                                    case 0, 12:
+                                        Text(date, format: .dateTime.hour()) // Shows "12 AM" or "12 PM"
+                                    default:
+                                        Text(date, format: .dateTime.hour(.defaultDigits(amPM: .omitted))) // Shows "3, 6, 9, etc."
+                                    }
+                                    if value.index == 0 || hour == 0 {
+                                        Text(date, format: .dateTime.month().day()) // Adds date under first or midnight tick
+                                    }
+                                } else {
+                                    // For .last7Days: Show abbreviated weekday and date
+                                    Text(date, format: .dateTime.weekday(.abbreviated))
+                                    Text(date, format: .dateTime.month().day())
+                                }
+                            }
+                        }
+
+                        if hour == 0 || dataManager.filterType == .last7Days {
+                            AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
+                            AxisTick(stroke: StrokeStyle(lineWidth: 0.5))
+                        } else {
+                            AxisGridLine()
+                            AxisTick()
                         }
                     }
                 }
             }
+
             .frame(height: 300)
             .opacity(showChart ? 1 : 0) // Fade-in effect
             .scaleEffect(showChart ? 1 : 0.9, anchor: .center) // Scale-up effect
@@ -91,12 +117,18 @@ struct DataChartView: View {
         .onAppear {
             fetchData()
         }
+        .onChange(of: dataManager.filterType) { _, _ in
+            showChart = false
+            data = Array(repeating: 0.0, count: 24)
+            animatedData = Array(repeating: 0.0, count: 24)
+            fetchData()
+        }
     }
     
     private func fetchData() {
-        dataManager.getLast7DayAverage(type: sensorType) { result in
+        dataManager.getUserAverages(type: sensorType) { result in
             DispatchQueue.main.async {
-                self.data = result // Update UI state with fetched data
+                self.data = result
                 animateChart()
             }
         }
@@ -108,7 +140,7 @@ struct DataChartView: View {
             animatedData = [] // Reset before animation
             DispatchQueue.main.asyncAfter(deadline: .now() ) {
                 withAnimation {
-                    showChart = true // Scale-in the entire chart
+                    showChart = true
                 }
             }
             

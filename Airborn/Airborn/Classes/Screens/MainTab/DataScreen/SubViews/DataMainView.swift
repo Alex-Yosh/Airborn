@@ -16,6 +16,7 @@ struct DataMainView: View {
             Text("My Exposure")
                 .textStyle(DataMyExposureTextStyle())
             Spacer()
+            DataFilterDropdownMenu()
         }.padding([.horizontal])
         VStack(spacing: 16){
             HStack{

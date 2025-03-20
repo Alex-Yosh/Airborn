@@ -71,6 +71,8 @@
 		FAE5D3FC2D8B1E6600FCF004 /* SensorDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3FB2D8B1E6600FCF004 /* SensorDatabase.swift */; };
 		FAE5D3FE2D8B1EF900FCF004 /* SensorDataDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3FD2D8B1EF900FCF004 /* SensorDataDatabase.swift */; };
 		FAE5D4002D8B1F9A00FCF004 /* MapDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3FF2D8B1F9A00FCF004 /* MapDatabase.swift */; };
+		FAE5D4022D8B862200FCF004 /* DataFilterDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D4012D8B862200FCF004 /* DataFilterDropdownMenu.swift */; };
+		FAE5D4042D8B974E00FCF004 /* DataLastDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D4032D8B974D00FCF004 /* DataLastDayChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,8 @@
 		FAE5D3FB2D8B1E6600FCF004 /* SensorDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDatabase.swift; sourceTree = "<group>"; };
 		FAE5D3FD2D8B1EF900FCF004 /* SensorDataDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataDatabase.swift; sourceTree = "<group>"; };
 		FAE5D3FF2D8B1F9A00FCF004 /* MapDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDatabase.swift; sourceTree = "<group>"; };
+		FAE5D4012D8B862200FCF004 /* DataFilterDropdownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFilterDropdownMenu.swift; sourceTree = "<group>"; };
+		FAE5D4032D8B974D00FCF004 /* DataLastDayChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLastDayChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,8 @@
 				FA8247962D417BB70055738E /* DataChartScaleCellView.swift */,
 				FA82479C2D45C4270055738E /* DataMainView.swift */,
 				FA82479A2D45C05B0055738E /* DataDetailView.swift */,
+				FAE5D4012D8B862200FCF004 /* DataFilterDropdownMenu.swift */,
+				FAE5D4032D8B974D00FCF004 /* DataLastDayChartView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE5D4042D8B974E00FCF004 /* DataLastDayChartView.swift in Sources */,
 				FABA6FB32D7F6091006D7CD5 /* HomeBarView.swift in Sources */,
 				FABA6FB72D7FBF76006D7CD5 /* NominatimResponse.swift in Sources */,
 				FABA6F9B2D75351C006D7CD5 /* TVOCResponse.swift in Sources */,
@@ -529,6 +536,7 @@
 				FAE5D3FC2D8B1E6600FCF004 /* SensorDatabase.swift in Sources */,
 				FA82479D2D45C4270055738E /* DataMainView.swift in Sources */,
 				FAE5D3EF2D8A09BF00FCF004 /* NetworkManager.swift in Sources */,
+				FAE5D4022D8B862200FCF004 /* DataFilterDropdownMenu.swift in Sources */,
 				FAE167DF2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift in Sources */,
 				FACF467D2D1E2DCA00E2EB4D /* SensorData.swift in Sources */,
 				FAE5D3FE2D8B1EF900FCF004 /* SensorDataDatabase.swift in Sources */,
