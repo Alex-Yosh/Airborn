@@ -14,7 +14,7 @@ class DataManager: ObservableObject {
     static var shared = DataManager()
     
     @Published var selectedDataType: Constants.dataTypes?
-    @Published var filterType: Constants.dataFilterType = .last7Days
+    @Published var filterType: Constants.dataFilterType = .lastDay
     
     @Published var latestSensorData: SensorData?
     
@@ -42,8 +42,8 @@ class DataManager: ObservableObject {
     }
     
     
-    /// Get last 7-day average from user exposure data
-    func getLast7DayAverage(type: Constants.dataTypes, completion: @escaping ([Double]) -> Void) {
+    /// Get User average from user exposure data
+    func getUserAverages(type: Constants.dataTypes, completion: @escaping ([Double]) -> Void) {
         guard LoginManager.shared.uuid != nil else {
             completion([])
             return
@@ -62,8 +62,16 @@ class DataManager: ObservableObject {
             return
         }
         
-        DatabaseManager.shared.getUserWeekAverages(type: apitype) { (result: [Double]) in
-            completion(result)
+        switch(filterType){
+        case .lastDay:
+            DatabaseManager.shared.getUserDayAverages(type: apitype) { (result: [Double]) in
+                print(result)
+                completion(result)
+            }
+        case .last7Days:
+            DatabaseManager.shared.getUserWeekAverages(type: apitype) { (result: [Double]) in
+                completion(result)
+            }
         }
     }
 }

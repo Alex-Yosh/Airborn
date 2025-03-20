@@ -23,7 +23,7 @@ struct LongButtonTextStyle: ViewModifier {
     }
 }
 
-//login
+// MARK: --Login--
 struct LoginTextStyle: ViewModifier {
     
     func body(content: Content) -> some View {
@@ -33,7 +33,7 @@ struct LoginTextStyle: ViewModifier {
     }
 }
 
-//Loading
+// MARK: --Loading--
 struct LoadingTextStyle: ViewModifier {
     
     static var fontSize = 45.0
@@ -46,7 +46,7 @@ struct LoadingTextStyle: ViewModifier {
     }
 }
 
-//internet
+// MARK: --Internet--
 struct NoInternetTitleTextStyle: ViewModifier {
     
     func body(content: Content) -> some View {
@@ -65,7 +65,7 @@ struct NoInternetSubTitleTextStyle: ViewModifier {
     }
 }
 
-//Main
+// MARK: --Default--
 struct HeadingTextStyle: ViewModifier {
     
     static var fontSize = 24.0
@@ -103,7 +103,7 @@ struct RegularTextStyle: ViewModifier {
     }
 }
 
-//Home
+// MARK: --Home--
 struct HomeScaleAQIbigTextStyle: ViewModifier {
     
     static var fontSize = 75.0
@@ -151,8 +151,7 @@ struct BarLowHighTextStyle: ViewModifier {
 }
 
 
-
-//Map
+// MARK: --Map--
 struct MapQuestionTextStyle: ViewModifier {
     
     static var fontSize = 12.0
@@ -165,7 +164,21 @@ struct MapQuestionTextStyle: ViewModifier {
     }
 }
 
-//Data
+// MARK: --Data--
+
+struct DataMyExposureTextStyle: ViewModifier {
+    
+    static var fontSize = 24.0
+    static var color: Color = .black
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter-Bold", size: DataMyExposureTextStyle.fontSize))
+            .foregroundColor(DataMyExposureTextStyle.color)
+            .bold()
+    }
+}
+
 struct DataHeadingTextStyle: ViewModifier {
     
     static var fontSize = 16.0
@@ -190,10 +203,7 @@ struct DataSubHeadingTextStyle: ViewModifier {
     }
 }
 
-
-
-
-
+// MARK: --EXTENSION--
 
 extension Text {
     func textStyle<Style:ViewModifier>(_ style: Style) -> some View {

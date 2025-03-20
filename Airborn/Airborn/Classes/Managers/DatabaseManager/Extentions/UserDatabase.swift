@@ -55,7 +55,7 @@ extension DatabaseManager {
     /// Generic function to fetch hourly averages for a given day
     func getUserDayAverages(type: Constants.apiAveragesEndpoint, completion: @escaping ([Double]) -> Void) {
         guard let userId = LoginManager.shared.uuid else {
-            completion([]) // Return empty array if user is not logged in
+            completion([])
             return
         }
         
@@ -79,9 +79,30 @@ extension DatabaseManager {
                 
                 let sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
                     .compactMap { item -> (date: Date, value: Double)? in
-                        guard let hourString = item["hour"] as? String,
-                              let value = item["avg_\(type.rawValue)"] as? Double,
-                              let date = dateFormatter.date(from: hourString) else { return nil }
+                        guard let hourAny = item["hour"],
+                              let value = item["avg_\(type.rawValue)"] as? Double else {
+                            return nil
+                        }
+                        
+                        let hourString: String
+                        if let hourStr = hourAny as? String {
+                            hourString = hourStr
+                        } else if let hourDate = hourAny as? Date {
+                            let tempFormatter = DateFormatter()
+                            tempFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssXXX"
+                            hourString = tempFormatter.string(from: hourDate)
+                        } else {
+                            return nil
+                        }
+
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssXXX"
+                        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+                        guard let date = dateFormatter.date(from: hourString) else {
+                            return nil
+                        }
+                        
                         return (date, value)
                     }
                     .sorted { $0.date < $1.date }
