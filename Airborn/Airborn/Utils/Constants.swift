@@ -43,6 +43,34 @@ struct Constants {
                 return "ppm"
             }
         }
+        
+        // Description
+        var description: String {
+            switch self {
+            case .pm25:
+                return "Tiny airborne particles (≤2.5 micrometers) that can penetrate deep into the lungs and affect respiratory health. Common indoor sources include cooking, burning candles, smoking, and dust buildup"
+            case .tvoc:
+                return "A group of airborne chemicals that can lower indoor air quality and cause irritation or long-term health effects. Common indoor sources include cleaning products, air fresheners, paints, furniture, and cooking fumes."
+            case .co2:
+                return "A naturally occurring gas that can accumulate in poorly ventilated spaces, leading to discomfort and reduced cognitive function."
+                
+            default:
+                return ""
+            }
+        }
+        
+        // Standards
+        var standards: String {
+            switch self {
+            case .pm25:
+                return "The WHO Air Quality Guidelines recommend keeping PM2.5 levels below 5 µg/m³ (annual average) and below 15 µg/m³ (24-hour average) to minimize health risks."
+            case .co2:
+                return "The WHO recommends keeping CO2 levels below 1000 ppm indoors to ensure proper ventilation. Levels above 1500 ppm may indicate poor air circulation."
+                
+            default:
+                return ""
+            }
+        }
     }
     
     enum apiAveragesEndpoint: String {
@@ -81,7 +109,6 @@ struct Constants {
         static var GrayishWhite = Color(hex: "F9F9F9")
         
         static var ScaleBlue = Color(hex: "007BFF")
-        
     }
     
 }

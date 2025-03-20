@@ -65,7 +65,6 @@ class DataManager: ObservableObject {
         switch(filterType){
         case .lastDay:
             DatabaseManager.shared.getUserDayAverages(type: apitype) { (result: [Double]) in
-                print(result)
                 completion(result)
             }
         case .last7Days:
