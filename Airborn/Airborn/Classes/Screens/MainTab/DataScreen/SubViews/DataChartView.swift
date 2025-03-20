@@ -82,15 +82,11 @@ struct DataChartView: View {
                                 if dataManager.filterType == .lastDay {
                                     switch hour {
                                     case 0, 12:
-                                        Text(date, format: .dateTime.hour()) // Shows "12 AM" or "12 PM"
+                                        Text(date, format: .dateTime.hour())
                                     default:
-                                        Text(date, format: .dateTime.hour(.defaultDigits(amPM: .omitted))) // Shows "3, 6, 9, etc."
-                                    }
-                                    if value.index == 0 || hour == 0 {
-                                        Text(date, format: .dateTime.month().day()) // Adds date under first or midnight tick
+                                        Text(date, format: .dateTime.hour(.defaultDigits(amPM: .omitted)))
                                     }
                                 } else {
-                                    // For .last7Days: Show abbreviated weekday and date
                                     Text(date, format: .dateTime.weekday(.abbreviated))
                                     Text(date, format: .dateTime.month().day())
                                 }
@@ -107,7 +103,6 @@ struct DataChartView: View {
                     }
                 }
             }
-
             .frame(height: 300)
             .opacity(showChart ? 1 : 0) // Fade-in effect
             .scaleEffect(showChart ? 1 : 0.9, anchor: .center) // Scale-up effect
