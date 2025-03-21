@@ -135,7 +135,7 @@ struct HomeScaleView: View {
         case 0.21...0.4:
             return "Good"
         case 0.41...0.6:
-            return "Decent"
+            return "Moderate"
         case 0.61...0.8:
             return "Unhealthy"
         case 0.81...1:
