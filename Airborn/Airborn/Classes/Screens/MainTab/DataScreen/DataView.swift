@@ -14,19 +14,25 @@ struct DataView: View {
     var body: some View {
         ZStack{
             Constants.Colour.SecondaryLightGray.ignoresSafeArea()
-            ScrollView(showsIndicators: false){
-                if let selected = dataManager.selectedDataType{
-                    DataDetailView()
-                        .navigationTitle(selected.rawValue)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button("Back") {
-                                    dataManager.selectedDataType = nil
+            ScrollViewReader { proxy in
+                ScrollView(showsIndicators: false) {
+                    if let selected = dataManager.selectedDataType {
+                        DataDetailView()
+                            .id("top") // Assign a scroll ID for resetting
+                            .navigationTitle(selected.rawValue)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    Button("Back") {
+                                        dataManager.selectedDataType = nil
+                                    }
                                 }
                             }
-                        }
-                }else{
-                    DataMainView()
+                            .onAppear {
+                                proxy.scrollTo("top", anchor: .top) // Reset scroll when reopened
+                            }
+                    } else {
+                        DataMainView()
+                    }
                 }
             }
         }

@@ -12,7 +12,7 @@ struct DataChartView: View {
     
     @EnvironmentObject var dataManager: DataManager
     
-    @State var data: [Double] = Array(repeating: 0.0, count: 24)
+    @State var data: [Double] = []
     let sensorType: Constants.dataTypes
     
     @State private var showChart: Bool = false
@@ -92,7 +92,8 @@ struct DataChartView: View {
                                     }
                                 } else {
                                     Text(date, format: .dateTime.weekday(.abbreviated))
-                                    Text(date, format: .dateTime.month().day())
+                                    Text(date, format: .dateTime.month())
+                                    Text(date, format: .dateTime.day())
                                 }
                             }
                         }

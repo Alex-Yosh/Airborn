@@ -12,7 +12,7 @@ struct ScaleBarView: View {
     
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var StartingProgress: Float = 0
-    @State var progressPercent: Float = 1
+    @Binding var progressPercent: Float
     
     var body: some View {
         GeometryReader{proxy in
@@ -51,5 +51,5 @@ struct ScaleBarView: View {
 }
 
 #Preview {
-    ScaleBarView()
+    ScaleBarView(progressPercent: .constant(0.5))
 }

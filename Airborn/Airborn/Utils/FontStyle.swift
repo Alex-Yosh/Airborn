@@ -166,6 +166,18 @@ struct MapQuestionTextStyle: ViewModifier {
 
 // MARK: --Data--
 
+struct DataPillButtonTextStyle: ViewModifier {
+    
+    static var fontSize = 12.0
+    static var color: Color = .black
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.custom("Inter", size: DataPillButtonTextStyle.fontSize))
+            .foregroundColor(DataPillButtonTextStyle.color)
+    }
+}
+
 struct DataMyExposureTextStyle: ViewModifier {
     
     static var fontSize = 24.0

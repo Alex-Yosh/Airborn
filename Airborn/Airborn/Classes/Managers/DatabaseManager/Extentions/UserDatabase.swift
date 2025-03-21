@@ -35,7 +35,7 @@ extension DatabaseManager {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 
-                let sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
+                var sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
                     .compactMap { item -> (date: Date, value: Double)? in
                         guard let dateString = item["date"] as? String,
                               let value = item["average_\(type.rawValue)"] as? Double,
@@ -44,6 +44,10 @@ extension DatabaseManager {
                     }
                     .sorted { $0.date < $1.date }
                     .map { $0.value } ?? []
+                //INVERSE tvoc
+                if type == .tvoc {
+                    sortedAverages = sortedAverages.map { $0 == 0 ? 0 : (100 - $0) }
+                }
                 
                 completion(sortedAverages)
             } catch {

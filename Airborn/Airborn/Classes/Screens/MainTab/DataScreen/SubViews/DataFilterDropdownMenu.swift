@@ -40,7 +40,7 @@ struct DataFilterDropdownMenu: View {
                         }
                     } label: {
                         Rectangle()
-                            .fill(Color.blue.opacity(0.3))
+                            .fill(Constants.Colour.PrimaryBlue)
                             .frame(width: 36)
                     }
                 }
