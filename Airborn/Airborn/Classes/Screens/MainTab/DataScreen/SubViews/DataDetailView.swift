@@ -32,43 +32,27 @@ struct DataDetailView: View {
                     }
                     .dataBoxStyle(title:"What is a good reading?", titleIn: false)
                 }
-                
-                DataChartView(sensorType: datatype)
-                    .dataBoxStyle(title:"Recent Exposure", titleIn: false)
-                
-//                VStack{
-//                    Grid {
-//                        GridRow {
-//                            Text("Last 7 days")
-//                                .textStyle(RegularTextStyle())
-//                            Text("10 \(datatype.metric)")
-//                                .textStyle(RegularTextStyle())
-//                            ScaleBarView()
-//                        }.padding(.vertical, 8)
-//                        
-//                        Divider()
-//                        
-//                        GridRow {
-//                            Text("Last 14 days")
-//                                .textStyle(RegularTextStyle())
-//                            Text("10 \(datatype.metric)")
-//                                .textStyle(RegularTextStyle())
-//                            ScaleBarView()
-//                        }.padding(.vertical, 8)
-//                        Divider()
-//                        
-//                        GridRow {
-//                            Text("Last 31 days")
-//                                .textStyle(RegularTextStyle())
-//                            Text("10 \(datatype.metric)")
-//                                .textStyle(RegularTextStyle())
-//                            ScaleBarView()
-//                        }.padding(.vertical, 8)
-//                        
-//                        
-//                    }
-//                }
-//                .dataBoxStyle(title:"Trends", titleIn: false)
+                VStack{
+                    HStack{
+                        ForEach(Constants.dataFilterType.allCases, id: \.rawValue) { item in
+                            Button(action: {
+                                dataManager.filterType = item
+                            }) {
+                                Text(item.rawValue)
+                                    .textStyle(DataPillButtonTextStyle())
+                                    .padding(8)
+                                    .background(dataManager.filterType == item ? Constants.Colour.PrimaryBlue : Constants.Colour.GrayishWhite)
+                                    .clipShape(Capsule())
+                                    .shadow(radius: 5)
+                            }
+                        }
+                        Spacer()
+                    }
+                    
+                    DataChartView(sensorType: datatype)
+                }
+                .dataBoxStyle(title:"Recent Exposure", titleIn: false)
+
             }
         }
     }

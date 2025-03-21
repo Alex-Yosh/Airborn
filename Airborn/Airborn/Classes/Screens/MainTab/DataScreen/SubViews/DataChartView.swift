@@ -92,7 +92,8 @@ struct DataChartView: View {
                                     }
                                 } else {
                                     Text(date, format: .dateTime.weekday(.abbreviated))
-                                    Text(date, format: .dateTime.month().day()).lineLimit(2)
+                                    Text(date, format: .dateTime.month())
+                                    Text(date, format: .dateTime.day())
                                 }
                             }
                         }
