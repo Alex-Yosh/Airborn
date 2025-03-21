@@ -72,6 +72,8 @@
 		FAE5D3FE2D8B1EF900FCF004 /* SensorDataDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3FD2D8B1EF900FCF004 /* SensorDataDatabase.swift */; };
 		FAE5D4002D8B1F9A00FCF004 /* MapDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3FF2D8B1F9A00FCF004 /* MapDatabase.swift */; };
 		FAE5D4022D8B862200FCF004 /* DataFilterDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D4012D8B862200FCF004 /* DataFilterDropdownMenu.swift */; };
+		FAE5D4082D8D244600FCF004 /* MapDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D4072D8D244600FCF004 /* MapDataDetailView.swift */; };
+		FAE5D40A2D8D256000FCF004 /* MapChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D4092D8D256000FCF004 /* MapChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +144,8 @@
 		FAE5D3FD2D8B1EF900FCF004 /* SensorDataDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDataDatabase.swift; sourceTree = "<group>"; };
 		FAE5D3FF2D8B1F9A00FCF004 /* MapDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDatabase.swift; sourceTree = "<group>"; };
 		FAE5D4012D8B862200FCF004 /* DataFilterDropdownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFilterDropdownMenu.swift; sourceTree = "<group>"; };
+		FAE5D4072D8D244600FCF004 /* MapDataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataDetailView.swift; sourceTree = "<group>"; };
+		FAE5D4092D8D256000FCF004 /* MapChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +391,8 @@
 				FAE167DC2D29BF71007E4E7F /* MapBottomSheetLabelView.swift */,
 				FAE167DE2D29C88B007E4E7F /* MapBottomSheetMetiricsView.swift */,
 				FAE167E02D29C995007E4E7F /* MapBottomSheetMetricLabelView.swift */,
+				FAE5D4072D8D244600FCF004 /* MapDataDetailView.swift */,
+				FAE5D4092D8D256000FCF004 /* MapChartView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				FABA6FC32D7FEC8F006D7CD5 /* Loading.swift in Sources */,
 				FACF46762D15DD7100E2EB4D /* FontStyle.swift in Sources */,
 				FACF467B2D1E2CC300E2EB4D /* MarkerView.swift in Sources */,
+				FAE5D4082D8D244600FCF004 /* MapDataDetailView.swift in Sources */,
 				FAA164C62D39BCB40028D7C6 /* Sensor.swift in Sources */,
 				FACF46652D1501AC00E2EB4D /* DataView.swift in Sources */,
 				FA1B706E2D89F881009C42D1 /* HomeSettingButtonView.swift in Sources */,
@@ -544,6 +551,7 @@
 				FABA6FBB2D7FCF95006D7CD5 /* HomeBoxStyle.swift in Sources */,
 				FABA6FAC2D7BB738006D7CD5 /* Login.swift in Sources */,
 				FAE167D72D286DBB007E4E7F /* MapManager.swift in Sources */,
+				FAE5D40A2D8D256000FCF004 /* MapChartView.swift in Sources */,
 				FABA6FAA2D7BB1CD006D7CD5 /* LoginResponse.swift in Sources */,
 				FAE5D3FA2D8B1DEF00FCF004 /* LoginDatabase.swift in Sources */,
 				FA8247952D41766C0055738E /* ScaleBarView.swift in Sources */,

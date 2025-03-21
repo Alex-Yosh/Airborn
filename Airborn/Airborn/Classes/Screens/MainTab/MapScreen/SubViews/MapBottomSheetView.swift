@@ -13,7 +13,7 @@ struct MapBottomSheetView: View {
     @EnvironmentObject var dataManager: DataManager
     
     var body: some View {
-        if let sensor = mapManager.selectedSensor, let sensorData = mapManager.selectedSensorData{
+        if let sensor = mapManager.bottomSheetSensor, let sensorData = mapManager.selectedSensorData{
             HStack{
                 VStack{
                     Text(sensor.name)

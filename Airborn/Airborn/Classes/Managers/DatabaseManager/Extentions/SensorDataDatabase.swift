@@ -48,30 +48,97 @@ extension DatabaseManager{
     }
     
     ///daily average for last 7 days for sensor
-    func getSensorDailyAverages<T: Decodable>(sensorId: UUID, type: Constants.apiAveragesEndpoint, completion: @escaping (Result<T, Error>) -> Void) {
+    func getSensorWeekAverages(sensorId: UUID, type: Constants.apiAveragesEndpoint, completion: @escaping ([Double]) -> Void) {
         guard let url = URL(string: "\(baseURL)/data/\(type.rawValue)/avg/\(sensorId)") else {
-            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            completion([])
             return
         }
-        
+
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
+            guard error == nil else {
+                completion([])
                 return
             }
             guard let data = data else {
-                completion(.failure(NSError(domain: "No Data", code: 0, userInfo: nil)))
+                completion([])
                 return
             }
-            
+
             do {
-                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(decodedResponse))
+                let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                let key = "\(type.rawValue)_daily_averages"
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+
+                var sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
+                    .compactMap { item -> (date: Date, value: Double)? in
+                        guard let dateString = item["date"] as? String,
+                              let value = item["average_\(type.rawValue)"] as? Double,
+                              let date = dateFormatter.date(from: dateString) else { return nil }
+                        return (date, value)
+                    }
+                    .sorted { $0.date < $1.date }
+                    .map { $0.value } ?? []
+
+                // Invert TVOC values
+                if type == .tvoc {
+                    sortedAverages = sortedAverages.map { $0 == 0 ? 0 : (100 - $0) }
+                }
+
+                completion(sortedAverages)
+
             } catch {
-                completion(.failure(error))
+                completion([])
             }
         }.resume()
     }
+    
+    ///day for sensor
+    func getSensorDayAverages(sensorId: UUID, type: Constants.apiAveragesEndpoint, completion: @escaping ([Double]) -> Void) {
+        guard let url = URL(string: "\(baseURL)/data/\(type.rawValue)/hourly/\(sensorId)") else {
+            completion([])
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil, let data = data else {
+                completion([])
+                return
+            }
+
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                let key = "\(type.rawValue)_hourly_averages"
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"  // updated format
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // or use nil to auto-parse timezone
+
+                var sortedAverages = (jsonResponse?[key] as? [[String: Any]])?
+                    .compactMap { item -> (date: Date, value: Double)? in
+                        guard let dateString = item["hour"] as? String,
+                              let value = item["avg_\(type.rawValue)"] as? Double,
+                              let date = dateFormatter.date(from: dateString) else { return nil }
+                        return (date, value)
+                    }
+                    .sorted { $0.date < $1.date }
+                    .map { $0.value } ?? []
+
+                // Invert TVOC values
+                if type == .tvoc {
+                    sortedAverages = sortedAverages.map { $0 == 0 ? 0 : (100 - $0) }
+                }
+
+                completion(sortedAverages)
+
+            } catch {
+                completion([])
+            }
+        }.resume()
+    }
+
+
     
     /// Fetch latest sensor data from nearest sensor
     func fetchLatestNearestSensorData(completion: @escaping (LatestDataResponse?) -> Void) {

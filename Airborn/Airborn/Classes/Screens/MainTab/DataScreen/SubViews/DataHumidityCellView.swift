@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct DataHumidityCellView: View {
+    @EnvironmentObject var dataManager: DataManager
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    var progressPercent: Float = 0.5
+    @State var progressPercent: Float = 0.0
     
     @State private var StartingProgress: Float = 0
     
@@ -44,10 +45,16 @@ struct DataHumidityCellView: View {
                 }
             }
         }
+        .onAppear{
+            if let humidity = dataManager.latestSensorData?.humidity{
+                progressPercent = Float(humidity)
+            }
+        }
         
     }
 }
 
 #Preview {
     DataHumidityCellView()
+        .environmentObject(DataManager.shared)
 }

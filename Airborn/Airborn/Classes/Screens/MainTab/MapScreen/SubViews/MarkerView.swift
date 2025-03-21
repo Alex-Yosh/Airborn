@@ -20,7 +20,7 @@ struct MarkerView: View {
         ZStack {
             if let colour = colour {
                 
-                if mapManager.selectedSensor == sensor {
+                if mapManager.bottomSheetSensor == sensor {
                     ZStack {
                         Circle()
                             .stroke(colour.opacity(0.5), lineWidth: 4)
@@ -44,7 +44,7 @@ struct MarkerView: View {
                     .blur(radius: 6) // Soft glow
                 
                 Button(action: {
-                    if mapManager.selectedSensor == sensor {
+                    if mapManager.bottomSheetSensor == sensor {
                         mapManager.HideSensorSheet()
                     } else {
                         mapManager.ShowSensorSheet(sensor: sensor)
@@ -78,8 +78,8 @@ struct MarkerView: View {
                 }
             }
         }
-        .onChange(of: mapManager.selectedSensor) { _, _ in
-            if mapManager.selectedSensor == sensor {
+        .onChange(of: mapManager.bottomSheetSensor) { _, _ in
+            if mapManager.bottomSheetSensor == sensor {
                 rippleEffect = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     rippleEffect = true
@@ -112,7 +112,7 @@ struct Triangle: Shape {
     let testSensor = Sensor(id: UUID(), name: "Test Sensor", latitude: 43.474823, longitude: -80.536141)
     
     DispatchQueue.main.async {
-        mockMapManager.selectedSensor = testSensor
+        mockMapManager.bottomSheetSensor = testSensor
     }
     
     return MarkerView(sensor: testSensor)
