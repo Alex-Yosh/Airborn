@@ -22,7 +22,7 @@ struct LoginView: View {
                 .autocapitalization(.none)
                 .padding()
 
-            TextField("Password", text: $loginManager.password)
+            SecureField("Password", text: $loginManager.password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .autocapitalization(.none)
                 .padding()

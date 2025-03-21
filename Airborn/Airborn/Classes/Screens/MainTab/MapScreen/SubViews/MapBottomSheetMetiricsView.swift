@@ -30,7 +30,7 @@ struct MapBottomSheetMetricsView: View {
                 GridRow {
                     MapBottomSheetMetricLabelView(title: Constants.dataTypes.co2.rawValue, progressPercent: sensorData.getQualityPercentage(ofType: Constants.dataTypes.co2))
                     
-                    LongButtonView(title: "See more in detail", systemImage: "", backgroundColor: Color.blue){
+                    LongButtonView(title: "View Details", systemImage: "", backgroundColor: Color.blue){
                         mapManager.detailSensor = mapManager.bottomSheetSensor
                         mapManager.showDetails = true
                     }
