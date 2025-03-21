@@ -9,6 +9,9 @@ import SwiftUI
 
 struct DataFilterDropdownMenu: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var mapManager: MapManager
+    
+    var forMap:Bool =  false
     
     var body: some View {
         HStack {
@@ -31,9 +34,12 @@ struct DataFilterDropdownMenu: View {
                     Spacer()
                     Menu {
                         ForEach(Constants.dataFilterType.allCases, id: \.rawValue) { item in
-                            
                             Button(action: {
-                                dataManager.filterType = item
+                                if forMap{
+                                    mapManager.filterType = item
+                                }else{
+                                    dataManager.filterType = item
+                                }
                             }) {
                                 Text(item.rawValue)
                             }
@@ -41,7 +47,7 @@ struct DataFilterDropdownMenu: View {
                     } label: {
                         Rectangle()
                             .fill(Constants.Colour.PrimaryBlue)
-                            .frame(width: 36)
+                            .frame(width: 36, height: 32)
                     }
                 }
             }

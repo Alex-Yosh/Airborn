@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import MapKit
 import CoreLocation
+import SwiftUI
 
 class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
@@ -17,7 +18,8 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     
     @Published var showSelectedSensor: Bool = false
-    @Published var selectedSensor: Sensor?
+    @Published var bottomSheetSensor: Sensor?
+    @Published var detailSensor: Sensor?
     @Published var selectedSensorData: SensorData?
     @Published var isLocationPermissionGranted: Bool = false
     @Published var sensorAddress: String?
@@ -33,6 +35,9 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocationCoordinate2D?
     
     @Published var sensors: [Sensor] = []
+    
+    @Published var showDetails: Bool = false
+    @Published var filterType: Constants.dataFilterType = .lastDay
     
     override init() {
         super.init()
@@ -73,7 +78,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
         
-        selectedSensor = sensor
+        bottomSheetSensor = sensor
         showSelectedSensor = true
     }
     
@@ -89,7 +94,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func HideSensorSheet() {
-        selectedSensor = nil
+        bottomSheetSensor = nil
         selectedSensorData = nil
         showSelectedSensor = false
     }
@@ -173,5 +178,20 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             return nil
         }
     }
+    
+    
+    func fetchSensorColour(for sensor: Sensor, completion: @escaping (Color?) -> Void) {
+        DatabaseManager.shared.fetchLatestSelectedSensorData(selectedSensor: sensor) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let sensorData):
+                    completion(sensorData.getAQIColor())
+                case .failure(let error):
+                    completion(nil)
+                }
+            }
+        }
+    }
+
     
 }

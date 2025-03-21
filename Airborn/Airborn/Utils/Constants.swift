@@ -73,6 +73,15 @@ struct Constants {
         }
     }
     
+    enum quality: String{
+        case excellent = "Excellent"
+        case good = "Good"
+        case moderate = "Moderate"
+        case unhealthy = "Unhealthy"
+        case veryUnhealthy = "Very Unhealthy"
+        case hazardous = "Hazardous"
+    }
+    
     enum apiAveragesEndpoint: String {
         case pm25 = "pm25"
         case tvoc = "tvoc"

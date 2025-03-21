@@ -49,7 +49,7 @@ class DataManager: ObservableObject {
         timer = nil
     }
     
-    
+    // MARK: -USER-
     /// Get User average from user exposure data
     func getUserAverages(type: Constants.dataTypes, completion: @escaping ([Double]) -> Void) {
         guard LoginManager.shared.uuid != nil else {
@@ -91,7 +91,43 @@ class DataManager: ObservableObject {
             }
         }
     }
+    
+    // MARK: -SENSOR-
+    /// Get Sensor average
+    func getSensorAverages(type: Constants.dataTypes, sensor: Sensor,  completion: @escaping ([Double]) -> Void) {
+        var apitype = Constants.apiAveragesEndpoint.co2
+        switch type {
+        case .co2: apitype = .co2
+        case .pm25: apitype = .pm25
+        case .tvoc: apitype = .tvoc
+        default:
+            DispatchQueue.main.async {
+                completion([])
+            }
+            return
+        }
 
+        switch MapManager.shared.filterType {
+        case .lastDay:
+            DatabaseManager.shared.getSensorDayAverages(sensorId: sensor.id, type: apitype) { result in
+                self.updateAverages(type: apitype, results: result)
+
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        case .last7Days:
+            DatabaseManager.shared.getSensorWeekAverages(sensorId: sensor.id, type: apitype) { result in
+                
+                self.updateAverages(type: apitype, results: result)
+
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
+    }
+    
     
     func updateAverages(type: Constants.apiAveragesEndpoint, results: [Double]) {
         let mean = results.isEmpty ? 0 : results.reduce(0, +) / Double(results.count)

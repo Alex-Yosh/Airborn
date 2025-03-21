@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MapBottomSheetMetricsView: View {
     
+    @EnvironmentObject var mapManager: MapManager
+    
     var sensorData: SensorData
     
     var body: some View {
@@ -27,6 +29,11 @@ struct MapBottomSheetMetricsView: View {
                 }
                 GridRow {
                     MapBottomSheetMetricLabelView(title: Constants.dataTypes.co2.rawValue, progressPercent: sensorData.getQualityPercentage(ofType: Constants.dataTypes.co2))
+                    
+                    LongButtonView(title: "See more in detail", systemImage: "", backgroundColor: Color.blue){
+                        mapManager.detailSensor = mapManager.bottomSheetSensor
+                        mapManager.showDetails = true
+                    }
                 }
             }
             
@@ -37,4 +44,5 @@ struct MapBottomSheetMetricsView: View {
 
 #Preview {
     MapBottomSheetMetricsView(sensorData: SensorData(temperature: 21.0, humidity: 23.0, pm25: 4.1, tvoc: 3.2, co2: 2.0, timestamp: Date.now))
+        .environmentObject(MapManager.shared)
 }
