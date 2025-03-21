@@ -38,6 +38,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var showDetails: Bool = false
     @Published var filterType: Constants.dataFilterType = .lastDay
+    @Published var distanceToNearestSensor: CLLocationDistance? = nil
     
     override init() {
         super.init()
@@ -135,7 +136,7 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     
     func findNearestSensor() {
-        guard let userLocation = userLocation else {return}
+        guard let userLocation = userLocation else { return }
         
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         
@@ -144,6 +145,13 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             let distance2 = userCLLocation.distance(from: CLLocation(latitude: $1.latitude, longitude: $1.longitude))
             return distance1 < distance2
         })
+
+        if let nearest = nearestSensor {
+            let sensorCL = CLLocation(latitude: nearest.latitude, longitude: nearest.longitude)
+            distanceToNearestSensor = userCLLocation.distance(from: sensorCL)
+        } else {
+            distanceToNearestSensor = nil
+        }
         
         //get address
         guard let sensor = nearestSensor else {

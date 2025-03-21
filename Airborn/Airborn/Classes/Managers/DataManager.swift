@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreLocation
 
 class DataManager: ObservableObject {
     
@@ -24,6 +25,8 @@ class DataManager: ObservableObject {
     @Published var meanpm25: Double = 0.0
     @Published var meantvoc: Double = 0.0
     @Published var meanco2: Double = 0.0
+    
+    let maxPollingDistance: CLLocationDistance = 100
 
     
     private var timer: AnyCancellable?
@@ -46,10 +49,25 @@ class DataManager: ObservableObject {
         timer = Timer.publish(every: 60, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                DatabaseManager.shared.fetchLatestNearestSensorData{ latestDataResponse in
+                self.attemptPollIfNearby()
+            }
+    }
+    
+    private func attemptPollIfNearby() {
+        guard let distance = MapManager.shared.distanceToNearestSensor else {
+            return
+        }
+
+        if distance <= maxPollingDistance {
+            print("Polling: user is within \(Int(distance))m of sensor.")
+            DatabaseManager.shared.fetchLatestNearestSensorData { latestDataResponse in
+                DispatchQueue.main.async {
                     self.latestSensorData = latestDataResponse?.latest_reading
                 }
             }
+        } else {
+            print("Polling skipped: user is \(Int(distance))m away (threshold is \(Int(maxPollingDistance))m).")
+        }
     }
     
     /// Stops the polling
@@ -63,18 +81,12 @@ class DataManager: ObservableObject {
         stopPolling()
 
         await withCheckedContinuation { continuation in
-            DatabaseManager.shared.fetchLatestNearestSensorData { latestDataResponse in
-                DispatchQueue.main.async {
-                    self.latestSensorData = latestDataResponse?.latest_reading
-                    continuation.resume()
-                }
-            }
+            attemptPollIfNearby()
+            continuation.resume()
         }
 
-        startPolling() // Restart polling after refresh
+        startPolling()
     }
-
-    
     
     // MARK: -USER-
     /// Get User average from user exposure data
