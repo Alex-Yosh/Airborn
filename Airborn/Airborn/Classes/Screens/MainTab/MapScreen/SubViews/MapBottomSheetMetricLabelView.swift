@@ -22,13 +22,11 @@ struct MapBottomSheetMetricLabelView: View {
                         .lineLimit(1)
                     Spacer()
                 }.padding([.horizontal, .top])
-//                ScaleBarView(progressPercent: progressPercent)
+                ScaleBarView(progressPercent: .constant(progressPercent))
             }.background{
                 Rectangle()
                     .cornerRadius(5)
                 .foregroundColor(Constants.Colour.SecondaryLightGray)}
-        
-                
     }
 }
 

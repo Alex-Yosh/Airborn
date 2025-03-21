@@ -22,11 +22,14 @@ struct MapBottomSheetView: View {
                         MapBottomSheetLabelView(image: thermometerImage(for: sensorData.temperature), text: String(round(sensorData.temperature * 10) / 10.0) + Constants.dataTypes.temperature.metric)
                         MapBottomSheetLabelView(image: "humidity", text: String(round(sensorData.humidity * 10) / 10.0) + Constants.dataTypes.humidity.metric)
                     }
-                }
+                }.padding(.leading)
                 Spacer()
-                Image(systemName: "air.purifier")
-                    .font(.system(size: 60))
-            }.padding()
+                Image("Sensor")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 80)
+                    .foregroundColor(.white)
+            }
             
             MapBottomSheetMetricsView(sensorData: sensorData)
             

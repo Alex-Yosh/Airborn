@@ -20,7 +20,6 @@ struct MarkerView: View {
         ZStack {
             if let colour = colour {
                 
-                // ✅ **Ripple Effect for Selected Sensor**
                 if mapManager.selectedSensor == sensor {
                     ZStack {
                         Circle()
@@ -39,19 +38,15 @@ struct MarkerView: View {
                     }
                 }
                 
-                // ✅ **Outer Glow**
                 Circle()
                     .fill(colour.opacity(0.3))
                     .frame(width: 50, height: 50)
                     .blur(radius: 6) // Soft glow
                 
-                // ✅ **Main Pin (Button for Interaction)**
                 Button(action: {
                     if mapManager.selectedSensor == sensor {
-                        // ✅ **Deselect Sensor**
                         mapManager.HideSensorSheet()
                     } else {
-                        // ✅ **Select Sensor & Reset Animation**
                         mapManager.ShowSensorSheet(sensor: sensor)
                         mapManager.centerMapOnSensor(sensor: sensor)
                         rippleEffect = false
@@ -74,7 +69,6 @@ struct MarkerView: View {
                                 .foregroundColor(.white)
                         }
                         
-                        // ✅ **Triangle (Pinpoint)**
                         Triangle()
                             .fill(colour)
                             .frame(width: 12, height: 14)
@@ -117,7 +111,6 @@ struct Triangle: Shape {
     let mockMapManager = MapManager.shared
     let testSensor = Sensor(id: UUID(), name: "Test Sensor", latitude: 43.474823, longitude: -80.536141)
     
-    // ✅ Simulate selecting the sensor for preview testing
     DispatchQueue.main.async {
         mockMapManager.selectedSensor = testSensor
     }
