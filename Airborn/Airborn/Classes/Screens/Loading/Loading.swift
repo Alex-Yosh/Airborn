@@ -18,6 +18,7 @@ struct Loading: View {
     @State private var isLoadingStarted = false
     
     @State private var opacity: Double = 1.0
+    @State private var animateFade = false
     @State private var isLoading = true
     @State private var text = "A"
     
@@ -59,32 +60,16 @@ struct Loading: View {
     
     private func startTextAnimation() {
         // Step 1: Delay for a moment with just "A"
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            text = "AI"
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
-            text = "AIR"
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-            text = "AIRB"
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-            text = "AIRBO"
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
-            text = "AIRBOR"
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            text = "AIRBORN"
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-            text = "AIRBORNE"
+        let fullText = "AIRBORNE"
+
+        // Step 1: Show "A" for 0.6s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            for i in 2...fullText.count {
+                let delay = 0.6 + Double(i - 1) * 0.1
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    text = String(fullText.prefix(i))
+                }
+            }
         }
     }
     
