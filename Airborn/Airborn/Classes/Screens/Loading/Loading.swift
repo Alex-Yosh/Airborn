@@ -11,6 +11,7 @@ struct Loading: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var mapManager: MapManager
     @EnvironmentObject var databaseManager: DatabaseManager
+    @EnvironmentObject var dataManager: DataManager
     
     @State private var isDataFetched = false
     @State private var isLocationFetched = false
@@ -108,6 +109,7 @@ struct Loading: View {
                     DispatchQueue.main.async {
                         if (latestDataResponse?.latest_reading) != nil {
                             self.isDataFetched = true
+                            dataManager.immediatePoll()
                             print("Latest sensor data fetched successfully.")
                         } else {
                             print("Failed to fetch latest sensor data.")
@@ -165,4 +167,6 @@ struct Loading: View {
         .environmentObject(NavigationManager.shared)
         .environmentObject(MapManager.shared)
         .environmentObject(DatabaseManager.shared)
+        .environmentObject(DataManager.shared)
+
 }

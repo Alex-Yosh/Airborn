@@ -32,9 +32,18 @@ class DataManager: ObservableObject {
         startPolling()
     }
     
-    /// Starts polling for new sensor data every 10 seconds
+    /// pole immediatly
+    func immediatePoll() {
+        DatabaseManager.shared.fetchLatestNearestSensorData { latestDataResponse in
+            DispatchQueue.main.async {
+                self.latestSensorData = latestDataResponse?.latest_reading
+            }
+        }
+    }
+    
+    /// Starts polling for new sensor data every 60 seconds
     private func startPolling() {
-        timer = Timer.publish(every: 10, on: .main, in: .common)
+        timer = Timer.publish(every: 60, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
                 DatabaseManager.shared.fetchLatestNearestSensorData{ latestDataResponse in
@@ -48,6 +57,24 @@ class DataManager: ObservableObject {
         timer?.cancel()
         timer = nil
     }
+    
+    /// Manually refresh sensor data and reset polling timer
+    func manualRefresh() async {
+        stopPolling()
+
+        await withCheckedContinuation { continuation in
+            DatabaseManager.shared.fetchLatestNearestSensorData { latestDataResponse in
+                DispatchQueue.main.async {
+                    self.latestSensorData = latestDataResponse?.latest_reading
+                    continuation.resume()
+                }
+            }
+        }
+
+        startPolling() // Restart polling after refresh
+    }
+
+    
     
     // MARK: -USER-
     /// Get User average from user exposure data

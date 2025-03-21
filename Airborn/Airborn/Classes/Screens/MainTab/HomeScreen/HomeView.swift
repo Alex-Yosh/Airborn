@@ -32,7 +32,7 @@ struct HomeView: View {
                             .onAppear {
                                 dragOffset = geo.frame(in: .global).minY
                             }
-                            .onChange(of: geo.frame(in: .global).minY) { newValue in
+                            .onChange(of: geo.frame(in: .global).minY) { _, newValue in
                                 dragOffset = newValue
                                 if dragOffset > refreshThreshold &&
                                     !isRefreshing &&
@@ -105,8 +105,11 @@ struct HomeView: View {
     }
 
     func refreshData() async {
-        try? await Task.sleep(nanoseconds: 3_000_000_000)
+        async let delay: ()? = try? Task.sleep(nanoseconds: 3_000_000_000)
+        async let refresh = dataManager.manualRefresh()
+        _ = await (delay, refresh)
     }
+
 }
 
 
@@ -134,7 +137,7 @@ struct AirborneSpinner: View {
 
     func animateText() {
         let fullText = "AIRBORNE"
-        for (index, character) in fullText.enumerated() {
+        for (index, _) in fullText.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1 * Double(index)) {
                 text = String(fullText.prefix(index + 1))
             }
