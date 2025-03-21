@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct SensorData: Codable {
     let temperature: Double
@@ -70,17 +71,17 @@ extension SensorData {
             switch(self.co2)
             {
             case 0...600.0:
-                return "Excelent"
+                return Constants.quality.excellent.rawValue
             case 600.1...800.0:
-                return "Good"
+                return Constants.quality.good.rawValue
             case 800.1...1000.0:
-                return "Moderate"
+                return Constants.quality.moderate.rawValue
             case 1000.1...1500.0:
-                return "Unhealthy"
+                return Constants.quality.unhealthy.rawValue
             case 1500.1...2000.0:
-                return "Very Unhealthy"
+                return Constants.quality.veryUnhealthy.rawValue
             case let x where x > 2000.1:
-                return "Hazardous"
+                return Constants.quality.hazardous.rawValue
                 
             default:
                 return "No Reading"
@@ -89,17 +90,17 @@ extension SensorData {
             switch(self.pm25)
             {
             case 0...4.0:
-                return "Excellent"
+                return Constants.quality.excellent.rawValue
             case 4.1...9.0:
-                return "Good"
+                return Constants.quality.good.rawValue
             case 9.1...45.3:
-                return "Moderate"
+                return Constants.quality.moderate.rawValue
             case 45.4...125.4:
-                return "Unhealthy"
+                return Constants.quality.unhealthy.rawValue
             case 125.5...225.4:
-                return "Very Unhealthy"
+                return Constants.quality.veryUnhealthy.rawValue
             case let x where x > 225.4:
-                return "Hazardous"
+                return Constants.quality.hazardous.rawValue
                 
             default:
                 return "No Reading"
@@ -109,15 +110,15 @@ extension SensorData {
             switch(self.tvoc)
             {
             case 0...20.0:
-                return "Excellent"
+                return Constants.quality.excellent.rawValue
             case 20.0...40.0:
-                return "Good"
+                return Constants.quality.good.rawValue
             case 40.1...60.0:
-                return "Moderate"
+                return Constants.quality.unhealthy.rawValue
             case 60.1...80.0:
-                return "Unhealthy"
+                return Constants.quality.veryUnhealthy.rawValue
             case 80.1...100:
-                return "Very Unhealthy"
+                return Constants.quality.hazardous.rawValue
                 
             default:
                 return "No Reading"
@@ -180,6 +181,8 @@ extension SensorData {
         }
     }
 }
+
+
 extension SensorData {
     func calculateAQI() -> Int {
         // AQI calculation for PM2.5 (EPA Standard in μg/m³)
@@ -215,6 +218,26 @@ extension SensorData {
         return max(pm25AQI, co2AQI, tvocAQI)
         //        return max(pm25AQI, tvocAQI)
     }
+    
+    /// Returns a color based on AQI value
+       func getAQIColor() -> Color {
+           let aqi = calculateAQI() // Get AQI value
+           
+           switch aqi {
+           case 0...50:
+               return Constants.Colour.HomeScaleStrongerGreen
+           case 51...100:
+               return Constants.Colour.HomeScaleGreenishYellow
+           case 101...150:
+               return Constants.Colour.HomeScaleStrongYellow
+           case 151...200:
+               return Constants.Colour.HomeScaleDarkerOrange
+           case 201...300:
+               return Constants.Colour.HomeScaleStrongRed
+           default:
+               return Constants.Colour.HomeScaleStrongRed
+           }
+       }
     
     /// Helper function to calculate AQI based on breakpoints
     private func getAQI(value: Double, breakpoints: [(Double, Double, Int, Int)]) -> Int {

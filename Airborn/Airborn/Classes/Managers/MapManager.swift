@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import MapKit
 import CoreLocation
+import SwiftUI
 
 class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
@@ -173,5 +174,20 @@ class MapManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             return nil
         }
     }
+    
+    
+    func fetchSensorColour(for sensor: Sensor, completion: @escaping (Color?) -> Void) {
+        DatabaseManager.shared.fetchLatestSelectedSensorData(selectedSensor: sensor) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let sensorData):
+                    completion(sensorData.getAQIColor())
+                case .failure(let error):
+                    completion(nil)
+                }
+            }
+        }
+    }
+
     
 }
